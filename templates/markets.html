@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% import "macros.html" as m %}
+{% block main %}
+<div class="page-head"><div><span class="kicker">{{ r.holdings|length }} listed holdings · last close</span><h1>Public markets</h1></div></div>
+
+<section class="hgrid">
+{% for h in r.holdings %}
+<article class="hcard{% if h.largest %} big{% endif %}">
+  <div class="head"><div><div class="nm">{{ h.name }}</div><div class="src">{{ h.exchange }}{% if h.ticker %} · {{ h.ticker }}{% endif %} · {{ h.currency }}</div></div>
+    {% if h.largest %}<span class="big-tag">LARGEST MOVE</span>{% endif %}</div>
+  {% if h.q %}
+  <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:10px"><span class="px">{{ h.q.price | price }}</span>
+    <span class="ch {{ m.dir(h.q.change_pct) }}">{{ m.arrow(h.q.change_pct) }} {{ h.q.change_pct | pct }}</span></div>
+  {% if h.q.spark %}<svg class="spark" viewBox="0 0 120 28" preserveAspectRatio="none" role="img" aria-label="{{ h.name }} 30-day closing prices">
+    <polyline points="{{ h.q.spark }}" stroke="{{ '#0D7A4A' if (h.q.change_1m_pct or 0) >= 0 else '#B42318' }}"></polyline></svg>
+  <div class="src">30 days{% if h.q.change_1m_pct is not none %} · {{ h.q.change_1m_pct | pct }}{% endif %}</div>{% endif %}
+  <div class="mini"><div><span>PREV</span>{{ h.q.prev | price }}</div><div><span>VOL (m)</span>{{ h.q.volume | volm }}</div><div><span>VS 10D</span>{{ h.q.vs10 | ratio }}</div></div>
+  {% else %}<p class="muted" style="margin:0">No price data today. Check the ticker on the Watchlist page.</p>{% endif %}
+</article>
+{% endfor %}
+</section>
+
+<section>
+  <div class="rule-head"><h2>All holdings</h2><span class="ln"></span></div>
+  <div class="tbl-box"><table class="data">
+    <thead><tr><th class="l" scope="col">Company</th><th scope="col">Ccy</th><th scope="col">Last</th><th scope="col">Prev close</th><th scope="col">Change</th>
+      <th scope="col">Vol today <span class="u">(m)</span></th><th scope="col">Avg 10d <span class="u">(m)</span></th><th scope="col">Avg 3m <span class="u">(m)</span></th><th class="l" scope="col">Volume profile</th></tr></thead>
+    <tbody>
+    {% for h in r.holdings %}{% set q = h.q %}
+    <tr><td class="l nm">{{ h.name }}</td><td class="muted">{{ h.currency }}</td>
+      {% if q %}
+      {% set mx = [q.volume or 0, q.avg10 or 0, q.avg3m or 0] | max %}
+      <td style="font-weight:600">{{ q.price | price }}</td><td>{{ q.prev | price }}</td>
+      <td class="{{ m.dir(q.change_pct) }}" style="font-weight:600">{{ m.arrow(q.change_pct) }} {{ q.change_pct | pct }}</td>
+      <td>{{ q.volume | volm }}</td><td>{{ q.avg10 | volm }}</td><td>{{ q.avg3m | volm }}</td>
+      <td class="l"><div class="vbars">
+        <i style="width:{{ (100 * (q.volume or 0) / mx) | round | int if mx else 0 }}%;background:var(--accent)"></i>
+        <i style="width:{{ (100 * (q.avg10 or 0) / mx) | round | int if mx else 0 }}%;background:#8A958F"></i>
+        <i style="width:{{ (100 * (q.avg3m or 0) / mx) | round | int if mx else 0 }}%;background:#C9D1CB"></i></div></td>
+      {% else %}<td colspan="7" class="muted">no data</td>{% endif %}
+    </tr>
+    {% endfor %}
+    </tbody></table></div>
+  <div class="legend" style="margin-top:10px"><span><i style="background:var(--accent)"></i>today</span><span><i style="background:#8A958F"></i>10-day avg</span><span><i style="background:#C9D1CB"></i>3-month avg</span></div>
+</section>
+
+{% set notes = [] %}
+{% for h in r.holdings %}{% if h.q and (h.q.flags or (h.q.vs10 and h.q.vs10 >= 1.5)) %}{% set _ = notes.append(h) %}{% endif %}{% endfor %}
+{% if notes %}
+<section class="pair">
+{% for h in notes %}{% set q = h.q %}
+<div class="note"><span class="k">{{ h.name }}</span>
+  <p>{{ q.change_pct | pct }} on {{ q.vs10 | ratio }} its 10-day and {{ q.vs3m | ratio }} its 3-month average volume.
+  {% if q.vs10 and q.vs3m and q.vs10 >= 1.5 and q.vs3m < 1 %}The last two weeks were unusually quiet, so this looks more like a return to normal trading than a spike.
+  {% elif 'volume' in q.flags %}Volume is above both averages, so the move had broad participation.{% endif %}
+  {% if r.companies[h.name].why %} {{ r.companies[h.name].why }}{% endif %}</p></div>
+{% endfor %}
+</section>
+{% endif %}
+
+{% if r.benchmarks %}
+<section>
+  <div class="rule-head"><h2>Benchmarks</h2><span class="ln"></span></div>
+  <div class="bench">{% for bm in r.benchmarks %}<span>{{ bm.name }} <b>{% if bm.unit == 'yield' %}{{ bm.q.price | price }}%{% else %}{{ bm.q.price | price }}{% endif %}</b>
+    <span class="{{ m.dir(bm.q.change_pct) }}">{% if bm.unit == 'yield' %}{{ bm.q.change | bps }}{% else %}{{ bm.q.change_pct | pct }}{% endif %}</span></span>{% endfor %}</div>
+</section>
+{% endif %}
+{% endblock %}

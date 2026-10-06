@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% import "macros.html" as m %}
+{% block main %}
+{% set b = r.briefing %}
+<div class="cols">
+<section class="col-main">
+  <div>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px">
+      <span class="kicker">The briefing</span>
+      <span class="tag">{% if b.ai %}AI summary · verify before acting{% else %}Automatic summary{% endif %}</span>
+    </div>
+    <h1>{{ b.headline }}</h1>
+    <div class="lede" style="margin-top:14px">{% for p in b.paragraphs %}<p>{{ p }}</p>{% endfor %}</div>
+  </div>
+
+  {% if b.top3 %}
+  <div class="top3">
+    <div class="rule-head"><h2>Top 3 today</h2><span class="ln"></span></div>
+    {% for t in b.top3 %}
+    <article>
+      <span class="n">{{ loop.index }}</span>
+      <div style="min-width:0">
+        <span class="meta">{{ t.label }}{% if t.company and t.company != t.label %} · {{ t.company }}{% endif %}</span>
+        <a class="t" href="{{ t.url if t.url.startswith('http') else root ~ t.url }}"{% if t.url.startswith('http') %} target="_blank" rel="noopener"{% endif %}>{{ t.title }}</a>
+        <span class="src">{{ t.source }}{% if t.date %} · {{ t.date | shortdate }}{% endif %}</span>
+        {% if t.why %}<p class="why"><b>Why it matters:</b> {{ t.why }}</p>{% endif %}
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if r.macro %}
+  <div>
+    <div class="rule-head"><h2>Macro &amp; policy</h2><span class="ln"></span><span class="aside">last 72h</span></div>
+    {% for it in r.macro %}
+    <div class="list-row"><span class="d">{{ it.date | shortdate }}</span>
+      <div><a href="{{ it.url }}" target="_blank" rel="noopener">{{ it.title }}</a> <span class="src">{{ it.source }}</span>{% if it.is_new %} <span class="badge-new">NEW</span>{% endif %}</div></div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</section>
+
+<aside class="col-side">
+  <div class="panel">
+    <div class="panel-head"><h2>Holdings</h2><a class="mono" style="font-size:11px" href="{{ root }}markets.html">Markets</a></div>
+    {% for h in r.holdings %}
+    <div class="hold">
+      <div><div class="nm">{{ h.name }}{% if h.q and 'volume' in h.q.flags %} <span class="badge-new">{{ h.q.vs10 | ratio }} 10D VOL</span>{% endif %}</div>
+        <div class="sub">{{ h.exchange }} · {{ h.currency }}</div></div>
+      {% if h.q %}<div><div class="px">{{ h.q.price | price }}</div><div class="ch {{ m.dir(h.q.change_pct) }}">{{ m.arrow(h.q.change_pct) }} {{ h.q.change_pct | pct }}</div></div>
+      {% else %}<div class="sub">no data</div>{% endif %}
+    </div>
+    {% endfor %}
+  </div>
+
+  {% set vw = [] %}
+  {% for n, c in r.companies.items() %}{% if c.view.valuation and c.view.valuation.previous or c.view.reported %}{% set _ = vw.append(c) %}{% endif %}{% endfor %}
+  {% if vw %}
+  <div class="panel">
+    <h2>Valuation watch</h2>
+    {% for c in vw %}
+    <div style="padding:10px 0;border-bottom:1px solid var(--line-2)">
+      <div style="display:flex;justify-content:space-between;gap:8px"><b>{{ c.name }}</b>
+        {% if c.view.reported %}<span class="pill-warn">REPORTED</span>{% else %}<span class="mono" style="font-weight:600">{{ c.view.valuation.text }}</span>{% endif %}</div>
+      <div class="src">{% if c.view.reported %}{{ c.view.reported.text }} · in talks · verify{% else %}was {{ c.view.valuation.previous }} · {{ c.view.valuation.provenance }}{% endif %}</div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="panel">
+    <div class="panel-head"><h2>Today's flags</h2><a class="mono" style="font-size:11px" href="{{ root }}changed.html">What changed</a></div>
+    <div class="stat-grid">
+      <div><b>{{ r.counts.flags }}</b>price / volume</div>
+      <div><b>{{ r.counts.valuations }}</b>valuation updates</div>
+      <div><b>{{ r.counts.signals }}</b>funding signals</div>
+      <div><b>{{ r.counts.new_pr + r.counts.new_news }}</b>new items</div>
+    </div>
+  </div>
+
+  {% if r.benchmarks %}
+  <div class="panel">
+    <h2>Benchmarks</h2>
+    {% for bm in r.benchmarks %}
+    <div class="hold"><div class="nm" style="font-weight:500">{{ bm.name }}</div>
+      <div><div class="px">{% if bm.unit == 'yield' %}{{ bm.q.price | price }}%{% else %}{{ bm.q.price | price }}{% endif %}</div>
+        <div class="ch {{ m.dir(bm.q.change_pct) }}">{% if bm.unit == 'yield' %}{{ bm.q.change | bps }}{% else %}{{ m.arrow(bm.q.change_pct) }} {{ bm.q.change_pct | pct }}{% endif %}</div></div></div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</aside>
+</div>
+{% endblock %}

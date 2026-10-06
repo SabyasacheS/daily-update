@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% import "macros.html" as m %}
+{% block main %}
+<div class="page-head"><div><span class="kicker">Themes · last 72h</span><h1>Industry</h1></div></div>
+<section class="cgrid">
+{% for t in r.industry %}
+<article class="card">
+  <div class="head"><h2>{{ t.name }}</h2><span class="tag">{{ t['items']|length }} items</span></div>
+  {% if t.takeaway %}<p class="why" style="border-top:0;padding-top:0"><b>Takeaway:</b> {{ t.takeaway }}</p>{% endif %}
+  <div class="items">{% for it in t['items'] %}{{ m.news_item(it) }}{% else %}<p class="muted">No items in the last 72 hours.</p>{% endfor %}</div>
+</article>
+{% endfor %}
+</section>
+{% if r.macro %}
+<section>
+  <div class="rule-head"><h2>Macro &amp; policy</h2><span class="ln"></span></div>
+  {% for it in r.macro %}<div class="list-row"><span class="d">{{ it.date | shortdate }}</span><div><a href="{{ it.url }}" target="_blank" rel="noopener">{{ it.title }}</a> <span class="src">{{ it.source }}</span></div></div>{% endfor %}
+</section>
+{% endif %}
+{% endblock %}

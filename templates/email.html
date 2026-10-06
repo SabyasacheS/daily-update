@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="x-apple-disable-message-reformatting">
+<title>{{ s.site_title }} {{ r.today }}</title>
+<!--[if mso]><style>table,td,div,p,a,span{font-family:'Segoe UI',Arial,sans-serif !important}</style><![endif]-->
+</head>
+{% set F = "font-family:'Segoe UI',Helvetica,Arial,sans-serif;" %}
+{% set M = "font-family:Consolas,'Courier New',monospace;" %}
+{% set site = s.site_url.rstrip('/') ~ '/' %}
+<body style="margin:0;padding:0;background:#E4E7E1;">
+<div style="display:none;max-height:0;overflow:hidden;">{{ r.briefing.headline }}</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#E4E7E1;">
+<tr><td align="center" style="padding:20px 10px;">
+<table role="presentation" width="640" cellpadding="0" cellspacing="0" border="0" style="width:640px;max-width:640px;background:#FFFFFF;">
+
+<tr><td style="background:#101814;padding:26px 32px 22px 32px;">
+  <div style="{{ F }}font-size:30px;font-weight:800;letter-spacing:1px;color:#FFFFFF;line-height:1.1;">{{ s.site_title | upper }}</div>
+  <div style="{{ M }}font-size:12px;color:#A7B2AB;padding-top:8px;">{{ r.today | longdate | upper }}</div>
+</td></tr>
+<tr><td style="height:4px;line-height:4px;font-size:0;background:#D9480F;">&nbsp;</td></tr>
+
+<tr><td style="padding:30px 32px 6px 32px;{{ F }}color:#101814;">
+  <div style="font-size:23px;font-weight:700;line-height:1.25;">{{ r.briefing.headline }}</div>
+  {% for p in r.briefing.paragraphs %}<p style="margin:14px 0 0 0;font-size:15px;line-height:1.55;color:#26302B;">{{ p }}</p>{% endfor %}
+  <p style="margin:10px 0 0 0;{{ M }}font-size:12px;color:#59645E;">{% if r.briefing.ai %}AI summary · verify before acting{% else %}Automatic summary{% endif %}</p>
+</td></tr>
+
+{% if r.holdings %}
+<tr><td style="padding:24px 32px 4px 32px;">
+  <div style="{{ M }}font-size:11px;font-weight:700;letter-spacing:2px;padding-bottom:8px;border-bottom:2px solid #101814;color:#101814;">HOLDINGS · LAST CLOSE</div>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="{{ F }}font-size:14px;color:#101814;">
+  {% for h in r.holdings %}{% set q = h.q %}
+  <tr><td style="padding:10px 0;border-bottom:1px solid #ECEEE9;font-weight:600;">{{ h.name }}</td>
+    <td align="right" style="padding:10px 0;border-bottom:1px solid #ECEEE9;{{ M }}">{% if q %}{{ h.currency }} {{ q.price | price }}{% else %}n/a{% endif %}</td>
+    <td align="right" width="110" style="padding:10px 0;border-bottom:1px solid #ECEEE9;{{ M }}font-weight:700;color:{% if q and q.change_pct and q.change_pct > 0 %}#0D7A4A{% elif q and q.change_pct and q.change_pct < 0 %}#B42318{% else %}#59645E{% endif %};">{% if q %}{% if q.change_pct > 0 %}▲{% elif q.change_pct < 0 %}▼{% endif %} {{ q.change_pct | pct }}{% endif %}</td></tr>
+  {% endfor %}
+  </table>
+</td></tr>
+{% endif %}
+
+{% if r.briefing.top3 %}
+<tr><td style="padding:24px 32px 4px 32px;">
+  <div style="{{ M }}font-size:11px;font-weight:700;letter-spacing:2px;padding-bottom:8px;border-bottom:2px solid #101814;color:#101814;">TOP 3 TODAY</div>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="{{ F }}">
+  {% for t in r.briefing.top3 %}
+  <tr><td width="34" valign="top" style="padding:14px 0;font-size:26px;font-weight:800;color:#D9480F;{% if not loop.last %}border-bottom:1px solid #ECEEE9;{% endif %}">{{ loop.index }}</td>
+    <td style="padding:14px 0;{% if not loop.last %}border-bottom:1px solid #ECEEE9;{% endif %}">
+      <div style="{{ M }}font-size:10.5px;color:#59645E;letter-spacing:1px;">{{ t.label | upper }}{% if t.company and t.company != t.label %} · {{ t.company | upper }}{% endif %}</div>
+      <a href="{{ t.url if t.url.startswith('http') else site ~ t.url }}" style="font-size:16px;font-weight:600;text-decoration:none;color:#101814;">{{ t.title }}</a>
+      {% if t.why %}<div style="font-size:13.5px;color:#3A4540;padding-top:2px;">{{ t.why }}</div>{% endif %}
+    </td></tr>
+  {% endfor %}
+  </table>
+</td></tr>
+{% endif %}
+
+<tr><td style="padding:18px 32px 0 32px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F3F4F0;">
+  <tr><td style="padding:14px 16px;{{ F }}font-size:13px;color:#26302B;"><b>Also flagged:</b>
+    {% for sec in r.sections if sec.id != 'public' %}{{ r.counts.with_news[sec.id] }} of {{ sec.names|length }} {{ sec.label }} names with news · {% endfor %}
+    {{ r.counts.valuations }} valuation update{{ 's' if r.counts.valuations != 1 }} · {{ r.counts.new_pr }} new press release{{ 's' if r.counts.new_pr != 1 }}
+    {% if r.changes.calendar_soon %}<br><b>Next 48h:</b> {% for e in r.changes.calendar_soon %}{{ e.title }} ({{ e.day }}){% if not loop.last %}; {% endif %}{% endfor %}{% endif %}
+  </td></tr></table>
+</td></tr>
+
+<tr><td align="center" style="padding:28px 32px 30px 32px;{{ F }}">
+  <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href="{{ site }}" style="height:46px;v-text-anchor:middle;width:260px;" arcsize="9%" stroke="f" fillcolor="#101814"><w:anchorlock/><center style="color:#FFFFFF;font-family:'Segoe UI',Arial,sans-serif;font-size:15px;font-weight:bold;">Open the full report</center></v:roundrect><![endif]-->
+  <!--[if !mso]><!--><a href="{{ site }}" style="display:inline-block;background:#101814;color:#FFFFFF;font-size:15px;font-weight:700;text-decoration:none;padding:14px 30px;border-radius:4px;">Open the full report</a><!--<![endif]-->
+  {% if s.attach_pdf %}<div style="font-size:12.5px;color:#59645E;padding-top:12px;">Or open the attached PDF, which works offline.</div>{% endif %}
+</td></tr>
+
+<tr><td style="background:#ECEEE9;padding:18px 32px 22px 32px;{{ F }}font-size:11.5px;color:#59645E;line-height:1.6;">
+  <b style="color:#101814;">Not investment advice.</b> A personal briefing assembled from public sources. AI summaries can be wrong; every item in the full report links to its source.<br>
+  <a href="{{ site }}watchlist.html" style="color:#3A4540;">Manage the watchlist</a>
+</td></tr>
+</table>
+</td></tr></table>
+</body>
+</html>
