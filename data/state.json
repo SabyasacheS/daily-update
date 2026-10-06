@@ -1,0 +1,400 @@
+{
+  "val_checked": {
+    "Arini Capital Management": "2026-10-06",
+    "Deutsche ReGas": "2026-10-06",
+    "Figure AI": "2026-10-06",
+    "Firefly": "2026-10-06",
+    "AIP": "2026-10-06",
+    "Aligned Data Centers": "2026-10-06",
+    "Altera": "2026-10-06",
+    "Anthropic": "2026-10-06",
+    "Binance": "2026-10-06",
+    "Campus AI": "2026-10-06",
+    "Databricks": "2026-10-06",
+    "Isomorphic Labs": "2026-10-06",
+    "Khazna": "2026-10-06",
+    "OpenAI": "2026-10-06",
+    "SSI": "2026-10-06",
+    "TikTok US": "2026-10-06",
+    "Vantage Data Centers NA": "2026-10-06"
+  },
+  "valuations": {
+    "Altera": {
+      "amount": 8750000000,
+      "currency": "USD",
+      "text": "USD 8.75bn",
+      "status": "manual",
+      "date": "",
+      "approx": false,
+      "source_title": "",
+      "source_url": "",
+      "note": "Silver Lake 51% / Intel 49% deal, 2025",
+      "pinned": false
+    },
+    "Anthropic": {
+      "amount": 900000000000,
+      "currency": "USD",
+      "text": "c. USD 900bn target",
+      "status": "manual",
+      "date": "",
+      "approx": true,
+      "source_title": "",
+      "source_url": "",
+      "note": "",
+      "pinned": false
+    },
+    "Binance": {
+      "amount": null,
+      "currency": "USD",
+      "text": "No public equity",
+      "status": "manual",
+      "date": "",
+      "approx": false,
+      "source_title": "",
+      "source_url": "",
+      "note": "",
+      "pinned": false
+    },
+    "Databricks": {
+      "amount": 190000000000,
+      "currency": "USD",
+      "text": "USD 190bn",
+      "status": "closed",
+      "date": "2026-08-13",
+      "approx": false,
+      "source_title": "MGX, Coatue, Blackstone, T. Rowe Price and Sixth Street Growth close Databricks USD 5bn strategic funding",
+      "source_url": "https://www.mgx.ae/news-insights",
+      "note": "",
+      "pinned": false
+    },
+    "OpenAI": {
+      "amount": 852000000000,
+      "currency": "USD",
+      "text": "c. USD 852bn",
+      "status": "manual",
+      "date": "",
+      "approx": true,
+      "source_title": "",
+      "source_url": "",
+      "note": "",
+      "pinned": false
+    },
+    "TikTok US": {
+      "source_title": "ByteDance’s AI drug unit Anew Labs raises $290M at $1.5B valuation, Reuters reports",
+      "source_url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5JNjZsVDBFY1NTVlRFbUNITzFITFhITGZ5YkVESXk2VkkwZFVrN2RaTXZESDJ5OXU4SDZVOE1rQkNWVkJvMUVsLUg2WjRqcVZYVjdhVk1Ea1pfcW5HOUcyT096emZkLVhDUnc1T291WEdBd196ajRKUjBB?oc=5",
+      "date": "2026-09-16",
+      "source": "The Next Web",
+      "amount": 1500000000.0,
+      "currency": "USD",
+      "text": "USD 1.5bn",
+      "status": "closed",
+      "approx": false,
+      "updated_on": "2026-10-06",
+      "previous": null
+    }
+  },
+  "seeds": {
+    "Altera": "{\"amount\": 8750000000, \"currency\": \"USD\", \"note\": \"Silver Lake 51% / Intel 49% deal, 2025\", \"status\": \"manual\", \"text\": \"USD 8.75bn\"}",
+    "Anthropic": "{\"amount\": 900000000000, \"approx\": true, \"currency\": \"USD\", \"status\": \"manual\", \"text\": \"c. USD 900bn target\"}",
+    "Binance": "{\"status\": \"manual\", \"text\": \"No public equity\"}",
+    "Databricks": "{\"amount\": 190000000000, \"currency\": \"USD\", \"date\": \"2026-08-13\", \"source_title\": \"MGX, Coatue, Blackstone, T. Rowe Price and Sixth Street Growth close Databricks USD 5bn strategic funding\", \"source_url\": \"https://www.mgx.ae/news-insights\", \"status\": \"closed\", \"text\": \"USD 190bn\"}",
+    "OpenAI": "{\"amount\": 852000000000, \"approx\": true, \"currency\": \"USD\", \"status\": \"manual\", \"text\": \"c. USD 852bn\"}"
+  },
+  "reported": {
+    "SSI": {
+      "source_title": "No Product, $32B Valuation: Why Nvidia Is Betting $5B on Safe Superintelligence Inc (SSI)?",
+      "source_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOUkozSzVGc0FwOVVNSjRiUE5kRXNXY0pVb3pYa2FYRE5tR2tZS1FDUEI4NmJKcWxfcUV1RDhRMVRiZmJSSmxkalF6SW44RlFGbFA5U0lHOXNLRlFkVlRlS0ZUbXcxVEstWk85ZjFyczI4bzdXNWVoU2NRMGotYzlmYWxzbEFNOXZDTjlMMnR3?oc=5",
+      "date": "2026-08-08",
+      "source": "ascendants.in",
+      "amount": 32000000000.0,
+      "currency": "USD",
+      "text": "USD 32bn",
+      "status": "reported"
+    },
+    "Databricks": {
+      "source_title": "Ahead of an IPO, the Math Behind Databricks’ USD 190 Billion Valuation Doesn’t Add Up",
+      "source_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQQmU0SjhHenRRejFma0xJMWowN29tRzY1M2psWV8tejA2Qi0zei1LMHVORGhhTUNWOGxBeHBWLS1Ka3VMczVFblRlSVNZWkJTbGduU0FKbmNPVjZYems5SXhUMDBLQUhzUF9xQ2FsNkY1NWhYb1lJam11ZDdDQzlvVlRPR09qSGxmS1VCZ3M0ZzZLb1JOMWFEckxMOFhBdTUzN2xzYWhXMFpadVctYURreFEwaml0a3E2cWU0?oc=5",
+      "date": "2026-09-18",
+      "source": "global.morningstar.com",
+      "amount": 190000000000.0,
+      "currency": "USD",
+      "text": "USD 190bn",
+      "status": "reported"
+    },
+    "Figure AI": {
+      "source_title": "Unitree surges 460% in trading debut, and hits $66B valuation, more than U.S. peers like Figure AI",
+      "source_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNYWx4dUhBckpyUko4NGppNk8tLWtCbzdhaHVaQzdKanVIZFVxdXJsWXhUZi12c2pMRGg2VFc5MVhIR184UkFTa3FWZTBtaTI0SXNjSllfS3dIMjltTVdnYWFsQS1XZVBKM2lvME5JdGJrTE5qNG5KVXMtWWE5QUxfV1pxdTJYZ0U4RGFnTDAzR1hmUQ?oc=5",
+      "date": "2026-08-19",
+      "source": "Fortune",
+      "amount": 66000000000.0,
+      "currency": "USD",
+      "text": "USD 66bn",
+      "status": "reported"
+    },
+    "Anthropic": {
+      "source_title": "PitchBook: Anthropic’s Leaked Financials Reflect Fast Growth, but Not a $2 Trillion Valuation",
+      "source_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOZG5rTkw5OThUUU9UbEl2NTk4X1RpQUJBTFVRdF92RGFzd1N5MzRTTklySlktTHF0M1FFdkY4a2VwUnBidWIzVFRpR2VQTnozbFJTX0dXMlJRTnVrWVJGaUdmckNvekQ4T1dPZG1Mb3ZfTm9KNHhVT3BSdVZ4cC11d1lEalJBZ2QydS0wcEg0Y0paUkpDaVBmS1NLNGwydUdHRVdpS295ME1KS0ta?oc=5",
+      "date": "2026-10-02",
+      "source": "Morningstar",
+      "amount": 2000000000000.0,
+      "currency": "USD",
+      "text": "USD 2tn",
+      "status": "reported"
+    },
+    "Binance": {
+      "source_title": "Binance Lists SpaceX Pre-IPO Perps as $2T Valuation Bets Build",
+      "source_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNV0xRTmUxekdBbDM2YWpJNjIwTU5QclJfXy13d2ZTbGxVUXhoQ3k1NktXdTliVUlxRHdmVXpBMlV1SDRoQVEyeDBvajRrcTE1d2Nxb09IMjBzYWRFbDNQaWJxQzVIakF3WjloZWJhMWxLdUw0SzZXcWJIa0kzcDBrMG9VWVVmTnF6MTRmRHdqRQ?oc=5",
+      "date": "2026-09-23",
+      "source": "CoinMarketCap",
+      "amount": 2000000000000.0,
+      "currency": "USD",
+      "text": "USD 2tn",
+      "status": "reported"
+    },
+    "TikTok US": {
+      "source_title": "The TikTok Live Playbook: How Skimpies Scaled to a $10M Valuation (2026)",
+      "source_url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1EejBab1YxUzM5YjRjaVo1U2JzT19ldThkdU9YbVU4dU4zcVl3N3BaUVhYTlg0V24zV0N4SF80Z2RvQ3p1RlNYVEJoVFRTRjUtam9sMHBHNm9sMjZpamJIV0pkNHdRd1h2a3hr?oc=5",
+      "date": "2026-09-29",
+      "source": "Shopify",
+      "amount": 10000000.0,
+      "currency": "USD",
+      "text": "USD 10m",
+      "status": "reported"
+    },
+    "OpenAI": {
+      "source_title": "OpenAI seeks $30 billion in funding at whopping $1.4 trillion valuation after delaying IPO",
+      "source_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNODNCVTh0U0JScllJWUtzX1IzX2xETWlucVRhenZrQmE2VGZ2eVo2TTZPU0ZzWVNXMVl1T1Jodi1URGRVMkliUzdlUnkwOFhWa0tBVnFrM3BJSUgtT2hLVlFBTUkxSjlpcEg5alZ1aUp4cGNmdXZrWkNTOGxTcXpveGNILW5FN0sxYXpFQ1E1YnJ0THJndHV4VGRpNU5OLWN1MVM4d19XLTRGdmlHSU4w?oc=5",
+      "date": "2026-09-30",
+      "source": "CoinDesk",
+      "amount": 1400000000000.0,
+      "currency": "USD",
+      "text": "USD 1.4tn",
+      "status": "reported"
+    }
+  },
+  "last_round": {
+    "Isomorphic Labs": {
+      "source_title": "Isomorphic Labs secures $2.1 Billion funding to scale its AI drug design engine",
+      "source_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9kd1pTa3JlQi1MS0FWMU9xMU9fZWZGUXRFNmdOTXpwRGxDUWFhYktwZFNhUUtuZVVISEVFdFFvVVAxakt1LU42bk9VTTB3Mm0zWXFPVGYwLW1xTlFVVkxtNVJvVlNZLXphazhObA?oc=5",
+      "date": "2026-07-29",
+      "source": "isomorphiclabs.com",
+      "text": "USD 2.1bn",
+      "status": "closed"
+    },
+    "SSI": {
+      "source_title": "Ilya Sutskever's SSI First Model After $8 Billion Raised 2026",
+      "source_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNdHhwY0pIeWZ2ZExteHkxMVlrQjk1VjIwMkljT1NZcmlNbHJ1azR6OGFtOFhoOExWb1BrMW9hTjZINkhDWFVKVUYxRXNkczROcVhOV0dwdzZ1ZG5xd1VDQTI3MUpONFAxekhoMFRwZ3RWY2JiTl84bFRSQXJKY25lMVg2aldaTEdxbUktZkxzYWI5bkVUUERjYVV5YVlZSVk?oc=5",
+      "date": "2026-08-14",
+      "source": "startuphub.ai",
+      "text": "USD 8bn",
+      "status": "closed"
+    },
+    "Figure AI": {
+      "source_title": "Figure AI Funding 2026: $1.9B Raised",
+      "source_url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBVTWpiTlNmSjROU2hWME1sQjZUTWxfVUg2M1cyVkVfVmduOUZ5ejBNM0pGSk9Sd3Y0Z1lQN2NreEN5ZVVwcWpuYnVObUVNWWZuUXc?oc=5",
+      "date": "2026-09-14",
+      "source": "GetLatka",
+      "text": "USD 1.9bn",
+      "status": "closed"
+    },
+    "Databricks": {
+      "source_title": "Ahead of an IPO, the Math Behind Databricks’ USD 190 Billion Valuation Doesn’t Add Up",
+      "source_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQQmU0SjhHenRRejFma0xJMWowN29tRzY1M2psWV8tejA2Qi0zei1LMHVORGhhTUNWOGxBeHBWLS1Ka3VMczVFblRlSVNZWkJTbGduU0FKbmNPVjZYems5SXhUMDBLQUhzUF9xQ2FsNkY1NWhYb1lJam11ZDdDQzlvVlRPR09qSGxmS1VCZ3M0ZzZLb1JOMWFEckxMOFhBdTUzN2xzYWhXMFpadVctYURreFEwaml0a3E2cWU0?oc=5",
+      "date": "2026-09-18",
+      "source": "global.morningstar.com",
+      "text": "USD 190bn",
+      "status": "reported"
+    },
+    "Aligned Data Centers": {
+      "source_title": "Aligned Marketplace Raises $16M to Cut Employer Healthcare Costs Through Independent Primary Care",
+      "source_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOVk5sNzA5MTRmVXJlOTl1SkZrWkZQMU1kWEhZTzdWRnpTb2xjLUZOLVNTRmRvSkRDcnhuNENxdHRPMTBzYTBGSlNfNDg3N0JKZk15NkIyT1FHNlBRbFNnb2xGLWl1X2Z0RU4zcTJPZXgzQnNsMFlCWXZTdDAxYTIzb1NOZXZnb2llSzBpblEydHF5VWRhLWNYbjduQko2U1JVa0NYbHlYQ3FQR0tZd0JkdmpuVFYtNThpZ3VSTmhhOTlEYXRrSHRJOEdoTWgxR2FsVUFhQkNR?oc=5",
+      "date": "2026-08-24",
+      "source": "AlleyWatch",
+      "text": "USD 16m",
+      "status": "closed"
+    },
+    "Altera": {
+      "source_title": "Altera Files Confidentially for a US IPO That Could Raise $2 Billion",
+      "source_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNVVNQZVJQZHRLRmhIa25qc25CclpqbHZHUHdHTDQxUkRZNDViZ1kzQVlpNDBpNTVYSTRIcHJvZXNBWGt0ZkVFZllKQWw1bUtsSVFWYUxreHNMMWZ3REZWaEcxZHRuZGNFU3BTUFlqNjFpd2Y0c3NBX1RQbGhYZm1vbEM4QVB4b2Z3MWlscFUtQU45c0V0ZzRCV3haUQ?oc=5",
+      "date": "2026-09-23",
+      "source": "Startup Fortune",
+      "text": "USD 2bn",
+      "status": "reported"
+    },
+    "Anthropic": {
+      "source_title": "PitchBook: Anthropic’s Leaked Financials Reflect Fast Growth, but Not a $2 Trillion Valuation",
+      "source_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOZG5rTkw5OThUUU9UbEl2NTk4X1RpQUJBTFVRdF92RGFzd1N5MzRTTklySlktTHF0M1FFdkY4a2VwUnBidWIzVFRpR2VQTnozbFJTX0dXMlJRTnVrWVJGaUdmckNvekQ4T1dPZG1Mb3ZfTm9KNHhVT3BSdVZ4cC11d1lEalJBZ2QydS0wcEg0Y0paUkpDaVBmS1NLNGwydUdHRVdpS295ME1KS0ta?oc=5",
+      "date": "2026-10-02",
+      "source": "Morningstar",
+      "text": "USD 2tn",
+      "status": "reported"
+    },
+    "TikTok US": {
+      "source_title": "The TikTok Live Playbook: How Skimpies Scaled to a $10M Valuation (2026)",
+      "source_url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1EejBab1YxUzM5YjRjaVo1U2JzT19ldThkdU9YbVU4dU4zcVl3N3BaUVhYTlg0V24zV0N4SF80Z2RvQ3p1RlNYVEJoVFRTRjUtam9sMHBHNm9sMjZpamJIV0pkNHdRd1h2a3hr?oc=5",
+      "date": "2026-09-29",
+      "source": "Shopify",
+      "text": "USD 10m",
+      "status": "reported"
+    },
+    "Binance": {
+      "source_title": "Binance Lists SpaceX Pre-IPO Perps as $2T Valuation Bets Build",
+      "source_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNV0xRTmUxekdBbDM2YWpJNjIwTU5QclJfXy13d2ZTbGxVUXhoQ3k1NktXdTliVUlxRHdmVXpBMlV1SDRoQVEyeDBvajRrcTE1d2Nxb09IMjBzYWRFbDNQaWJxQzVIakF3WjloZWJhMWxLdUw0SzZXcWJIa0kzcDBrMG9VWVVmTnF6MTRmRHdqRQ?oc=5",
+      "date": "2026-09-23",
+      "source": "CoinMarketCap",
+      "text": "USD 2tn",
+      "status": "reported"
+    },
+    "Firefly": {
+      "source_title": "FireFly Metals bolsters funding with SPP and A$180m equity raise to advance Green Bay project",
+      "source_url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxObUVnSXJOMFhKbE1sRXo5UXFFQnlueG54RHJtYmNxd0FYaUQ1WnpycllvMHhoYnItZGszNEJnWXd6aEJfM1ZjU3ZzcU5VR1l0d2RDaUMyTWFaNDNXZkloVHNWWnJydFVINU9jSTZySGthekRNbzJ0ZWc0eEtnRF9GRlNRVkY2cnZjSmtqZ2RwY1RaYUNWNEhLWEZoTHdSYmR3YjY2alNBWTJac1g5MWVUU0FVQTNnTk9nZlBvb2x0WXZnRGZqX25tUGJuMmg5MHItT1FOX2VobXJmcks3?oc=5",
+      "date": "2026-09-30",
+      "source": "TipRanks",
+      "text": "USD 180m",
+      "status": "reported"
+    },
+    "OpenAI": {
+      "source_title": "OpenAI in $30 Billion Round Talks With UAE Funds, BlackRock",
+      "source_url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOTEFudVN0U3NjbUtUYXpkVVZmdWJnU3QxaXhmYXEwVFdsMDg2LV9POGNWMGtQdktuOTZhbmZVNzZKQk05UWwwSjRpYnlDbXpUTnF5Z0VWMXNiMmZJMzFJT1NUaWF0amxob0I1Sm5Ka0Vma3RkUy1OWWwxSk1IUjV1SGRhUWFfOGZhTjkxNTl4bGlBYkR2VjZpMzdBaS1xQ3BuSTA3MGcwSnlnX0xJOEZkWlhR?oc=5",
+      "date": "2026-10-05",
+      "source": "Bloomberg.com",
+      "text": "USD 30bn",
+      "status": "reported"
+    },
+    "Arini Capital Management": {
+      "source_title": "Arini reopens credit strategy to raise $1.5 billion as main fund hits a rough patch",
+      "source_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQY1M0cnVWc3NjNDlPb29xZWNlX01ZQ0Y3ZEdleWY2UHZUUGdhMTU0ZF93dDhuSUdnWWV6TGtxZnZSczJnQ3FQVFZhbkZLem1UdzlHOFJiYUx3aXl5YmNuMmFjLXlWMUQzOW1iYjRwWDlJVmVSNXVTeFdHYlVJbFRUWnJKVUhVdmMzOE9ERmxqaTkxQQ?oc=5",
+      "date": "2026-10-05",
+      "source": "Briefs Finance",
+      "text": "USD 1.5bn",
+      "status": "reported"
+    }
+  },
+  "last_item": {
+    "SpaceX": {
+      "title": "Bank: “Good time to buy SpaceX shares”",
+      "date": "2026-10-06",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQemJTRHBXSC1xZVlFSmFPVXZQUnNieEk0TXVIYTNLMlk2SE9PUUxEcG5hWE9yaTNudW9yenJQSEc5WlZ3X09MdExJMTFGNlpwRGI0R1pQVU5RdzRDYnF2OHk0TTkzYllYV2FHWWN5SFJ1eUtNQnBCczlEZXZHVURRXzdHaVNiMl9IUmtv?oc=5"
+    },
+    "Blaize": {
+      "title": "Blaize Holdings Q3FY26 Results: Revenue at USD 0.5m, FY26 guidance cut to USD 32-36M",
+      "date": "2026-10-06",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPWEhFZnBDZlFuSW9XQ2hZbGRubUc1RVNPRDh0VXJoUktPZE9iQzZ0eGhQVkNKQWU3eTNadGROR3h0Y2E2U0JkY0V1bFJGQm8xbzVRWF92SzA1dlBma1Nhb3pzSTFaTE5ncEdLeEQ1U2pzcGt1NDEwdm1OVWllanpkQlF6cVEyWHdpM1BDODBYTldpZ3FJcHhPTEtnTjdZUmtkd1VtT0Z4M0VJQkhkQW5kUlI2MkN4WXZwSDROb0J0cUZ3Njg?oc=5"
+    },
+    "CVC Capital Partners": {
+      "title": "Recordati in the spotlight following CVC’s relaunch, but analysts say the price is still low",
+      "date": "2026-10-06",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNTW9lV2lUTUJGZlhTcW00WkJHNEItbVRfOURnTzRtZDI1bERSTEJRNkJ2VmVwcU1NcVZzVVdTYV8zZWVjV212TW04UVJlSm9MSVowZnh2Znl2aWFyVVEwZm5mNkwzY05zbXZJQmxVdm9DNHZYZ2lRMndndTlSRmx1MW9JWXFvSG9lUy1oSEJkQzVlc2NtQTFscXpySXFnTVNnaDh3QlhibFViaDU0?oc=5"
+    },
+    "Arini Capital Management": {
+      "title": "Arini reopens credit strategy to raise USD 1.5bn as main fund hits a rough patch",
+      "date": "2026-10-05",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQY1M0cnVWc3NjNDlPb29xZWNlX01ZQ0Y3ZEdleWY2UHZUUGdhMTU0ZF93dDhuSUdnWWV6TGtxZnZSczJnQ3FQVFZhbkZLem1UdzlHOFJiYUx3aXl5YmNuMmFjLXlWMUQzOW1iYjRwWDlJVmVSNXVTeFdHYlVJbFRUWnJKVUhVdmMzOE9ERmxqaTkxQQ?oc=5"
+    },
+    "Figure AI": {
+      "title": "Figure AI Retires Humanoid Robots in Eerie Furnace Ritual",
+      "date": "2026-10-06",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQLUQ4NVI1bFBMbmh2QkwtX1JwOGEwR25RSFJhMEhCaDF2YjFEaVpsRVlBUEZwVTFoVXFjbTF3aXNDWUVyTTBpNllJbExfUEJRZFVhSjFZNzA1TGlYVVhCLXNpTkhKVDRIaENxalJnVlRxcC1vVXFpNTFkOW1pVndNZEF2enRyMGU3?oc=5"
+    },
+    "AIP": {
+      "title": "Firmus, CDC end 1.6GW Project Southgate AI infrastructure partnership",
+      "date": "2026-10-06",
+      "url": "https://news.google.com/rss/articles/CBMipAJBVV95cUxQSE9VcUYzODlTbnhxQWRYOTZldkZFM0QzLWZvOF82amhCQ1pDS2xtdEFoTE5ZS1FpMmVRTUdmWEVBUTgzUmZYUlZqci1Jc2FTZDJzR25YM2t3cDdxSGo2WEdnZE9QMmFMWExiWkNmbFRIbDZrMWJ5UlU3T2lDSWNjc25ZRGh5dDlua3h4QTNkQXkwbmNIU0UzNEZsel9VZGhGMXBQSWJkbUpySzEzMEx0bUZRSGtqaGt4VjBmSS1jaktGN0tCY21BajF4b1JicnhrSXdESmd0Q0x4N0hpYjZxUzQwcDNtWlJKaDBEanptSktEQTgyY05va1JYekZ1U0JfU2NfdFd6Wm5salFpOXN2S3BGeUdjYXRBUl81VVZmTUh0Yko40gHzAUFVX3lxTFBGa0RSS1YwSXV6N2J5bVItZXFwUWxJVl9NOEZURG9kRi1KenlPWEFmNHFCOFJvS3FKVWRwVnZMREhTdFg2T1NjYXZUYS14SVhZaG9kOFRsSHI2QmV6QmFMVnZFWGdFcnVCc0gzSktJMkZyTDdsSEROZDFsbUg1MXRWakNRVWJHck0tT1djSlpCM1RPdkdqeGduZUxpdDIybjA3Uk5UN0VXbDV0bzB2WTNoMFc0alJHQ1JuM28wSEF5Sko5dG81aEJLTzFoTWVEbzhlUXc3N0VXMUo2MVVEX0poSUdtNExPWk5KN3dUdG1XWm5EZw?oc=5"
+    },
+    "Altera": {
+      "title": "Workaround for TCK frq. limitations on USB-Blaster I/II/III & Clones (fixing \"JTAG chain broken\")",
+      "date": "2026-10-06",
+      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPMmxacTI3Ymc4NzdsT3Nodmp0SGduN3BWLUJrNF9lVDhXRmhHU24tT09NTTZGdmZ6RUZwd2E1dVRFRjNtWTMzNHAxUGNyVTZIVElNQmRMSEF3ZlpWVjgxVjRiTXBzWFJBemd0VWZIcVBVVjZHOEVKUlhFRkpLTFBZVUpuOTRubXJJbm1iMUlPTDEwc0lxUFptR1hzWUtwbDdZVzN5bmZJZGNfVEF1UWptNHBESllqMUpRdnVvSWl4Vmx2MFIzbDg4OGloUUZldzNhcTJnckhZNnJQTzZ2dHF3RHNB?oc=5"
+    },
+    "Anthropic": {
+      "title": "Hexaview Named a Select Partner in Anthropic's Claude Partner Network",
+      "date": "2026-10-06",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQRE80Z2p4ZWZyZFlMR3I3eVlzamFuaVhNcnNRRVd6a2F5aXM0RlBvYkdUb1JfcXEwaHpPMkZPSTg4NkQ4TFBHS3RBOGtVaUFoSEt1WHNfQ01idXpqZHllTUI4eEpHN0s5VTQtWjEwNHI4a2x0Y0p0VF9IeURYM1p2Y1pVejBZSFFKOWFRRU5YdHBzQXVTVkRvUFdDdTdFMEZJTTdLR3lyRnVpU0t6WGFtcQ?oc=5"
+    },
+    "Binance": {
+      "title": "Saudi Key Pipeline Flows Reach 5.8 Million Barrels a Day",
+      "date": "2026-10-06",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9UdmxaZEdOaEVudk1wVVdLMzlFcHZqT3JFc0ludDJaUkJjLUJ4WnVqZ1ZHMzMzSDloNHhtN0FwMGpPMDFNcndoU1dJOFpxY3NSOVhsSUZURFhyU3VZdVltZWlRTjc?oc=5"
+    },
+    "Databricks": {
+      "title": "Articles by Akash Nayar",
+      "date": "2026-10-06",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1XSU9ib0lveUZJblBWd3Z5Tks1V0d3SWpLZnB6a3RBaFYxemtkdlEwMXFPR2otTXdTdG93dEZlalJKUmRPc2JxalJISVdmd0tkZGxpWXpxa3lialRqNzkw?oc=5"
+    },
+    "OpenAI": {
+      "title": "The eternal complement",
+      "date": "2026-10-06",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBVWmpWcUY1SVAtVWc2bnhmNHhSOWVFYnY4aGR3RG4xRHZwWlNNdFhwRS1aSUZhQk5kNUpGRnhBdU03T01rU0JXaWdnQ1hPck1RT0lCbE03V3Q5Ti05?oc=5"
+    },
+    "TikTok US": {
+      "title": "TikTok’s Agent Checkout Enters the Race",
+      "date": "2026-10-06",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPRDdTeU5IeFZLSTU3bDlsYzE4ZzI5cnlNWWxuclVHSkl2RXZ0Q2JWQ05MdVU2ODkzbGJsUFNjWEVRclhoUnhwMjV2NV83Z1Myb1ZXd1BFa2VyYmxKUDNhR3BxRlctOXJ1N3hnMGRQTHlyUjFqUkRWTU1FNDdmTTZIRFBsamlZMEV5OGRvalJSYUNhdGViY1ZpZ2E4Zk4tQm9kcWVR?oc=5"
+    },
+    "Vantage Data Centers NA": {
+      "title": "Vantage Data Center opponents push misleading claims on jobs",
+      "date": "2026-10-05",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQN1l1Tjh2U1dHMXhJamMxcE1QQWM4aFgyajkyWS1RS0J3Y3RyYlJUMDBmZ0ZDTWhIVVZwYXdicGlDUncxVlF0dEpNMDVjUXBkMU5kdklKWXk0cDhNd3QyZ05jUDdJcTBPcFZhWGRZWnFYaFdmeWxJajhFeXFXUmJmdXpwZHFxRG1OcndLam5YaUNtSDJpMkF6MFRpclE0N1phdmotaUZPUW5nVU15Wk1FRmd5Sl9qZW5PSDNPa19OWQ?oc=5"
+    },
+    "Blackstone": {
+      "title": "Blackstone-backed ASK Alternates raises over ₹500 crore for second private credit fund",
+      "date": "2026-10-06",
+      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOMEhFUEtLVlhYQkZBNFVqV1pSczFuNE04SDF2aXYxOHdoNzdwQlhZUGV5eVpRRWhWZm85UFhjVEpYalZXa2daX1FXS2J4QkJwSGkyMl9WUWh5QmhBN3o0cW9EbGVwNFZCMmhJRUkxakdCUmlXZjJDc2stenllZlUySkFBbTBialZXQ3VDOW5OWFBPem02MzM2V3FuRHdUZXdwWFg5TWtoSnBqMGlaWFZzV0xxVndMTk81TzUyaEdwbWZjZ20xbjZMSEE4N1dhWDI1LUZZdNIB2gFBVV95cUxPUVhWN2hKbjVhRlRmTFJneEtiUlZKVGFRRlplOVJtNnRkaGN4aWZRXzA3VEt5aTFPZE1XNENweGFoOFZOR08wRFFEeEEyVk1DdVlQVERQMmRUS280MzYtRFZ5ZXBUUlJjMEpwSFByMC1SOVQ5djQ5YjNMMm5OZENlZ09mRnQwWUJ4bm1QUEFUSDVnZzlpb2VvWlBRcENBWkFrRDFOX0gyOF9yTzY0WVlXd21GT3FISVpEOF9zUm5oRC1hMUduX1ZMSkpPRUtwWG5tZnlVRGxlMC1zUQ?oc=5"
+    },
+    "Goldman Sachs": {
+      "title": "Citi Tops Global IPO Underwriting, Overtakes Goldman Sachs After SpaceX, SK Hynix, NSE Listings",
+      "date": "2026-10-06",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNWDRUNWRwdkNSUEpLTVMwVXJkSGdCczM5NWFmRThhWU4wYW1QQm10aG11VV9PN0oycmRNYWlLTFAyNUpNX3FjX21DbUQ3M0tmeFFJVDFHVnBjTER2NzdvS0dqN1dGdGExVXZVanN5QW9Ndk1mQ0VwMTVuYUwtVUl4bWRMTXJpbkxxcXVXMEExRzB6LVBhT2hlTVJhcFVlUEE?oc=5"
+    },
+    "Blue Owl": {
+      "title": "Cox Capital Expands Liquidity Program for Retail Private Markets Investors with Tender Offer for Class I Shares of Blue Owl Credit Income Corp.",
+      "date": "2026-10-05",
+      "url": "https://news.google.com/rss/articles/CBMiqAJBVV95cUxNRVpoYk55MDVOSHRiUzV4bXZWbGhhaVNuamdtWDEtS0QybGtYb2pnRWt4eWpIWmpudFQ4dGN3SjZ3cTBES0VOVkhRSEh4VUR0QVg3bU56RFBreGV5TFpZRGgtclJiVzFZNU1GTVFQZUpERDRPbkZnRW5JYWV6ZTlPX3BITENpNktvZ2FYeG53S2JpV3J2M0twUmJPZTJGc013MnRKdDhwcEZqd0l3NHVOOVVPTVJSQ3pZeGRzRUVTd0FrQVBxVWZoNGRndVZFR2JhcEJ2Qmh0dUdMQTVCT3EyYzJGd0VfU1Jma3ROblVlWS1qa21wZGV3T05yQXNGRVNaQmpCT05wV0tkOEIzRWc3NmFIdmlIbHA3ZHRybHpiWU96UUN2Y00tag?oc=5"
+    },
+    "Citadel": {
+      "title": "Equities – Citadel Associate Program",
+      "date": "2026-10-05",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPWGppYWRoUDhyNEtvNkppd1VWZEp3MVllLU1RUWp2ZVNkZkR5S0FBVFY2YWtPQVJBWjR6VGFKcGZFeklrRmV2T1RsN2R3Nmt3ajdRUXhrT0ZtU3F0V1dJc0lVRnptLVVteFI4OEpUd1lxS0J3NWE5R1E1VzRuc1c0VUpLMTVsdzVFWGthWnhfR3Z5TXpEN1FrRENCNmxtR3c?oc=5"
+    },
+    "Golub Capital": {
+      "title": "F2 Receives USD 5Million Strategic Investment From Golub Capital",
+      "date": "2026-10-06",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNazd6eWpSeUo3WmVoR2MyNVFST21sVVozMmlpTHFTdU1QWW1PY1gwY1Q0VV9aX3U5M295czE5elotRkFjb2xidDRENXJNcTJ6M3FfQlBBZGdnbVZsbzBkeW5mMWgxYXpPb2c0VHEtSjM4SDJKVzJ5S09OY3Y4QnV2clo4SEZnWU5Z0gGOAUFVX3lxTFBKTGR1S254WXJhR3RQTGFEZVR6MzVQbUptNDhEOElyemotaFpzc0hPbEJYcHBXS2JrUnFkMGVudGVKNkdPN3BLeFNNcVQ0REM4dDZTU2xsWXB5aWRQbW05Mnd2MWo4aVJsZi03R1RHTnZhV2g5aVNyY1NIc1FqemlYS2ZRNHNYNkUzX05hOXc?oc=5"
+    },
+    "Neuberger Berman": {
+      "title": "Neuberger Private Equity Partners (NBPE) Completes Buyback of 11,386 Class A Shares on LSE at Up to GBP 14.94",
+      "date": "2026-10-06",
+      "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPT2paalhwdXR1Z3NXa1loazM3S194d0VTakVSUGlkTzVyOXJpUndEQkZyQUFEXy1QOTlVVnhmT29uUy1OanQ5SkZEOUJVUUlaZVZVVkxPMG9EMndORFJydjlwQVRwZUlvbUhzVVFUand5RjVpT2N4eTcxb09Zeml2UDY3TUhrQnlXQk1iSXJ5OThQMjBoVk5ybGJnRzR1bmJ6em1QTk5ldndzSEZ1UnRtQmR4RUpLb012dmJ0bU9RcVNCc3pWMXpqdmZPX3lrYTJ1N1Z5OGlVLXpteV9McG9NT0RuanQ?oc=5"
+    },
+    "BlackRock": {
+      "title": "OpenAI In Talks With UAE Funds, Blackrock For USD 30Billion Round - Bloomberg News",
+      "date": "2026-10-06",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPSG9SQWYya0t4WHUzZnoyUU9XckgtVk0zNk5FNXVKa1FINFlMTS1Ec3hmOGtZMFFlWU9yRXZOWUZpanpZd3lodC1uNFp4UVUyenVKNHkzRWJfRjJiOVBYbFRzaS1wMDRmQ2N2VmVvckVQcUZwcmM4aUJDVnNuVEhlQ191dmlneG04VjN0NmZKN1FRdHFBMUlKblB3d3NlOXl4bWhzaXlhblRPM0hZVTI3dTE1N3dxelZQZEgyMDIzUUVGX2RnUldZY3ZpV1IyeWdIM1dQT2VCUlhLakpUNm1V?oc=5"
+    },
+    "Ares": {
+      "title": "Ares Management ratings affirmed at A-, outlook remains stable",
+      "date": "2026-10-05",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPWlhyeTlhdEg4bnBheHdybWV1bWxfU0h1emxhbXF2NWtrQWRUWnFYRnFNT1RFcklFNlQwcExMdDZHM1RLY2V4UWRQVW5qc25aUXZBQlprbHhIOE03THh1bkpxTDloM1RrSW1kV0g5cFgtaWZpWXM4VUd1NWhwXy1TSVJnVEpsSmU4dW9feHhNQmZXWm80di1fRlhLSm5XTzg?oc=5"
+    },
+    "Morgan Stanley": {
+      "title": "Morgan Stanley - atwork.morganstanley.com",
+      "date": "2026-10-06",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBhWEpjeHh0LUZMRHNIc0R1YnNPZlBCdTdCckR1enFrWDR4RDZKU01LcHVjWVl2MTF1Ym9odGRuRGhPSG1RMHR5dU12a3ZvVE9qekctTV80cldwVWVrYTBtLW5uUmJRTndk?oc=5"
+    },
+    "Ardian": {
+      "title": "Ardian and Rockfield Acquire Majority Stake in The Social Hub Berlin",
+      "date": "2026-10-06",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNVHhSRTlvU3dfYVF3cmI5RTNzQ1lhRGFtYmlaSWZIVElRem5WcmkxODJIU1E5UnU5Vkx3R2xYRUxoVVpnYTlKNU5FcXh5STlYazUxOUV2b00zQmV4TXlidEhjR2Z5UHFvcTFrTDZNVENVYUMxbGRnOHVUem1YQkxmWXpDcU5DY1prT0tkTEo4ZHVnMzV3Q3FPZ0MzNUpMZWxhSUtWQzNxenZXSUFrUEZ2WWtaci1ObVhzR1hYQQ?oc=5"
+    },
+    "Hamilton Lane": {
+      "title": "Q3 2025 Hamilton Lane Inc Earnings Call Transcript",
+      "date": "2026-10-05",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1MQVZ5dWlPYndxeWRONnQ2TGlyWlM4YmZQdThWWHJLcVpXZWt6bFE3NVpfWnBHbWctZTMyOXdQYk8zbF9CU3dlUWR2VGgtd0pWM1lkMTBzMHBvOU5vV25sVk0tV3Y4MjRXYlItUll3?oc=5"
+    },
+    "RedBird": {
+      "title": "Racer tennis takes 3 of top 4 flights at Redbird Invitational",
+      "date": "2026-10-06",
+      "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPUVV5V1kybENhbklXWkNoWjVLNXZtRFlLV2p4SjBPMDR2T3h0UU1TR1FDeEFQRnYtYTdMRnZ3anZ2cGJNUzJISnBhc1ItcWtrZmdaVV83RDNiaUs3eFlPZDNTOC1pZlVlWi1tQkdjazVPaW85U0FHR3RJTjR0czExUlRCQ0MxWVRmbVBTQThZWmlQcXlKTUJILTYxeUphbVFMcmxsUU5fUXQtWVlfbWxwVUNjaVdjbjZDRFZvS25zTUQ0cFpLcGVmZlIzRjJJX0dZUG9Ha19lNDI2Ri1WR2FfTGNBY1hyVlF1WS1CMUJPTlhVUQ?oc=5"
+    }
+  }
+}
