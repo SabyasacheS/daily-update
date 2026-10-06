@@ -24,7 +24,7 @@
 {% endif %}
 {% if v.reported %}
 <div class="vbox"><span class="k">REPORTED</span><span class="v" style="font-size:15px">{{ v.reported.text }}</span>
-  <span class="prov"><a href="{{ v.reported.url }}" target="_blank" rel="noopener">new round in talks, not confirmed · {{ v.reported.date | shortdate }} · source</a></span></div>
+  <span class="prov"><a href="{{ v.reported.url }}" target="_blank" rel="noopener">{{ v.reported.label }} · {{ v.reported.date | shortdate }} · source</a></span></div>
 {% endif %}
 {% if v.last_round and not c.listed %}
 <div class="src">Latest round: {{ v.last_round.text }} · {{ "closed" if v.last_round.status == "closed" else "reported, in talks" }} · {{ v.last_round.date | shortdate }}</div>
@@ -32,7 +32,7 @@
 {% endmacro %}
 
 {% macro status_pill(c) %}
-{% if c.signal or c.view.reported %}<span class="pill-warn">ROUND REPORTED</span>
+{% if c.signal or c.view.reported %}<span class="pill-warn">{{ 'IPO VALUATION REPORTED' if c.view.reported and c.view.reported.label.startswith('IPO') else 'ROUND REPORTED' }}</span>
 {% elif c.view.valuation and c.view.valuation.previous %}<span class="pill-ok">VALUATION UPDATED</span>
 {% elif c.listed %}<span class="tag">LISTED</span>
 {% else %}<span class="tag">PRIVATE</span>{% endif %}

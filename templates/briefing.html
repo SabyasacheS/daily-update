@@ -63,7 +63,7 @@
     <div style="padding:10px 0;border-bottom:1px solid var(--line-2)">
       <div style="display:flex;justify-content:space-between;gap:8px"><b>{{ c.name }}</b>
         {% if c.view.reported %}<span class="pill-warn">REPORTED</span>{% else %}<span class="mono" style="font-weight:600">{{ c.view.valuation.text }}</span>{% endif %}</div>
-      <div class="src">{% if c.view.reported %}{{ c.view.reported.text }} · in talks · verify{% else %}was {{ c.view.valuation.previous }} · {{ c.view.valuation.provenance }}{% endif %}</div>
+      <div class="src">{% if c.view.reported %}{{ c.view.reported.text }} · {{ c.view.reported.label }}{% else %}was {{ c.view.valuation.previous }} · {{ c.view.valuation.provenance }}{% endif %}</div>
     </div>
     {% endfor %}
   </div>
