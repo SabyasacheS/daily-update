@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% import "macros.html" as m %}
+{% block main %}
+{% set active = [] %}{% set quiet = [] %}
+{% for n in sec.names %}{% set c = r.companies[n] %}{% if c['items'] %}{% set _ = active.append(c) %}{% else %}{% set _ = quiet.append(c) %}{% endif %}{% endfor %}
+<div class="page-head">
+  <div><span class="kicker">{{ active|length }} of {{ sec.names|length }} names with news · last 72h</span><h1>{{ sec.label }}</h1></div>
+  <div class="mono" style="display:flex;flex-wrap:wrap;gap:14px;font-size:11px;color:var(--muted)">
+    <span><span class="k-pr">PR</span> official release</span><span><span class="k-news">NEWS</span> press coverage</span></div>
+</div>
+
+{% if active %}
+<section class="cgrid">
+{% for c in active %}
+<article class="card" id="{{ c.name | slug }}">
+  <div class="head"><h2>{{ c.name }}</h2>{{ m.status_pill(c) }}</div>
+  {{ m.vbox(c) }}
+  <div class="items">{% for it in c['items'][:4] %}{{ m.news_item(it) }}{% endfor %}</div>
+  {% if c.why %}<p class="why"><b>Why it matters:</b> {{ c.why }}</p>{% endif %}
+</article>
+{% endfor %}
+</section>
+{% else %}
+<p class="muted">No news in the last 72 hours for anyone in this section.</p>
+{% endif %}
+
+{% if quiet %}
+<section>
+  <div class="rule-head"><h2>No new items · 72h</h2><span class="ln"></span></div>
+  <div class="quiet">
+  {% for c in quiet %}
+    <div><b>{{ c.name }}</b>
+      {% if c.view.valuation and not c.listed %}<span>{{ c.view.valuation.text }}</span><br>{% endif %}
+      {% if c.listed and c.q %}<span>{{ c.currency }} {{ c.q.price | price }} · {{ c.q.change_pct | pct }}</span><br>{% endif %}
+      <span>{% if c.last %}Last: <a href="{{ c.last.url }}" target="_blank" rel="noopener" style="color:var(--muted)">{{ c.last.title | truncate(60) }}</a> · {{ c.last.date | shortdate }}{% else %}No items on file yet{% endif %}</span></div>
+  {% endfor %}
+  </div>
+</section>
+{% endif %}
+{% endblock %}

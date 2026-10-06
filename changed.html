@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% import "macros.html" as m %}
+{% block main %}
+{% set ch = r.changes %}
+<div class="page-head">
+  <div><span class="kicker">{% if ch.since %}Compared with the report of {{ ch.since | longdate }}{% else %}First report · baseline established{% endif %}</span><h1>What changed</h1></div>
+  <div class="chips"><span><b>{{ ch.moves|length }}</b> price / volume</span><span><b>{{ ch.valuations|length }}</b> valuation</span>
+    <span><b>{{ ch.new_pr|length }}</b> press releases</span><span><b>{{ ch.new_news|length }}</b> news stories</span></div>
+</div>
+
+<section>
+  <div class="rule-head"><h2>Price &amp; volume</h2><span class="ln"></span><span class="aside">flag: ±{{ s.thresholds.price_move_pct }}% or volume above both averages</span></div>
+  {% if ch.moves %}
+  <div class="move-box"><div>
+  {% for h in ch.moves %}{% set q = h.q %}
+    <div class="move"><div><div class="nm">{{ h.name }}</div><div class="src">{{ h.exchange }} · {{ h.currency }}</div></div>
+      <div><span class="muted">{{ q.prev | price }} →</span> <b>{{ q.price | price }}</b></div>
+      <div class="{{ m.dir(q.change_pct) }}" style="font-weight:600">{{ m.arrow(q.change_pct) }} {{ q.change_pct | pct }}</div>
+      <div style="font-size:13px">{{ q.volume | volm }}m · <b>{{ q.vs10 | ratio }}</b> 10-day · {{ q.vs3m | ratio }} 3-month</div></div>
+  {% endfor %}
+  </div></div>
+  {% else %}<p class="muted">No holding moved more than {{ s.thresholds.price_move_pct }}% or traded unusual volume.</p>{% endif %}
+</section>
+
+<section class="pair">
+  <div class="panel">
+    <h2>Valuations updated</h2>
+    {% for v in ch.valuations %}
+    <div style="padding:10px 0;border-bottom:1px solid var(--line-2)">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:baseline">
+        <span class="disp" style="font-size:22px;font-weight:700">{{ v.company }}</span>
+        <span class="mono">{% if v['from'] %}<span class="muted" style="text-decoration:line-through">{{ v['from'] }}</span> → {% endif %}<b>{{ v.to }}</b></span></div>
+      <div class="src">{% if v.type == 'reported' %}<span class="pill-warn">REPORTED · VERIFY</span>{% else %}<span class="pill-ok">CLOSED</span>{% endif %}
+        <a href="{{ v.source_url }}" target="_blank" rel="noopener" style="color:var(--muted)">{{ v.source_title | truncate(80) }}</a> · {{ v.date | shortdate }}</div>
+    </div>
+    {% else %}<p class="muted" style="margin:0">No valuation changes detected.</p>{% endfor %}
+  </div>
+  <div class="panel">
+    <h2>Funding signals · verify</h2>
+    {% for sg in ch.signals %}
+    <div style="padding:10px 0;border-bottom:1px solid var(--line-2)">
+      <div style="display:flex;justify-content:space-between;gap:10px"><b>{{ sg.company }}</b><span class="pill-warn">{{ sg.status | upper }}</span></div>
+      <a href="{{ sg.source_url }}" target="_blank" rel="noopener" class="plain">{{ sg.source_title }}</a>
+      <div class="src">{% if sg.raise_text %}Raise: {{ sg.raise_text }} · {% endif %}valuation not stated, so the value on file is unchanged · {{ sg.date | shortdate }}</div>
+    </div>
+    {% else %}<p class="muted" style="margin:0">No new funding headlines.</p>{% endfor %}
+  </div>
+</section>
+
+<section class="pair">
+  <div>
+    <div class="rule-head"><h2>New press releases</h2><span class="ln"></span></div>
+    {% for it in ch.new_pr %}<div class="stack-row"><span class="src">{{ it.company }} · {{ it.date | shortdate }}</span><div><a class="plain" style="font-weight:500" href="{{ it.url }}" target="_blank" rel="noopener">{{ it.title }}</a></div></div>
+    {% else %}<p class="muted">None.</p>{% endfor %}
+  </div>
+  <div>
+    <div class="rule-head"><h2>New coverage</h2><span class="ln"></span></div>
+    {% for it in ch.new_news %}<div class="stack-row"><span class="src">{{ it.company }} · {{ it.date | shortdate }}{% if it.sources|length > 1 %} · {{ it.sources|length }} sources{% endif %}</span><div><a class="plain" style="font-weight:500" href="{{ it.url }}" target="_blank" rel="noopener">{{ it.title }}</a></div></div>
+    {% else %}<p class="muted">None.</p>{% endfor %}
+  </div>
+</section>
+
+{% if ch.calendar_soon %}
+<section>
+  <div class="rule-head"><h2>Coming up in 48 hours</h2><span class="ln"></span></div>
+  {% for e in ch.calendar_soon %}<div class="list-row"><span class="d">{{ e.day }}</span><div><b>{{ e.title }}</b> <span class="src">{{ e.kind }}</span></div></div>{% endfor %}
+</section>
+{% endif %}
+
+<section class="band">
+  <div><b>No new items:</b> {{ ch.quiet | join(', ') if ch.quiet else 'none' }}</div>
+  {% if ch.filtered_count %}<div class="mono" style="font-size:13px"><b style="font-family:var(--sans)">Filtered as noise ({{ ch.filtered_count }}):</b>
+    {% for f in ch.filtered %}{{ f.company }}: "{{ f.title | truncate(60) }}" ({{ f.reason }}){% if not loop.last %} · {% endif %}{% endfor %}</div>{% endif %}
+</section>
+{% endblock %}
