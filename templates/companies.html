@@ -30,7 +30,7 @@
   <div class="quiet">
   {% for c in quiet %}
     <div><b>{{ c.name }}</b>
-      {% if c.view.valuation and not c.listed %}<span>{{ c.view.valuation.text }}</span><br>{% endif %}
+      {% if c.view.valuation and not c.listed and not (c.view.valuation.na and c.sections == ['sponsors']) %}<span>Valuation: {{ c.view.valuation.text }}</span><br>{% endif %}
       {% if c.listed and c.q %}<span>{{ c.currency }} {{ c.q.price | price }} · {{ c.q.change_pct | pct }}</span><br>{% endif %}
       <span>{% if c.last %}Last: <a href="{{ c.last.url }}" target="_blank" rel="noopener" style="color:var(--muted)">{{ c.last.title | truncate(60) }}</a> · {{ c.last.date | shortdate }}{% else %}No items on file yet{% endif %}</span></div>
   {% endfor %}

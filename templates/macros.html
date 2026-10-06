@@ -17,14 +17,14 @@
 <div class="vbox"><span class="k">PRICE</span><span class="v">{{ c.currency }} {{ c.q.price | price }}</span>
   <span class="mono {{ dir(c.q.change_pct) }}" style="font-weight:600">{{ arrow(c.q.change_pct) }} {{ c.q.change_pct | pct }}</span>
   <span class="prov">{{ c.ticker }} · last close</span></div>
-{% elif v.valuation %}
+{% elif v.valuation and not (v.valuation.na and c.sections == ['sponsors']) %}
 <div class="vbox"><span class="k">VALUATION</span><span class="v">{{ v.valuation.text }}</span>
   {% if v.valuation.previous %}<span class="was">{{ v.valuation.previous }}</span>{% endif %}
-  <span class="prov">{% if v.valuation.url %}<a href="{{ v.valuation.url }}" target="_blank" rel="noopener">{{ v.valuation.provenance }}</a>{% else %}{{ v.valuation.provenance }}{% endif %}</span></div>
+  <span class="prov">{% if v.valuation.url %}<a href="{{ v.valuation.url }}" target="_blank" rel="noopener" title="{{ v.valuation.note }}">{{ v.valuation.provenance }} · source</a>{% else %}{{ v.valuation.provenance }}{% endif %}</span></div>
 {% endif %}
 {% if v.reported %}
 <div class="vbox"><span class="k">REPORTED</span><span class="v" style="font-size:15px">{{ v.reported.text }}</span>
-  <span class="prov"><a href="{{ v.reported.url }}" target="_blank" rel="noopener">in talks · verify · {{ v.reported.date | shortdate }}</a></span></div>
+  <span class="prov"><a href="{{ v.reported.url }}" target="_blank" rel="noopener">new round in talks, not confirmed · {{ v.reported.date | shortdate }} · source</a></span></div>
 {% endif %}
 {% if v.last_round and not c.listed %}
 <div class="src">Latest round: {{ v.last_round.text }} · {{ "closed" if v.last_round.status == "closed" else "reported, in talks" }} · {{ v.last_round.date | shortdate }}</div>

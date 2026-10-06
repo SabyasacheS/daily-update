@@ -130,7 +130,7 @@ table.cal tr:last-child td{border-bottom:0}
         {% if v.reported or c.signal %} <span class="tag warn">ROUND REPORTED</span>{% elif v.valuation and v.valuation.previous %} <span class="tag warn">VALUATION UPDATED</span>{% endif %}</div>
       <div class="r">
         {% if c.listed and c.q %}<span>{{ c.currency }} {{ c.q.price | price }}</span> <span class="{{ 'up' if c.q.change_pct and c.q.change_pct > 0 else 'down' }}">{{ c.q.change_pct | pct }}</span>
-        {% elif v.valuation and v.valuation.text %}<span style="font-weight:600">{{ v.valuation.text }}</span>{% if v.valuation.previous %} <span class="src">was {{ v.valuation.previous }}</span>{% endif %}
+        {% elif v.valuation and v.valuation.text and not (v.valuation.na and c.sections == ['sponsors']) %}<span style="font-weight:600">{{ v.valuation.text }}</span>{% if v.valuation.previous %} <span class="src">was {{ v.valuation.previous }}</span>{% endif %}
           {% if v.valuation.provenance %}<br><span class="src">{{ v.valuation.provenance }}</span>{% endif %}{% endif %}
       </div>
     </div>
