@@ -10,8 +10,8 @@
       "change_pct": -9.1666668218871
     },
     "CVC Capital Partners": {
-      "price": 12.319999694824219,
-      "change_pct": 1.3991776265957563
+      "price": 12.3100004196167,
+      "change_pct": 1.3168790626330926
     }
   },
   "valuations": {
@@ -24,21 +24,21 @@
   },
   "items": {
     "SpaceX": [
+      "4eb818e39109",
+      "98ac0851cdb0",
+      "bd3dd3d6ecf6",
       "c07140e0b9bd",
       "db60d8bd6955",
-      "f9a3d5641cea",
-      "b63a45493307",
-      "1843be6bcdf3",
-      "d6d4d4ad1711"
+      "f9a3d5641cea"
     ],
     "Beema": [],
     "Blaize": [
+      "625962e73b24",
       "07203832e239",
       "3c29b018c042",
       "a2e397189e9d",
       "d12edfb5bd1a",
-      "4e04ab805b58",
-      "a8b202db32ed"
+      "4e04ab805b58"
     ],
     "CVC Capital Partners": [
       "ee42edfdb11b",
@@ -58,7 +58,6 @@
       "f45691fa48b0",
       "6a1155496647",
       "ff7ae11887be",
-      "7dbeabf41908",
       "ffa2d7d82cbc"
     ],
     "Firefly": [],
@@ -67,28 +66,28 @@
     ],
     "Aligned Data Centers": [],
     "Altera": [
+      "a48e7ad3243d",
       "bbeedb75cf6c",
       "f8fdf2ba4fcd",
-      "4aa2f7183186",
       "d2376e6a8e51",
       "5a4faf1ea393",
       "05e57cbf2d1e"
     ],
     "Anthropic": [
+      "bc676062bc4a",
+      "e01794d24582",
+      "28fbf9753fd8",
+      "1517939f6cbd",
       "21c2d6429782",
-      "e518f57e1b3c",
-      "bb014164ef62",
-      "dbd20dbc6425",
-      "2736196eb7dc",
-      "f699477110ae"
+      "e518f57e1b3c"
     ],
     "Binance": [
-      "28ac0dea3932",
-      "a3f03b996fc3",
-      "56ffd4c8f55e",
-      "8f8423d2d73d",
-      "514210167241",
-      "31c41ded598a"
+      "056316b358c5",
+      "484931b8cf8e",
+      "7fee6011624b",
+      "320564660481",
+      "5f2bcdfdd398",
+      "f55c68cb5aa9"
     ],
     "Campus AI": [],
     "Databricks": [
@@ -102,31 +101,31 @@
     "Isomorphic Labs": [],
     "Khazna": [],
     "OpenAI": [
-      "9ae20accacb7",
-      "8521102fcb3e",
-      "13a0567e8b0d",
+      "57ce167518dd",
+      "35b56bf9d274",
       "efeb46a1e684",
-      "8607a18f6ac4",
-      "c5596d165908"
+      "9ae20accacb7",
+      "a44980de32c3",
+      "8521102fcb3e"
     ],
     "SSI": [],
     "TikTok US": [
+      "22ca9de543fb",
+      "66da18ff00d5",
+      "69cf43bc69eb",
       "0393569600d4",
       "9b043dfa01be",
-      "fb39404e9165",
-      "90c0a6193700",
-      "a3aafcd7fb38",
-      "a87c427dad63"
+      "90c0a6193700"
     ],
     "Vantage Data Centers NA": [
       "215b88413b43"
     ],
     "Blackstone": [
       "7e81696032e5",
-      "5c6d62193038",
-      "14ebf27fa1e3",
+      "010fb4b878f1",
       "ff1c4cbfb156",
       "4b5ff95414d7",
+      "3ed17e53b458",
       "fe3fae5896f7"
     ],
     "Golden Gate Ventures": [],
@@ -160,8 +159,8 @@
     "Neuberger Berman": [
       "2fd4016e54bb",
       "edcf47627fc3",
-      "8245492ee54d",
       "79043c409408",
+      "8245492ee54d",
       "e40d5f1453ed",
       "bcd71f698cb3"
     ],
@@ -170,32 +169,33 @@
       "e54bf2514067",
       "37aefcf193e1",
       "53f02925533c",
-      "131374e42a6b",
-      "f5a6dd048a79"
+      "72744b6f997d",
+      "131374e42a6b"
     ],
     "Ares": [
+      "a90615a8dc39",
       "8d5c9520406f",
       "7ce393947fb6",
       "22059147cc91",
       "a90f87c88914",
-      "90e31b312504",
-      "65d045dd65db"
+      "90e31b312504"
     ],
     "Monroe Capital": [],
     "Morgan Stanley": [
+      "48a18b2bd678",
+      "b1c0fbe5f5d2",
       "e4f03a07ae34",
       "abfba08062f7",
       "ce502c8a463d",
-      "6905d1d2d880",
-      "3e6c904b6a0c",
-      "b1c0fbe5f5d2"
+      "6905d1d2d880"
     ],
     "Ardian": [
       "19bd805a8fd2",
+      "9d86b1598ecd",
       "9d6beaf20c2e",
+      "7c4b17e7dd3f",
       "fd7fce181d8d",
-      "288ccf4eb788",
-      "17e48fb8a765"
+      "288ccf4eb788"
     ],
     "Hamilton Lane": [
       "7d8af9739f26",
