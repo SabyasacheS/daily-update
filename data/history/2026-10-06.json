@@ -10,43 +10,78 @@
       "change_pct": -9.1666668218871
     },
     "CVC Capital Partners": {
-      "price": 12.229999542236328,
-      "change_pct": 0.6584356067307587
+      "price": 12.220000267028809,
+      "change_pct": 0.5761370427680952
     }
   },
   "valuations": {
+    "SpaceX": "NA",
+    "Beema": "NA",
+    "Blaize": "NA",
+    "CVC Capital Partners": "NA",
+    "Arini Capital Management": "NA",
+    "Deutsche ReGas": "NA",
+    "Figure AI": "USD 39bn",
+    "Firefly": "NA",
+    "AIP": "NA",
+    "Aligned Data Centers": "c. USD 40bn",
     "Altera": "USD 8.75bn",
-    "Anthropic": "c. USD 900bn target",
-    "Binance": "No public equity",
+    "Anthropic": "USD 965bn",
+    "Binance": "NA",
+    "Campus AI": "NA",
     "Databricks": "USD 190bn",
-    "OpenAI": "c. USD 852bn",
-    "TikTok US": "USD 1.5bn"
+    "Isomorphic Labs": "NA",
+    "Khazna": "c. USD 5.5bn",
+    "OpenAI": "USD 852bn",
+    "SSI": "USD 32bn",
+    "TikTok US": "c. USD 14bn",
+    "Vantage Data Centers NA": "NA",
+    "Blackstone": "NA",
+    "Golden Gate Ventures": "NA",
+    "Goldman Sachs": "NA",
+    "Blue Owl": "NA",
+    "HGGC": "NA",
+    "Lexington Partners": "NA",
+    "Vista Equity Partners": "NA",
+    "Coller Capital": "NA",
+    "Citadel": "NA",
+    "Golub Capital": "NA",
+    "Neuberger Berman": "NA",
+    "BlackRock": "NA",
+    "Ares": "NA",
+    "Monroe Capital": "NA",
+    "Morgan Stanley": "NA",
+    "Ardian": "NA",
+    "Hamilton Lane": "NA",
+    "RedBird": "NA",
+    "Qatar Insurance Company": "NA",
+    "Commercial Bank of Qatar": "NA"
   },
   "items": {
     "SpaceX": [
+      "3d506de3b924",
+      "64598231877e",
+      "1f7b35119801",
       "493564b1bcd2",
       "410c511fd7d7",
-      "2f6c1dc9d710",
-      "81a8192b0ecc",
-      "15c954f09aa0",
-      "559bd3aa989e"
+      "81a8192b0ecc"
     ],
     "Beema": [],
     "Blaize": [
+      "b05ff29c763b",
       "0b3a3645cfa9",
       "bff4b12e8a81",
       "a41f5eb5fe57",
       "625962e73b24",
-      "07203832e239",
-      "3c29b018c042"
+      "07203832e239"
     ],
     "CVC Capital Partners": [
       "c3780f73de1f",
+      "546ebcc606b2",
       "b6d172138f22",
       "754d02e245d7",
       "ee42edfdb11b",
-      "cce5c49d24c6",
-      "78bb7bf2c4be"
+      "cce5c49d24c6"
     ],
     "Arini Capital Management": [
       "c966c535bab8",
@@ -58,7 +93,6 @@
       "f45691fa48b0",
       "6a1155496647",
       "ff7ae11887be",
-      "7dbeabf41908",
       "ffa2d7d82cbc"
     ],
     "Firefly": [],
@@ -71,24 +105,24 @@
       "bbeedb75cf6c",
       "f8fdf2ba4fcd",
       "7dcad059155a",
-      "4aa2f7183186",
-      "d2376e6a8e51"
+      "d2376e6a8e51",
+      "5a4faf1ea393"
     ],
     "Anthropic": [
+      "21c2d6429782",
+      "5a30cb55ce3e",
       "cee0dfb9fd35",
-      "51ca11b776f2",
+      "110883a8e51f",
       "bc676062bc4a",
-      "2b3dcf8311e0",
-      "a48effe57d8a",
-      "60fee4d97bcb"
+      "2b3dcf8311e0"
     ],
     "Binance": [
-      "36c7f33026a0",
-      "73601dfe376c",
-      "545547b57a51",
-      "716445e7f14d",
-      "e30224f14a51",
-      "bca34cae6f28"
+      "952e9236f989",
+      "31c41ded598a",
+      "8bf65c81485e",
+      "8be3ea6a0b8f",
+      "8edd91f0facb",
+      "fce73539b478"
     ],
     "Campus AI": [],
     "Databricks": [
@@ -96,27 +130,29 @@
       "5882841fea68",
       "c6d85a304309",
       "2d2c917e9a74",
-      "c64ed15978d3",
-      "ec7064d63d5b"
+      "ec7064d63d5b",
+      "20647aba0edb"
     ],
     "Isomorphic Labs": [],
     "Khazna": [],
     "OpenAI": [
-      "93930f4c0fe0",
-      "246f17f5db4e",
-      "0e548bc1a58b",
-      "777c95c2fef0",
-      "07f70a5fcb0c",
-      "759788f9d411"
+      "b2a0e64cd92c",
+      "556dcc00da3c",
+      "40c6371df143",
+      "5a30cb55ce3e",
+      "55a2136d870f",
+      "452eb578b4a5"
     ],
-    "SSI": [],
+    "SSI": [
+      "6a6434f35c77"
+    ],
     "TikTok US": [
+      "336b2bff6f8f",
+      "8a33143cc737",
+      "18fb32e5bef7",
       "aa78f44e2bcf",
       "69cf43bc69eb",
-      "c8a3afd22392",
-      "7d4a641fd801",
-      "433ae89289de",
-      "ddac63de3a4e"
+      "c8a3afd22392"
     ],
     "Vantage Data Centers NA": [
       "215b88413b43"
@@ -124,10 +160,10 @@
     "Blackstone": [
       "7c65b2e37f47",
       "7e81696032e5",
+      "1b5b6fcf873e",
       "010fb4b878f1",
       "ff1c4cbfb156",
-      "4b5ff95414d7",
-      "3ed17e53b458"
+      "4b5ff95414d7"
     ],
     "Golden Gate Ventures": [],
     "Goldman Sachs": [
@@ -154,24 +190,25 @@
       "166f73e982c7"
     ],
     "Golub Capital": [
+      "5048fb423e17",
       "29b3545c1436",
       "4345ba4d24ee"
     ],
     "Neuberger Berman": [
       "2fd4016e54bb",
       "edcf47627fc3",
+      "6e558b671fe9",
       "79043c409408",
       "8245492ee54d",
-      "e40d5f1453ed",
-      "bcd71f698cb3"
+      "e40d5f1453ed"
     ],
     "BlackRock": [
+      "b1b7bba307c5",
+      "6954e54b3463",
       "eea0af6c3ca5",
+      "131374e42a6b",
       "e243cec69f85",
-      "e54bf2514067",
-      "37aefcf193e1",
-      "53f02925533c",
-      "72744b6f997d"
+      "e54bf2514067"
     ],
     "Ares": [
       "a90615a8dc39",
@@ -188,19 +225,19 @@
       "c8c28e97307e",
       "677a2a6f27d6",
       "fdfafb15e571",
-      "e4f03a07ae34"
+      "abfba08062f7"
     ],
     "Ardian": [
       "19bd805a8fd2",
       "9d86b1598ecd",
       "9d6beaf20c2e",
-      "a5543baea151",
-      "7c4b17e7dd3f",
-      "288ccf4eb788"
+      "fd7fce181d8d",
+      "288ccf4eb788",
+      "17e48fb8a765"
     ],
     "Hamilton Lane": [
-      "3a382d99f7af",
       "8fccc03673c9",
+      "3a382d99f7af",
       "7d8af9739f26",
       "66e285400853",
       "4592a22cedf5",
