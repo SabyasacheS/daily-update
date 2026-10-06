@@ -1,87 +1,166 @@
-{% import "macros.html" as m %}
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><title>{{ s.site_title }} {{ r.today }}</title>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* One typeface (IBM Plex Sans), four sizes: 18pt title, 13pt section, 10pt body, 8.5pt small. */
-@page{size:A4;margin:16mm 14mm 18mm;
-  @bottom-left{content:"{{ s.site_title }} · {{ r.today }} · Not investment advice";font:8.5pt 'IBM Plex Sans',sans-serif;color:#59645E}
-  @bottom-right{content:counter(page) " / " counter(pages);font:8.5pt 'IBM Plex Sans',sans-serif;color:#59645E}}
-*{font-family:'IBM Plex Sans','Segoe UI',Arial,sans-serif}
-body{font-size:10pt;line-height:1.45;color:#101814;font-variant-numeric:tabular-nums}
-h1{font-size:18pt;font-weight:700;line-height:1.2;margin:4pt 0 8pt}
-h2.sec{font-size:13pt;font-weight:700;margin:0 0 8pt;padding-bottom:4pt;border-bottom:1.5pt solid #101814}
-h3{font-size:10pt;font-weight:700;margin:0 0 3pt}
-.page{page-break-before:always}.page:first-of-type{page-break-before:auto}
-.mast{background:#101814;color:#fff;padding:12pt 14pt;margin-bottom:12pt}
-.mast b{font-size:18pt;font-weight:700;letter-spacing:.5pt}
-.mast span{display:block;font-size:8.5pt;color:#A7B2AB;margin-top:3pt}
-.k{font-size:8.5pt;letter-spacing:.5pt;color:#59645E;text-transform:uppercase}
-.src,.mono{font-size:8.5pt}.src{color:#59645E}
-p{margin:0 0 6pt}
-a{color:#101814;text-decoration:none}
+/* Executive print layout. One typeface (IBM Plex Sans), four sizes:
+   16pt headline · 11.5pt section titles · 9.5pt text · 7.5pt labels and sources. */
+@page{size:A4;margin:20mm 17mm 18mm 17mm;
+  @top-left{content:"{{ s.site_title }}";font:600 7.5pt 'IBM Plex Sans',sans-serif;color:#59645E;letter-spacing:.6pt;text-transform:uppercase}
+  @top-right{content:"{{ r.today | longdate }}";font:7.5pt 'IBM Plex Sans',sans-serif;color:#59645E}
+  @bottom-left{content:"Not investment advice. Compiled from public sources.";font:7.5pt 'IBM Plex Sans',sans-serif;color:#8A958F}
+  @bottom-right{content:counter(page) " of " counter(pages);font:7.5pt 'IBM Plex Sans',sans-serif;color:#8A958F}}
+@page :first{@top-left{content:none}@top-right{content:none}}
+*{box-sizing:border-box;font-family:'IBM Plex Sans','Segoe UI',Arial,sans-serif}
+body{margin:0;font-size:9.5pt;line-height:1.45;color:#1B2420;font-variant-numeric:tabular-nums}
+a{color:inherit;text-decoration:none}
+p{margin:0 0 5pt}
+.lbl{font-size:7.5pt;font-weight:600;letter-spacing:.6pt;text-transform:uppercase;color:#59645E}
+.src{font-size:7.5pt;color:#6B756F}
 .up{color:#0D7A4A}.down{color:#B42318}
-table{width:100%;border-collapse:collapse;font-size:10pt}
-th{font-size:8.5pt;font-weight:600;color:#59645E;text-align:right;padding:4pt;border-bottom:1pt solid #D9DDD6}
-td{padding:5pt 4pt;border-bottom:.5pt solid #ECEEE9;text-align:right}
-th.l,td.l{text-align:left}td.nm{font-weight:600}
-.card{border:.75pt solid #D9DDD6;padding:8pt 10pt;margin-bottom:8pt;page-break-inside:avoid}
-.row{display:flex;justify-content:space-between;gap:8pt}
-.item{margin:4pt 0;display:flex;gap:2pt;align-items:baseline}
-.item .k-pr,.item .k-news{font-size:8.5pt;font-weight:600;border:.5pt solid #101814;padding:0 3pt;margin-right:4pt}
-.item .k-pr{background:#101814;color:#fff}
-.badge-new{font-size:8.5pt;font-weight:600;background:#D9480F;color:#fff;padding:0 3pt}
-.why{font-size:10pt;color:#3A4540;border-top:.5pt solid #ECEEE9;padding-top:4pt;margin-top:4pt}
-.vbox{background:#F3F4F0;padding:4pt 6pt;margin:4pt 0;font-size:10pt}
-.vbox .k{margin-right:6pt}.vbox .v{font-weight:600}.vbox .was{text-decoration:line-through;color:#59645E}
-.vbox .prov{color:#59645E;font-size:8.5pt;margin-left:6pt}
-.quiet{font-size:10pt;color:#3A4540}
-.top li{margin-bottom:6pt}
+.mast{display:table;width:100%;padding-bottom:7pt;border-bottom:2pt solid #D9480F;margin-bottom:14pt}
+.mast .l,.mast .r{display:table-cell;vertical-align:bottom}
+.mast .r{text-align:right}
+.mast .name{font-size:16pt;font-weight:700;letter-spacing:.4pt;color:#101814}
+h1{font-size:16pt;font-weight:600;line-height:1.25;margin:3pt 0 7pt;color:#101814}
+h2{font-size:11.5pt;font-weight:700;margin:16pt 0 6pt;padding-bottom:3pt;border-bottom:.75pt solid #101814;color:#101814;page-break-after:avoid}
+.lead p{max-width:150mm}
+.top{width:100%;border-collapse:collapse;margin-top:2pt}
+.top td{vertical-align:top;padding:6pt 0;border-bottom:.5pt solid #E1E5DF}
+.top tr:last-child td{border-bottom:0}
+.top .n{width:9mm;font-size:11.5pt;font-weight:700;color:#D9480F}
+.top .t{font-weight:600;color:#101814}
+.top .w{color:#3A4540}
+.glance{width:100%;border-collapse:collapse}
+.glance>tbody>tr>td{vertical-align:top}
+.glance>tbody>tr>td:first-child{width:60%;padding-right:9mm}
+table.hold{width:100%;border-collapse:collapse}
+table.hold th{font-size:7.5pt;font-weight:600;letter-spacing:.4pt;color:#59645E;text-align:right;padding:0 0 3pt 8pt;white-space:nowrap;border-bottom:.75pt solid #101814}
+table.hold td{text-align:right;padding:4pt 0 4pt 8pt;white-space:nowrap;border-bottom:.5pt solid #E1E5DF}
+table.hold tr:last-child td{border-bottom:0}
+table.hold .l{text-align:left;padding-left:0}
+table.hold .nm{font-weight:600;color:#101814}
+.kv{width:100%;border-collapse:collapse}
+.kv td{padding:4pt 0;border-bottom:.5pt solid #E1E5DF}
+.kv tr:last-child td{border-bottom:0}
+.kv td.v{text-align:right;font-weight:600}
+.list div{padding:3pt 0;border-bottom:.5pt solid #E1E5DF}
+.list div:last-child{border-bottom:0}
+.co{padding:7pt 0 8pt;border-bottom:.5pt solid #E1E5DF;page-break-inside:avoid}
+.co-head{display:table;width:100%;margin-bottom:3pt}
+.co-head .l,.co-head .r{display:table-cell;vertical-align:baseline}
+.co-head .r{text-align:right;white-space:nowrap}
+.co-name{font-weight:700;color:#101814}
+.tag{font-size:7.5pt;font-weight:600;letter-spacing:.4pt;padding:0 3pt;border:.5pt solid #A7B2AB;color:#3A4540;margin-right:3pt}
+.tag.pr{background:#101814;border-color:#101814;color:#fff}
+.tag.warn{border-color:#E9B79E;background:#FDF1EA;color:#B93D0C}
+.hl{margin:2pt 0 0 0}
+.why{margin-top:3pt;color:#3A4540}
+.why b{color:#101814;font-weight:600}
+.quiet{margin-top:6pt;color:#59645E}
+.quiet b{color:#1B2420;font-weight:600}
+table.cal{width:100%;border-collapse:collapse}
+table.cal td{padding:4pt 0;border-bottom:.5pt solid #E1E5DF;vertical-align:top}
+table.cal tr:last-child td{border-bottom:0}
+.newpage{page-break-before:always}
 </style></head><body>
 
-<section class="page">
-  <div class="mast"><b>{{ s.site_title | upper }}</b><span>{{ r.today | longdate | upper }} · GENERATED {{ r.generated_local }}</span></div>
-  <span class="k">{% if r.briefing.ai %}AI summary · verify before acting{% else %}Automatic summary{% endif %}</span>
-  <h1>{{ r.briefing.headline }}</h1>
-  {% for p in r.briefing.paragraphs %}<p>{{ p }}</p>{% endfor %}
-  <h2 class="sec" style="margin-top:12pt">Top 3 today</h2>
-  <ol class="top">{% for t in r.briefing.top3 %}<li><span class="k">{{ t.label }}{% if t.company and t.company != t.label %} · {{ t.company }}{% endif %}</span><br><b>{{ t.title }}</b>{% if t.why %}<br><span style="color:#3A4540">{{ t.why }}</span>{% endif %}</li>{% endfor %}</ol>
-  {% if r.macro %}<h2 class="sec">Macro &amp; policy</h2>
-  {% for it in r.macro %}<div class="item"><span class="src">{{ it.date | shortdate }}</span> <a href="{{ it.url }}">{{ it.title }}</a> <span class="src">{{ it.source }}</span></div>{% endfor %}{% endif %}
-</section>
+<div class="mast"><div class="l"><span class="name">{{ s.site_title | upper }}</span></div>
+  <div class="r"><span class="lbl">{{ r.today | longdate }}</span></div></div>
 
+<span class="lbl">Executive summary{% if r.briefing.ai %} · AI-written, verify before acting{% endif %}</span>
+<h1>{{ r.briefing.headline }}</h1>
+<div class="lead">{% for p in r.briefing.paragraphs %}<p>{{ p }}</p>{% endfor %}</div>
 
-<section class="page">
-  <h2 class="sec">Public markets</h2>
-  <table><thead><tr><th class="l">Company</th><th>Ccy</th><th>Last</th><th>Prev</th><th>Change</th><th>Vol (m)</th><th>10d (m)</th><th>3m (m)</th></tr></thead><tbody>
-  {% for h in r.holdings %}{% set q = h.q %}<tr><td class="l nm">{{ h.name }}</td><td>{{ h.currency }}</td>
-    {% if q %}<td>{{ q.price | price }}</td><td>{{ q.prev | price }}</td><td class="{{ m.dir(q.change_pct) }}">{{ q.change_pct | pct }}</td><td>{{ q.volume | volm }}</td><td>{{ q.avg10 | volm }}</td><td>{{ q.avg3m | volm }}</td>
-    {% else %}<td colspan="6">no data</td>{% endif %}</tr>{% endfor %}
-  </tbody></table>
-  {% if r.benchmarks %}<p class="src" style="margin-top:8pt">{% for bm in r.benchmarks %}{{ bm.name }} {{ bm.q.price | price }}{% if bm.unit == 'yield' %}% ({{ bm.q.change | bps }}){% else %} ({{ bm.q.change_pct | pct }}){% endif %}{% if not loop.last %} · {% endif %}{% endfor %}</p>{% endif %}
-</section>
+{% if r.briefing.top3 %}
+<h2>Top 3 today</h2>
+<table class="top">
+{% for t in r.briefing.top3 %}
+<tr><td class="n">{{ loop.index }}</td>
+  <td><span class="lbl">{{ t.label }}{% if t.company and t.company != t.label %} · {{ t.company }}{% endif %}</span><br>
+    <span class="t">{{ t.title }}</span>{% if t.why %}<br><span class="w">{{ t.why }}</span>{% endif %}</td></tr>
+{% endfor %}
+</table>
+{% endif %}
+
+<h2>At a glance</h2>
+<table class="glance"><tr>
+<td>
+  <table class="hold">
+    <thead><tr><th class="l">Holding</th><th>Last</th><th>Change</th><th>Volume vs 10-day</th></tr></thead>
+    <tbody>
+    {% for h in r.holdings %}{% set q = h.q %}
+    <tr><td class="l nm">{{ h.name }}</td>
+      {% if q %}<td>{{ h.currency }} {{ q.price | price }}</td>
+      <td class="{{ 'up' if q.change_pct and q.change_pct > 0 else ('down' if q.change_pct and q.change_pct < 0 else '') }}">{{ q.change_pct | pct }}</td>
+      <td>{{ q.vs10 | ratio }}</td>
+      {% else %}<td colspan="3" class="src">No price data today</td>{% endif %}</tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</td>
+<td>
+  <table class="kv">
+    <tr><td>Flagged price or volume moves</td><td class="v">{{ r.counts.flags }}</td></tr>
+    <tr><td>Valuation updates</td><td class="v">{{ r.counts.valuations }}</td></tr>
+    <tr><td>Funding signals to verify</td><td class="v">{{ r.counts.signals }}</td></tr>
+    {% for sec in r.sections if sec.id != 'public' %}
+    <tr><td>{{ sec.label }} names with news</td><td class="v">{{ r.counts.with_news[sec.id] }} of {{ sec.names|length }}</td></tr>
+    {% endfor %}
+  </table>
+</td></tr></table>
+
+{% if r.benchmarks %}
+<p class="src" style="margin-top:6pt">{% for bm in r.benchmarks %}{{ bm.name }} {{ bm.q.price | price }}{% if bm.unit == 'yield' %}% ({{ bm.q.change | bps }}){% else %} ({{ bm.q.change_pct | pct }}){% endif %}{% if not loop.last %} · {% endif %}{% endfor %}</p>
+{% endif %}
+
+{% if r.macro %}
+<h2>Macro and policy</h2>
+<div class="list">{% for it in r.macro[:6] %}<div>{{ it.title }} <span class="src">{{ it.source }}, {{ it.date | shortdate }}</span></div>{% endfor %}</div>
+{% endif %}
 
 {% for sec in r.sections if sec.id != 'public' %}
-<section class="page">
-  <h2 class="sec">{{ sec.label }}</h2>
-  {% set quiet = [] %}
-  {% for n in sec.names %}{% set c = r.companies[n] %}
-    {% if c['items'] %}
-    <div class="card"><div class="row"><h3>{{ c.name }}</h3></div>
-      {{ m.vbox(c) }}
-      {% for it in c['items'][:4] %}{{ m.news_item(it) }}{% endfor %}
-      {% if c.why %}<div class="why"><b>Why it matters:</b> {{ c.why }}</div>{% endif %}</div>
-    {% else %}{% set _ = quiet.append(c) %}{% endif %}
-  {% endfor %}
-  {% if quiet %}<p class="quiet"><b>No new items:</b> {% for c in quiet %}{{ c.name }}{% if c.view.valuation and not c.listed %} ({{ c.view.valuation.text }}){% endif %}{% if not loop.last %}, {% endif %}{% endfor %}</p>{% endif %}
-</section>
+<h2{% if loop.first %} class="newpage"{% endif %}>{{ sec.label }}</h2>
+{% set quiet = [] %}
+{% for n in sec.names %}{% set c = r.companies[n] %}
+  {% if c['items'] %}
+  {% set v = c.view %}
+  <div class="co">
+    <div class="co-head">
+      <div class="l"><span class="co-name">{{ c.name }}</span>
+        {% if v.reported or c.signal %} <span class="tag warn">ROUND REPORTED</span>{% elif v.valuation and v.valuation.previous %} <span class="tag warn">VALUATION UPDATED</span>{% endif %}</div>
+      <div class="r">
+        {% if c.listed and c.q %}<span>{{ c.currency }} {{ c.q.price | price }}</span> <span class="{{ 'up' if c.q.change_pct and c.q.change_pct > 0 else 'down' }}">{{ c.q.change_pct | pct }}</span>
+        {% elif v.valuation and v.valuation.text %}<span style="font-weight:600">{{ v.valuation.text }}</span>{% if v.valuation.previous %} <span class="src">was {{ v.valuation.previous }}</span>{% endif %}
+          {% if v.valuation.provenance %}<br><span class="src">{{ v.valuation.provenance }}</span>{% endif %}{% endif %}
+      </div>
+    </div>
+    {% for it in c['items'][:3] %}
+    <p class="hl"><span class="tag{{ ' pr' if it.kind == 'pr' }}">{{ 'PR' if it.kind == 'pr' else 'NEWS' }}</span>{{ it.title }} <span class="src">{{ it.sources[:2] | join(', ') }}, {{ it.date | shortdate }}</span></p>
+    {% endfor %}
+    {% if c.why %}<p class="why"><b>Why it matters:</b> {{ c.why }}</p>{% endif %}
+  </div>
+  {% else %}{% set _ = quiet.append(c) %}{% endif %}
+{% endfor %}
+{% if quiet %}<p class="quiet"><b>No news in the last 72 hours:</b> {% for c in quiet %}{{ c.name }}{% if not loop.last %}, {% endif %}{% endfor %}.</p>{% endif %}
 {% endfor %}
 
-<section class="page">
-  <h2 class="sec">Industry</h2>
-  {% for t in r.industry %}<div class="card"><h3>{{ t.name }}</h3>{% if t.takeaway %}<p style="color:#3A4540">{{ t.takeaway }}</p>{% endif %}
-    {% for it in t['items'] %}{{ m.news_item(it) }}{% endfor %}</div>{% endfor %}
-  <h2 class="sec" style="margin-top:14pt">Calendar · next {{ s.calendar_days }} days</h2>
-  <table><tbody>{% for e in r.calendar %}<tr><td class="l" style="width:70pt">{{ e.day }} {{ e.weekday }}</td><td class="l nm">{{ e.title }}</td><td class="l" style="color:#59645E">{{ e.detail }}</td></tr>{% else %}<tr><td class="l">Nothing scheduled.</td></tr>{% endfor %}</tbody></table>
-</section>
+{% if r.industry %}
+<h2>Industry</h2>
+{% for t in r.industry %}
+<div class="co">
+  <div class="co-head"><div class="l"><span class="co-name">{{ t.name }}</span></div></div>
+  {% if t.takeaway %}<p class="why">{{ t.takeaway }}</p>{% endif %}
+  {% for it in t['items'][:3] %}<p class="hl">{{ it.title }} <span class="src">{{ it.source }}, {{ it.date | shortdate }}</span></p>
+  {% else %}<p class="src">No items in the last 72 hours.</p>{% endfor %}
+</div>
+{% endfor %}
+{% endif %}
+
+<h2>Calendar · next {{ s.calendar_days }} days</h2>
+{% if r.calendar %}
+<table class="cal">
+{% for e in r.calendar %}<tr><td style="width:24mm">{{ e.day }}, {{ e.weekday }}</td><td style="width:62mm;font-weight:600">{{ e.title }}</td><td class="src">{{ e.detail }}</td></tr>{% endfor %}
+</table>
+{% else %}<p class="src">Nothing scheduled.</p>{% endif %}
+
 </body></html>
