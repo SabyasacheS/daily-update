@@ -105,32 +105,67 @@ def validate(extraction, text):
     return e
 
 
-def seed_from_watchlist(state, company):
-    """Bring manual entries and overrides from watchlist.json into the state."""
-    name = company["name"]
-    seed = company.get("valuation")
+SCHEMA = 2
+
+
+SUBJECT_VERBS = (r"(raises?|raised|raising|valued|valuation|closes?|closed|secures?|secured|seeks?|seeking|lands|"
+                 r"lines up|lining up|in talks|hits|reaches|nears|eyes|targets|files|bags|gets|wins)")
+
+
+def is_subject(title, aliases):
+    """True if the headline is about the company's own funding: it starts with the company name, or the name is
+    followed within a few words by a funding verb. Stops 'The TikTok Live Playbook: How Skimpies Scaled to a
+    USD 10m Valuation' being read as TikTok's valuation."""
+    t = re.sub(r"^\s*(exclusive|breaking|report|update|scoop|sources?)\s*[:\-\u2013\u2014|]\s*", "", title, flags=re.I)
+    for a in aliases:
+        if not a:
+            continue
+        if re.match(re.escape(a) + r"(?![A-Za-z0-9])", t, re.I):
+            return True
+        m = re.search(r"(\w+)?\W*" + re.escape(a) + r"(?:'s)?\W+(?:\w+\W+){0,3}?" + SUBJECT_VERBS + r"\b", t, re.I)
+        if m and (m.group(1) or "").lower() not in ("on", "with", "using", "via", "for", "to", "from", "of", "by",
+                                                    "about", "and", "like", "rival", "rivals", "than", "vs", "at", "in"):
+            return True
+    return False
+
+
+def seed_all(state, companies, verified):
+    """Start from verified, sourced valuations (data/valuations.json) or a value pinned on the Watchlist page.
+    Unsourced 'manual' figures are no longer used: without a source the card shows NA."""
+    if state.get("schema", 1) < SCHEMA:
+        for k in ("valuations", "reported", "last_round", "seeds", "val_checked"):
+            state.pop(k, None)
+        state["schema"] = SCHEMA
     vals = state.setdefault("valuations", {})
+    reported = state.setdefault("reported", {})
     seeds = state.setdefault("seeds", {})
-    if not seed:
-        return None
-    key = json.dumps(seed, sort_keys=True)
-    if seeds.get(name) == key and name in vals:
-        return None
-    seeds[name] = key
-    entry = {
-        "amount": seed.get("amount"), "currency": seed.get("currency", "USD"),
-        "text": seed.get("text") or fmt_big(seed.get("amount"), seed.get("currency", "USD"), seed.get("approx")),
-        "status": seed.get("status", "manual"), "date": seed.get("date", ""), "approx": seed.get("approx", False),
-        "source_title": seed.get("source_title", ""), "source_url": seed.get("source_url", ""),
-        "note": seed.get("note", ""), "pinned": bool(seed.get("pinned")),
-    }
-    old = vals.get(name)
-    if old and old.get("status") != "manual" and not entry["pinned"] and entry["status"] == "manual":
-        return None  # an auto-detected value already superseded this manual seed
-    if old:
-        entry["previous"] = {k: old.get(k) for k in ("text", "amount", "date", "status")}
-    vals[name] = entry
-    return entry
+    for c in companies:
+        name = c["name"]
+        pin = c.get("valuation") if (c.get("valuation") or {}).get("pinned") else None
+        src = pin or verified.get(name)
+        if not src:
+            if vals.get(name, {}).get("status") == "pinned":
+                vals.pop(name)  # pin was removed on the Watchlist page
+            continue
+        key = json.dumps(src, sort_keys=True)
+        if seeds.get(name) == key:
+            continue
+        seeds[name] = key
+        cur = vals.get(name)
+        if not pin and cur and cur.get("status") in ("closed", "implied") and cur.get("date", "") > src.get("date", ""):
+            continue  # the daily run already found something newer than the register
+        vals[name] = {
+            "amount": src.get("amount"), "currency": src.get("currency", "USD"),
+            "text": src.get("text") or fmt_big(src.get("amount"), src.get("currency", "USD"), src.get("approx")),
+            "status": "pinned" if pin else src.get("status", "closed"), "date": src.get("date", ""),
+            "approx": bool(src.get("approx")), "note": src.get("note", ""),
+            "source_title": src.get("source_title", ""), "source_url": src.get("source_url", ""),
+        }
+        if src.get("reported") and not pin:
+            r = src["reported"]
+            reported[name] = {"amount": r.get("amount"), "currency": r.get("currency", "USD"), "text": r["text"],
+                              "date": r.get("date", ""), "source_title": r.get("source_title", ""),
+                              "source_url": r.get("source_url", ""), "status": "reported"}
 
 
 def apply(state, name, ext, item, today):
@@ -154,14 +189,12 @@ def apply(state, name, ext, item, today):
                 "raise_text": fmt_big(ext["raise_amount"], ext["currency"]) if ext.get("raise_amount") else "",
                 **src}
     text = fmt_big(v, ext["currency"])
-    if cur and cur.get("pinned"):
+    if cur and cur.get("status") == "pinned":
         return None
     if ext["status"] == "closed":
         same = cur and cur.get("amount") and abs(cur["amount"] - v) <= 0.011 * v
-        newer = not cur or not cur.get("date") or cur.get("status") == "manual" or date >= cur.get("date", "")
+        newer = not cur or not cur.get("date") or date >= cur.get("date", "")
         if same:
-            if cur.get("status") == "manual":
-                cur.update(src, status="closed")  # now backed by a source
             reported.pop(name, None)
         elif newer:
             vals[name] = dict(src, amount=v, currency=ext["currency"], text=text, status="closed",
@@ -193,17 +226,17 @@ def card_view(state, name, today=""):
     r = state.get("reported", {}).get(name)
     rd = state.get("last_round", {}).get(name)
     view = {}
-    if v:
-        if not v.get("amount"):
-            prov = ""
-        elif v.get("status") == "manual":
-            prov = "manual entry" + (" \u00b7 pinned" if v.get("pinned") else " \u00b7 unverified")
-        else:
-            prov = f"auto \u00b7 {v.get('status')} \u00b7 {_long(v.get('date', ''))}"
-        view["valuation"] = {"text": v.get("text") or "", "provenance": prov, "url": v.get("source_url", ""),
+    labels = {"closed": "round closed", "implied": "implied by deal", "reported": "reported, not confirmed",
+              "pinned": "entered by you"}
+    if v and v.get("text"):
+        when = _long(v.get("date", ""))
+        view["valuation"] = {"text": v["text"], "url": v.get("source_url", ""), "note": v.get("note", ""),
+                             "provenance": labels.get(v.get("status"), v.get("status", "")) + (f" \u00b7 {when}" if when else ""),
                              "previous": (v.get("previous") or {}).get("text") if v.get("updated_on") and today and
-                             v["updated_on"] >= (_d.fromisoformat(today) - _td(days=14)).isoformat() else None,
-                             "note": v.get("note", "")}
+                             v["updated_on"] >= (_d.fromisoformat(today) - _td(days=14)).isoformat() else None}
+    else:
+        view["valuation"] = {"text": "NA", "provenance": "no public valuation found", "url": "", "note": "",
+                             "previous": None, "na": True}
     if r:
         view["reported"] = {"text": r["text"], "date": r["date"], "url": r["source_url"]}
     if rd:

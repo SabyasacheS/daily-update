@@ -15,6 +15,7 @@ from zoneinfo import ZoneInfo
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WATCHLIST = os.path.join(ROOT, "watchlist.json")
 EVENTS = os.path.join(ROOT, "data", "events.json")
+VALUATIONS = os.path.join(ROOT, "data", "valuations.json")
 STATE = os.path.join(ROOT, "data", "state.json")
 SEEN = os.path.join(ROOT, "data", "seen.json")
 HISTORY_DIR = os.path.join(ROOT, "data", "history")

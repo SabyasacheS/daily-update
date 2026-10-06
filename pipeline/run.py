@@ -11,7 +11,7 @@ import time
 from datetime import date, timedelta
 
 from . import ai, calendar, history, markets, news, render, valuations
-from .config import (EVENTS, STATE, fmt_pct, fmt_price, fmt_ratio, house_style, load_json, load_watchlist,
+from .config import (EVENTS, STATE, VALUATIONS, fmt_pct, fmt_price, fmt_ratio, house_style, load_json, load_watchlist,
                      local_now, now_utc, save_json)
 
 PRIVATE_SECTIONS = {"portfolio", "megatron"}
@@ -101,8 +101,8 @@ def build(wl, raw, state, today, use_ai=True):
     history.mark_new(every, today)
 
     # --- valuations
-    for c in wl["companies"]:
-        valuations.seed_from_watchlist(state, c)
+    valuations.seed_all(state, wl["companies"], {k: v for k, v in load_json(VALUATIONS, {}).items()
+                                                 if not k.startswith("_")})
     val_changes, signals = [], []
     cand = []
     for c in wl["companies"]:
@@ -116,10 +116,14 @@ def build(wl, raw, state, today, use_ai=True):
     if use_ai and cand:
         ai_ext = ai.extract_funding([{"id": f"{n}|{it['id']}", "company": n,
                                       "text": it["title"] + ". " + it.get("snippet", "")} for n, it, _ in cand], model)
+    aliases = {c["name"]: c["aliases"] for c in wl["companies"]}
     for name, it, recent in sorted(cand, key=lambda x: x[1].get("ts", "")):
         text = it["title"] + ". " + it.get("snippet", "")
-        ext = ai_ext.get(f"{name}|{it['id']}") if use_ai else None
-        ext = valuations.validate(ext or valuations.regex_extract(text), text)
+        if use_ai:
+            ext = ai_ext.get(f"{name}|{it['id']}")  # only items the AI says are about this company's own funding
+        else:
+            ext = valuations.regex_extract(text) if valuations.is_subject(it["title"], aliases[name]) else None
+        ext = valuations.validate(ext, text)
         if not ext:
             continue
         ch = valuations.apply(state, name, ext, it, today)

@@ -52,7 +52,8 @@ def extract_funding(cands, model):
     prompt = (
         "You read news headlines about companies and extract funding facts. For each item return an object "
         "with: id, is_funding (true only if the item reports a funding round, valuation, IPO pricing, debt "
-        "financing or a stake sale for the named company), valuation (the company's valuation as a plain number "
+        "financing or a stake sale), about_company (true only if that funding or valuation belongs to the named "
+        "company itself, not to a customer, partner, brand or other business that merely uses or mentions it), valuation (the company's valuation as a plain number "
         "in units, e.g. 190000000000, or null if the text does not state one), raise_amount (amount raised as a "
         "plain number, or null), currency (ISO code, default USD), status ('closed' if completed or announced as "
         "done, 'reported' if in talks, planned, sought or attributed to sources). Never infer numbers that are "
@@ -62,7 +63,7 @@ def extract_funding(cands, model):
     res = _call(prompt, model) or {}
     out = {}
     for x in res.get("items", []):
-        if x.get("is_funding") and x.get("id"):
+        if x.get("is_funding") and x.get("about_company") and x.get("id"):
             out[x["id"]] = {"valuation": _num(x.get("valuation")), "raise_amount": _num(x.get("raise_amount")),
                             "currency": (x.get("currency") or "USD").upper()[:3], "status": x.get("status")}
     return out
