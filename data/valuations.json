@@ -1,0 +1,105 @@
+{
+  "_about": "Verified starting valuations, each from a public source. The daily run updates these automatically when a newer closed round with a stated valuation appears in the news. Companies not listed here show NA until a source is found.",
+  "_checked": "2026-10-06",
+  "OpenAI": {
+    "text": "USD 852bn",
+    "amount": 852000000000,
+    "currency": "USD",
+    "status": "closed",
+    "date": "2026-03-31",
+    "note": "Post-money, USD 122bn round. A round at c. USD 1.4tn was reported in talks in late September 2026.",
+    "source_title": "CNBC: OpenAI closes funding round at an USD 852bn valuation",
+    "source_url": "https://www.cnbc.com/2026/03/31/openai-funding-round-ipo.html",
+    "reported": {
+      "text": "c. USD 1.4tn",
+      "amount": 1400000000000,
+      "currency": "USD",
+      "date": "2026-09-30",
+      "source_title": "CoinDesk (citing Bloomberg): OpenAI seeks USD 30bn at c. USD 1.4tn valuation",
+      "source_url": "https://www.coindesk.com/markets/2026/09/30/openai-targets-usd1-4-trillion-valuation-and-unveils-dots-ai-agent"
+    }
+  },
+  "Anthropic": {
+    "text": "USD 965bn",
+    "amount": 965000000000,
+    "currency": "USD",
+    "status": "closed",
+    "date": "2026-05-28",
+    "note": "Post-money, USD 65bn Series H.",
+    "source_title": "TechCrunch: Anthropic raises USD 65bn, nears USD 1tn valuation ahead of IPO",
+    "source_url": "https://techcrunch.com/2026/05/28/anthropic-raises-65-billion-nears-1t-valuation-ahead-of-ipo/"
+  },
+  "Databricks": {
+    "text": "USD 190bn",
+    "amount": 190000000000,
+    "currency": "USD",
+    "status": "closed",
+    "date": "2026-08-13",
+    "note": "USD 5bn strategic round.",
+    "source_title": "MGX: Databricks USD 5bn strategic funding at a USD 190bn valuation",
+    "source_url": "https://www.mgx.ae/news-insights"
+  },
+  "SSI": {
+    "text": "USD 32bn",
+    "amount": 32000000000,
+    "currency": "USD",
+    "status": "closed",
+    "date": "2025-04-12",
+    "note": "c. USD 2bn round led by Greenoaks. Nvidia's July 2026 investment was made on undisclosed terms.",
+    "source_title": "Safe Superintelligence funding history",
+    "source_url": "https://komo.ai/directory/safe-superintelligence-funding"
+  },
+  "Figure AI": {
+    "text": "USD 39bn",
+    "amount": 39000000000,
+    "currency": "USD",
+    "status": "closed",
+    "date": "2025-09-16",
+    "note": "Post-money, Series C led by Parkway Venture Capital.",
+    "source_title": "Reuters via Yahoo Finance: Figure valued at USD 39bn in latest funding round",
+    "source_url": "https://finance.yahoo.com/news/figure-valued-39-billion-latest-131115237.html"
+  },
+  "Aligned Data Centers": {
+    "text": "c. USD 40bn",
+    "amount": 40000000000,
+    "currency": "USD",
+    "status": "closed",
+    "date": "2026-07-21",
+    "approx": true,
+    "note": "Enterprise value in the acquisition by AIP, MGX and GIP, plus USD 5bn committed growth capital.",
+    "source_title": "DCD: MGX, AIP and BlackRock's GIP complete USD 40bn acquisition of Aligned Data Centers",
+    "source_url": "https://www.datacenterdynamics.com/en/news/mgx-aip-and-blackrocks-gip-complete-40bn-acquisition-of-aligned-data-centers/"
+  },
+  "Altera": {
+    "text": "USD 8.75bn",
+    "amount": 8750000000,
+    "currency": "USD",
+    "status": "closed",
+    "date": "2025-09-15",
+    "note": "Silver Lake bought 51% from Intel; Intel keeps 49%.",
+    "source_title": "Silver Lake acquires 51% of Altera from Intel",
+    "source_url": "https://www.privsource.com/acquisitions/deal/silver-lake-acquires-51-of-altera-from-intel-jDSlR8"
+  },
+  "TikTok US": {
+    "text": "c. USD 14bn",
+    "amount": 14000000000,
+    "currency": "USD",
+    "status": "reported",
+    "date": "2026-01-22",
+    "approx": true,
+    "note": "Joint venture deal closed 22 Jan 2026; the final valuation was not officially disclosed.",
+    "source_title": "Axios: TikTok divestiture deal closes",
+    "source_url": "https://axios.com/2026/01/23/tiktok-deal-trump-app-ban"
+  },
+  "Khazna": {
+    "text": "c. USD 5.5bn",
+    "amount": 5500000000,
+    "currency": "USD",
+    "status": "implied",
+    "date": "2025-02-26",
+    "approx": true,
+    "note": "Implied by e&'s sale of its 40% stake for USD 2.2bn.",
+    "source_title": "DCD: e& to sell its stake in Khazna Data Centers for USD 2.2bn",
+    "source_url": "https://www.datacenterdynamics.com/en/news/uae-telco-e-to-sell-its-stake-in-khazna-data-centers-for-22-billion"
+  }
+}
