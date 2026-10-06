@@ -10,8 +10,8 @@
       "change_pct": -9.1666668218871
     },
     "CVC Capital Partners": {
-      "price": 12.3100004196167,
-      "change_pct": 1.3168790626330926
+      "price": 12.329999923706055,
+      "change_pct": 1.4814840397299947
     }
   },
   "valuations": {
@@ -24,12 +24,12 @@
   },
   "items": {
     "SpaceX": [
-      "4eb818e39109",
+      "f25adf0dff7c",
       "98ac0851cdb0",
-      "bd3dd3d6ecf6",
-      "c07140e0b9bd",
-      "db60d8bd6955",
-      "f9a3d5641cea"
+      "441ff68dc0c5",
+      "1843be6bcdf3",
+      "4eb818e39109",
+      "4019f451b6cf"
     ],
     "Beema": [],
     "Blaize": [
@@ -41,12 +41,12 @@
       "4e04ab805b58"
     ],
     "CVC Capital Partners": [
+      "754d02e245d7",
       "ee42edfdb11b",
       "cce5c49d24c6",
       "78bb7bf2c4be",
       "b9e6e770cd4f",
-      "8b1aad7ea0e7",
-      "2355366b1e15"
+      "8b1aad7ea0e7"
     ],
     "Arini Capital Management": [
       "c966c535bab8",
@@ -69,17 +69,17 @@
       "a48e7ad3243d",
       "bbeedb75cf6c",
       "f8fdf2ba4fcd",
-      "d2376e6a8e51",
-      "5a4faf1ea393",
-      "05e57cbf2d1e"
+      "7dcad059155a",
+      "4aa2f7183186",
+      "d2376e6a8e51"
     ],
     "Anthropic": [
+      "e535b01c9e99",
+      "5904ccbe6254",
       "bc676062bc4a",
-      "e01794d24582",
-      "28fbf9753fd8",
+      "30717f220b76",
       "1517939f6cbd",
-      "21c2d6429782",
-      "e518f57e1b3c"
+      "cee0dfb9fd35"
     ],
     "Binance": [
       "056316b358c5",
@@ -101,12 +101,12 @@
     "Isomorphic Labs": [],
     "Khazna": [],
     "OpenAI": [
+      "7a862d60852f",
+      "990f9558f03e",
       "57ce167518dd",
       "35b56bf9d274",
       "efeb46a1e684",
-      "9ae20accacb7",
-      "a44980de32c3",
-      "8521102fcb3e"
+      "9ae20accacb7"
     ],
     "SSI": [],
     "TikTok US": [
@@ -115,7 +115,7 @@
       "69cf43bc69eb",
       "0393569600d4",
       "9b043dfa01be",
-      "90c0a6193700"
+      "fb39404e9165"
     ],
     "Vantage Data Centers NA": [
       "215b88413b43"
@@ -125,8 +125,8 @@
       "010fb4b878f1",
       "ff1c4cbfb156",
       "4b5ff95414d7",
-      "3ed17e53b458",
-      "fe3fae5896f7"
+      "fe3fae5896f7",
+      "a6a8964387d8"
     ],
     "Golden Gate Ventures": [],
     "Goldman Sachs": [
@@ -182,12 +182,12 @@
     ],
     "Monroe Capital": [],
     "Morgan Stanley": [
+      "fdfafb15e571",
       "48a18b2bd678",
       "b1c0fbe5f5d2",
       "e4f03a07ae34",
       "abfba08062f7",
-      "ce502c8a463d",
-      "6905d1d2d880"
+      "ce502c8a463d"
     ],
     "Ardian": [
       "19bd805a8fd2",
@@ -198,12 +198,12 @@
       "288ccf4eb788"
     ],
     "Hamilton Lane": [
-      "7d8af9739f26",
       "66e285400853",
       "ffc65836afd5",
       "c2a71827f88b",
       "669a4c49cbaa",
-      "111a7a5a4af7"
+      "111a7a5a4af7",
+      "70d9df84e3cb"
     ],
     "RedBird": [
       "3fff98ec8dcd",

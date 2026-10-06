@@ -1,7 +1,7 @@
 {
   "settings": {
     "site_title": "Daily Update",
-    "site_url": "https://sabyasaches.github.io/Project-Megatron---Daily-Update/",
+    "site_url": "https://sabyasaches.github.io/daily-update/",
     "apps_script_url": "https://script.google.com/macros/s/AKfycbwyUqLabOZIVJ_RAVpbIjr_7myWoGiMOAa0ymdAc31qH8mEDZ4DIuCU50G1I-IPS-0u/exec",
     "timezone": "Asia/Qatar",
     "send_days": ["Sun", "Mon", "Tue", "Wed", "Thu"],
