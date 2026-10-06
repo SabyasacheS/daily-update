@@ -16,7 +16,8 @@
       "currency": "USD",
       "date": "2026-09-30",
       "source_title": "CoinDesk (citing Bloomberg): OpenAI seeks USD 30bn at c. USD 1.4tn valuation",
-      "source_url": "https://www.coindesk.com/markets/2026/09/30/openai-targets-usd1-4-trillion-valuation-and-unveils-dots-ai-agent"
+      "source_url": "https://www.coindesk.com/markets/2026/09/30/openai-targets-usd1-4-trillion-valuation-and-unveils-dots-ai-agent",
+      "kind": "round"
     }
   },
   "Anthropic": {
@@ -25,9 +26,18 @@
     "currency": "USD",
     "status": "closed",
     "date": "2026-05-28",
-    "note": "Post-money, USD 65bn Series H.",
+    "note": "Post-money, USD 65bn Series H. Investors expect an IPO at c. USD 2tn or more; Anthropic has not set an IPO valuation.",
     "source_title": "TechCrunch: Anthropic raises USD 65bn, nears USD 1tn valuation ahead of IPO",
-    "source_url": "https://techcrunch.com/2026/05/28/anthropic-raises-65-billion-nears-1t-valuation-ahead-of-ipo/"
+    "source_url": "https://techcrunch.com/2026/05/28/anthropic-raises-65-billion-nears-1t-valuation-ahead-of-ipo/",
+    "reported": {
+      "kind": "ipo",
+      "text": "c. USD 2tn",
+      "amount": 2000000000000,
+      "currency": "USD",
+      "date": "2026-08-13",
+      "source_title": "PYMNTS (citing the Financial Times): Anthropic could seek USD 2tn valuation in record IPO",
+      "source_url": "https://www.pymnts.com/news/artificial-intelligence/2026/anthropic-could-seek-2-trillion-valuation-in-record-ipo/"
+    }
   },
   "Databricks": {
     "text": "USD 190bn",
