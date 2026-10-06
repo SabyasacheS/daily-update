@@ -5,13 +5,17 @@
       "price": 171.08999633789062,
       "change_pct": 7.630843678723406
     },
+    "Beema": {
+      "price": 4.420000076293945,
+      "change_pct": -0.6741513316187198
+    },
     "Blaize": {
       "price": 0.4359999895095825,
       "change_pct": -9.1666668218871
     },
     "CVC Capital Partners": {
-      "price": 12.220000267028809,
-      "change_pct": 0.5761370427680952
+      "price": 12.270000457763672,
+      "change_pct": 0.9876612592677131
     }
   },
   "valuations": {
@@ -59,21 +63,21 @@
   },
   "items": {
     "SpaceX": [
-      "3d506de3b924",
-      "64598231877e",
-      "1f7b35119801",
-      "493564b1bcd2",
-      "410c511fd7d7",
-      "81a8192b0ecc"
+      "6803f0c06186",
+      "96b964fa6771",
+      "7f0739794ddd",
+      "5ffad3e8384a",
+      "2a9972d45647",
+      "6cc51a00b540"
     ],
     "Beema": [],
     "Blaize": [
-      "b05ff29c763b",
+      "603eb2ab3bb3",
       "0b3a3645cfa9",
       "bff4b12e8a81",
       "a41f5eb5fe57",
       "625962e73b24",
-      "07203832e239"
+      "6678b5e06382"
     ],
     "CVC Capital Partners": [
       "c3780f73de1f",
@@ -84,7 +88,7 @@
       "cce5c49d24c6"
     ],
     "Arini Capital Management": [
-      "c966c535bab8",
+      "54d5770f35f9",
       "d44df1e0015f"
     ],
     "Deutsche ReGas": [],
@@ -109,50 +113,50 @@
       "5a4faf1ea393"
     ],
     "Anthropic": [
+      "30717f220b76",
+      "5ffad3e8384a",
       "21c2d6429782",
+      "ba0f9801b893",
       "5a30cb55ce3e",
-      "cee0dfb9fd35",
-      "110883a8e51f",
-      "bc676062bc4a",
-      "2b3dcf8311e0"
+      "cee0dfb9fd35"
     ],
     "Binance": [
+      "b59b6f151d7e",
+      "9c49cfbc52da",
+      "d915015c37ce",
+      "428af7a75a63",
       "952e9236f989",
-      "31c41ded598a",
-      "8bf65c81485e",
-      "8be3ea6a0b8f",
-      "8edd91f0facb",
-      "fce73539b478"
+      "31c41ded598a"
     ],
     "Campus AI": [],
     "Databricks": [
+      "d827b872cc54",
       "a78ecff63368",
       "5882841fea68",
       "c6d85a304309",
       "2d2c917e9a74",
-      "ec7064d63d5b",
-      "20647aba0edb"
+      "ec7064d63d5b"
     ],
     "Isomorphic Labs": [],
     "Khazna": [],
     "OpenAI": [
+      "176c19c3faf5",
+      "d94a09c75c75",
+      "9ae20accacb7",
+      "05d35978f05b",
       "b2a0e64cd92c",
-      "556dcc00da3c",
-      "40c6371df143",
-      "5a30cb55ce3e",
-      "55a2136d870f",
-      "452eb578b4a5"
+      "556dcc00da3c"
     ],
     "SSI": [
       "6a6434f35c77"
     ],
     "TikTok US": [
+      "6c277cd9f3f0",
+      "c8038ec83232",
+      "5f6337e1d4f8",
       "336b2bff6f8f",
       "8a33143cc737",
-      "18fb32e5bef7",
-      "aa78f44e2bcf",
-      "69cf43bc69eb",
-      "c8a3afd22392"
+      "18fb32e5bef7"
     ],
     "Vantage Data Centers NA": [
       "215b88413b43"
@@ -161,18 +165,18 @@
       "7c65b2e37f47",
       "7e81696032e5",
       "1b5b6fcf873e",
-      "010fb4b878f1",
+      "14ebf27fa1e3",
       "ff1c4cbfb156",
       "4b5ff95414d7"
     ],
     "Golden Gate Ventures": [],
     "Goldman Sachs": [
+      "99e425f84e3a",
+      "022b09d6a096",
+      "92f55b67d539",
       "0562d72028c4",
       "c3159e1606e9",
-      "b63a45493307",
-      "e51dce7810c5",
-      "416bf10958f2",
-      "6206c1f42c33"
+      "b63a45493307"
     ],
     "Blue Owl": [
       "1a463611595c",
@@ -204,11 +208,11 @@
     ],
     "BlackRock": [
       "b1b7bba307c5",
+      "10f04a5f7bc1",
       "6954e54b3463",
       "eea0af6c3ca5",
       "131374e42a6b",
-      "e243cec69f85",
-      "e54bf2514067"
+      "e243cec69f85"
     ],
     "Ares": [
       "a90615a8dc39",
@@ -225,7 +229,7 @@
       "c8c28e97307e",
       "677a2a6f27d6",
       "fdfafb15e571",
-      "abfba08062f7"
+      "e4f03a07ae34"
     ],
     "Ardian": [
       "19bd805a8fd2",
@@ -244,12 +248,12 @@
       "ffc65836afd5"
     ],
     "RedBird": [
+      "98dc263ee076",
       "3fff98ec8dcd",
       "4cb83e96747b",
       "cd207a2f9b4e",
       "81d358d7c37f",
-      "1dcbe4605bb8",
-      "cad1d95563ad"
+      "1dcbe4605bb8"
     ],
     "Qatar Insurance Company": [],
     "Commercial Bank of Qatar": []

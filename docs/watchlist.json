@@ -4,78 +4,672 @@
     "site_url": "https://sabyasaches.github.io/daily-update/",
     "apps_script_url": "https://script.google.com/macros/s/AKfycbwyUqLabOZIVJ_RAVpbIjr_7myWoGiMOAa0ymdAc31qH8mEDZ4DIuCU50G1I-IPS-0u/exec",
     "timezone": "Asia/Qatar",
-    "send_days": ["Sun", "Mon", "Tue", "Wed", "Thu"],
+    "send_days": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu"
+    ],
     "news_window_hours": 72,
     "calendar_days": 21,
     "attach_pdf": true,
     "gemini_model": "gemini-2.5-flash",
-    "thresholds": { "price_move_pct": 3, "volume_vs_10d": 1.5, "volume_vs_3m": 1.2 },
+    "thresholds": {
+      "price_move_pct": 3,
+      "volume_vs_10d": 1.5,
+      "volume_vs_3m": 1.2
+    },
     "benchmarks": [
-      { "name": "S&P 500", "symbol": "^GSPC", "unit": "pts" },
-      { "name": "Nasdaq", "symbol": "^IXIC", "unit": "pts" },
-      { "name": "Euro Stoxx 50", "symbol": "^STOXX50E", "unit": "pts" },
-      { "name": "US 10Y yield", "symbol": "^TNX", "unit": "yield" },
-      { "name": "Brent", "symbol": "BZ=F", "unit": "USD" },
-      { "name": "Gold", "symbol": "GC=F", "unit": "USD" },
-      { "name": "Bitcoin", "symbol": "BTC-USD", "unit": "USD" }
+      {
+        "name": "S&P 500",
+        "symbol": "^GSPC",
+        "unit": "pts"
+      },
+      {
+        "name": "Nasdaq",
+        "symbol": "^IXIC",
+        "unit": "pts"
+      },
+      {
+        "name": "Euro Stoxx 50",
+        "symbol": "^STOXX50E",
+        "unit": "pts"
+      },
+      {
+        "name": "US 10Y yield",
+        "symbol": "^TNX",
+        "unit": "yield"
+      },
+      {
+        "name": "Brent",
+        "symbol": "BZ=F",
+        "unit": "USD"
+      },
+      {
+        "name": "Gold",
+        "symbol": "GC=F",
+        "unit": "USD"
+      },
+      {
+        "name": "Bitcoin",
+        "symbol": "BTC-USD",
+        "unit": "USD"
+      }
     ]
   },
   "sections": [
-    { "id": "public", "label": "Public Markets" },
-    { "id": "portfolio", "label": "Portfolio" },
-    { "id": "megatron", "label": "Megatron" },
-    { "id": "sponsors", "label": "Sponsors" }
+    {
+      "id": "public",
+      "label": "Public Markets"
+    },
+    {
+      "id": "portfolio",
+      "label": "Portfolio"
+    },
+    {
+      "id": "megatron",
+      "label": "Megatron"
+    },
+    {
+      "id": "sponsors",
+      "label": "Sponsors"
+    }
   ],
   "companies": [
-    { "name": "SpaceX", "sections": ["public", "megatron"], "ticker": "SPCX", "exchange": "Nasdaq", "currency": "USD", "domain": "spacex.com", "aliases": ["SpaceX"] },
-    { "name": "Beema", "sections": ["public", "portfolio"], "ticker": "BEEMA.QA", "exchange": "QSE", "currency": "QAR", "domain": "", "aliases": ["Beema", "Damaan Islamic Insurance"] },
-    { "name": "Blaize", "sections": ["public", "portfolio"], "ticker": "BZAI", "exchange": "Nasdaq", "currency": "USD", "domain": "blaize.com", "aliases": ["Blaize"] },
-    { "name": "CVC Capital Partners", "sections": ["public", "portfolio", "sponsors"], "ticker": "CVC.AS", "exchange": "Euronext Amsterdam", "currency": "EUR", "domain": "cvc.com", "aliases": ["CVC Capital", "CVC"] },
-
-    { "name": "Arini Capital Management", "sections": ["portfolio", "sponsors"], "domain": "", "aliases": ["Arini"] },
-    { "name": "Deutsche ReGas", "sections": ["portfolio"], "domain": "", "aliases": ["Deutsche ReGas"] },
-    { "name": "Figure AI", "sections": ["portfolio"], "domain": "figure.ai", "aliases": ["Figure AI", "Figure 03", "Figure robot"] },
-    { "name": "Firefly", "sections": ["portfolio"], "domain": "fireflyon.com", "aliases": ["Firefly"], "must": ["taxi", "rideshare", "digital top", "out-of-home", "OOH", "car top", "advertising"] },
-
-    { "name": "AIP", "sections": ["megatron"], "domain": "", "aliases": ["AI Infrastructure Partnership", "AIP"], "must": ["AI Infrastructure", "BlackRock", "GIP", "MGX", "Microsoft", "data center"] },
-    { "name": "Aligned Data Centers", "sections": ["megatron"], "domain": "aligneddc.com", "aliases": ["Aligned Data Center", "Aligned"], "must": ["data center", "Aligned Data"] },
-    { "name": "Altera", "sections": ["megatron"], "domain": "altera.com", "aliases": ["Altera"], "valuation": { "text": "USD 8.75bn", "amount": 8750000000, "currency": "USD", "status": "manual", "note": "Silver Lake 51% / Intel 49% deal, 2025" } },
-    { "name": "Anthropic", "sections": ["megatron"], "domain": "anthropic.com", "aliases": ["Anthropic", "Claude AI"], "valuation": { "text": "c. USD 900bn target", "amount": 900000000000, "currency": "USD", "status": "manual", "approx": true } },
-    { "name": "Binance", "sections": ["megatron"], "domain": "binance.com", "aliases": ["Binance"], "valuation": { "text": "No public equity", "status": "manual" } },
-    { "name": "Campus AI", "sections": ["megatron"], "domain": "", "aliases": ["Campus AI"], "must": ["Mistral", "Bpifrance", "Fouju", "MGX", "NVIDIA", "France", "French", "data center", "AI factor"] },
-    { "name": "Databricks", "sections": ["megatron"], "domain": "databricks.com", "aliases": ["Databricks"], "valuation": { "text": "USD 190bn", "amount": 190000000000, "currency": "USD", "status": "closed", "date": "2026-08-13", "source_title": "MGX, Coatue, Blackstone, T. Rowe Price and Sixth Street Growth close Databricks USD 5bn strategic funding", "source_url": "https://www.mgx.ae/news-insights" } },
-    { "name": "Isomorphic Labs", "sections": ["megatron"], "domain": "isomorphiclabs.com", "aliases": ["Isomorphic Labs", "Isomorphic"] },
-    { "name": "Khazna", "sections": ["megatron"], "domain": "khaznadatacenters.com", "aliases": ["Khazna"] },
-    { "name": "OpenAI", "sections": ["megatron"], "domain": "openai.com", "aliases": ["OpenAI", "ChatGPT"], "valuation": { "text": "c. USD 852bn", "amount": 852000000000, "currency": "USD", "status": "manual", "approx": true } },
-    { "name": "SSI", "sections": ["megatron"], "domain": "ssi.inc", "aliases": ["Safe Superintelligence", "Sutskever", "SSI"], "must": ["Safe Superintelligence", "Sutskever", "AI"] },
-    { "name": "TikTok US", "sections": ["megatron"], "domain": "newsroom.tiktok.com", "aliases": ["TikTok", "ByteDance"] },
-    { "name": "Vantage Data Centers NA", "sections": ["megatron"], "domain": "vantage-dc.com", "aliases": ["Vantage Data Center", "Vantage data center"] },
-
-    { "name": "Blackstone", "sections": ["sponsors"], "ticker": "BX", "currency": "USD", "domain": "blackstone.com", "aliases": ["Blackstone"], "busy": true },
-    { "name": "Golden Gate Ventures", "sections": ["sponsors"], "domain": "goldengate.vc", "aliases": ["Golden Gate Ventures"] },
-    { "name": "Goldman Sachs", "sections": ["sponsors"], "ticker": "GS", "currency": "USD", "domain": "goldmansachs.com", "aliases": ["Goldman Sachs", "Goldman"], "busy": true },
-    { "name": "Blue Owl", "sections": ["sponsors"], "ticker": "OWL", "currency": "USD", "domain": "blueowl.com", "aliases": ["Blue Owl"], "busy": true },
-    { "name": "HGGC", "sections": ["sponsors"], "domain": "hggc.com", "aliases": ["HGGC"] },
-    { "name": "Lexington Partners", "sections": ["sponsors"], "domain": "lexingtonpartners.com", "aliases": ["Lexington Partners"] },
-    { "name": "Vista Equity Partners", "sections": ["sponsors"], "domain": "vistaequitypartners.com", "aliases": ["Vista Equity"] },
-    { "name": "Coller Capital", "sections": ["sponsors"], "domain": "collercapital.com", "aliases": ["Coller Capital", "Coller"] },
-    { "name": "Citadel", "sections": ["sponsors"], "domain": "citadel.com", "aliases": ["Citadel"], "must": ["hedge fund", "Griffin", "Citadel LLC", "fund"], "busy": true },
-    { "name": "Golub Capital", "sections": ["sponsors"], "domain": "golubcapital.com", "aliases": ["Golub Capital", "Golub"] },
-    { "name": "Neuberger Berman", "sections": ["sponsors"], "domain": "nb.com", "aliases": ["Neuberger Berman", "Neuberger"] },
-    { "name": "BlackRock", "sections": ["sponsors"], "ticker": "BLK", "currency": "USD", "domain": "blackrock.com", "aliases": ["BlackRock"], "busy": true },
-    { "name": "Ares", "sections": ["sponsors"], "ticker": "ARES", "currency": "USD", "domain": "aresmgmt.com", "aliases": ["Ares Management", "Ares Capital"] },
-    { "name": "Monroe Capital", "sections": ["sponsors"], "domain": "monroecap.com", "aliases": ["Monroe Capital"] },
-    { "name": "Morgan Stanley", "sections": ["sponsors"], "ticker": "MS", "currency": "USD", "domain": "morganstanley.com", "aliases": ["Morgan Stanley"], "busy": true },
-    { "name": "Ardian", "sections": ["sponsors"], "domain": "ardian.com", "aliases": ["Ardian"] },
-    { "name": "Hamilton Lane", "sections": ["sponsors"], "ticker": "HLNE", "currency": "USD", "domain": "hamiltonlane.com", "aliases": ["Hamilton Lane"] },
-    { "name": "RedBird", "sections": ["sponsors"], "domain": "redbirdcap.com", "aliases": ["RedBird Capital", "RedBird"] },
-    { "name": "Qatar Insurance Company", "sections": ["sponsors"], "ticker": "QATI.QA", "currency": "QAR", "domain": "", "aliases": ["Qatar Insurance"] },
-    { "name": "Commercial Bank of Qatar", "sections": ["sponsors"], "ticker": "CBQK.QA", "currency": "QAR", "domain": "cbq.qa", "aliases": ["Commercial Bank of Qatar", "Commercial Bank Qatar", "CBQ"] }
+    {
+      "name": "SpaceX",
+      "sections": [
+        "public",
+        "megatron"
+      ],
+      "ticker": "SPCX",
+      "exchange": "Nasdaq",
+      "currency": "USD",
+      "domain": "spacex.com",
+      "aliases": [
+        "SpaceX"
+      ]
+    },
+    {
+      "name": "Beema",
+      "sections": [
+        "public",
+        "portfolio"
+      ],
+      "ticker": "BEMA.QA",
+      "exchange": "QSE",
+      "currency": "QAR",
+      "domain": "",
+      "aliases": [
+        "Beema",
+        "Damaan Islamic Insurance"
+      ],
+      "must": []
+    },
+    {
+      "name": "Blaize",
+      "sections": [
+        "public",
+        "portfolio"
+      ],
+      "ticker": "BZAI",
+      "exchange": "Nasdaq",
+      "currency": "USD",
+      "domain": "blaize.com",
+      "aliases": [
+        "Blaize"
+      ]
+    },
+    {
+      "name": "CVC Capital Partners",
+      "sections": [
+        "public",
+        "portfolio",
+        "sponsors"
+      ],
+      "ticker": "CVC.AS",
+      "exchange": "Euronext Amsterdam",
+      "currency": "EUR",
+      "domain": "cvc.com",
+      "aliases": [
+        "CVC Capital",
+        "CVC"
+      ]
+    },
+    {
+      "name": "Arini Capital Management",
+      "sections": [
+        "portfolio",
+        "sponsors"
+      ],
+      "domain": "",
+      "aliases": [
+        "Arini"
+      ]
+    },
+    {
+      "name": "Deutsche ReGas",
+      "sections": [
+        "portfolio"
+      ],
+      "domain": "",
+      "aliases": [
+        "Deutsche ReGas"
+      ]
+    },
+    {
+      "name": "Figure AI",
+      "sections": [
+        "portfolio"
+      ],
+      "domain": "figure.ai",
+      "aliases": [
+        "Figure AI",
+        "Figure 03",
+        "Figure robot"
+      ]
+    },
+    {
+      "name": "Firefly",
+      "sections": [
+        "portfolio"
+      ],
+      "domain": "fireflyon.com",
+      "aliases": [
+        "Firefly"
+      ],
+      "must": [
+        "taxi",
+        "rideshare",
+        "digital top",
+        "out-of-home",
+        "OOH",
+        "car top",
+        "advertising"
+      ]
+    },
+    {
+      "name": "AIP",
+      "sections": [
+        "megatron"
+      ],
+      "domain": "",
+      "aliases": [
+        "AI Infrastructure Partnership",
+        "AIP"
+      ],
+      "must": [
+        "AI Infrastructure",
+        "BlackRock",
+        "GIP",
+        "MGX",
+        "Microsoft",
+        "data center"
+      ]
+    },
+    {
+      "name": "Aligned Data Centers",
+      "sections": [
+        "megatron"
+      ],
+      "domain": "aligneddc.com",
+      "aliases": [
+        "Aligned Data Center",
+        "Aligned"
+      ],
+      "must": [
+        "data center",
+        "Aligned Data"
+      ]
+    },
+    {
+      "name": "Altera",
+      "sections": [
+        "megatron"
+      ],
+      "domain": "altera.com",
+      "aliases": [
+        "Altera"
+      ],
+      "valuation": {
+        "text": "USD 8.75bn",
+        "amount": 8750000000,
+        "currency": "USD",
+        "status": "manual",
+        "note": "Silver Lake 51% / Intel 49% deal, 2025"
+      }
+    },
+    {
+      "name": "Anthropic",
+      "sections": [
+        "megatron"
+      ],
+      "domain": "anthropic.com",
+      "aliases": [
+        "Anthropic",
+        "Claude AI"
+      ],
+      "valuation": {
+        "text": "c. USD 900bn target",
+        "amount": 900000000000,
+        "currency": "USD",
+        "status": "manual",
+        "approx": true
+      }
+    },
+    {
+      "name": "Binance",
+      "sections": [
+        "megatron"
+      ],
+      "domain": "binance.com",
+      "aliases": [
+        "Binance"
+      ],
+      "valuation": {
+        "text": "No public equity",
+        "status": "manual"
+      }
+    },
+    {
+      "name": "Campus AI",
+      "sections": [
+        "megatron"
+      ],
+      "domain": "",
+      "aliases": [
+        "Campus AI"
+      ],
+      "must": [
+        "Mistral",
+        "Bpifrance",
+        "Fouju",
+        "MGX",
+        "NVIDIA",
+        "France",
+        "French",
+        "data center",
+        "AI factor"
+      ]
+    },
+    {
+      "name": "Databricks",
+      "sections": [
+        "megatron"
+      ],
+      "domain": "databricks.com",
+      "aliases": [
+        "Databricks"
+      ],
+      "valuation": {
+        "text": "USD 190bn",
+        "amount": 190000000000,
+        "currency": "USD",
+        "status": "closed",
+        "date": "2026-08-13",
+        "source_title": "MGX, Coatue, Blackstone, T. Rowe Price and Sixth Street Growth close Databricks USD 5bn strategic funding",
+        "source_url": "https://www.mgx.ae/news-insights"
+      }
+    },
+    {
+      "name": "Isomorphic Labs",
+      "sections": [
+        "megatron"
+      ],
+      "domain": "isomorphiclabs.com",
+      "aliases": [
+        "Isomorphic Labs",
+        "Isomorphic"
+      ]
+    },
+    {
+      "name": "Khazna",
+      "sections": [
+        "megatron"
+      ],
+      "domain": "khaznadatacenters.com",
+      "aliases": [
+        "Khazna"
+      ]
+    },
+    {
+      "name": "OpenAI",
+      "sections": [
+        "megatron"
+      ],
+      "domain": "openai.com",
+      "aliases": [
+        "OpenAI",
+        "ChatGPT"
+      ],
+      "valuation": {
+        "text": "c. USD 852bn",
+        "amount": 852000000000,
+        "currency": "USD",
+        "status": "manual",
+        "approx": true
+      }
+    },
+    {
+      "name": "SSI",
+      "sections": [
+        "megatron"
+      ],
+      "domain": "ssi.inc",
+      "aliases": [
+        "Safe Superintelligence",
+        "Sutskever",
+        "SSI"
+      ],
+      "must": [
+        "Safe Superintelligence",
+        "Sutskever",
+        "AI"
+      ]
+    },
+    {
+      "name": "TikTok US",
+      "sections": [
+        "megatron"
+      ],
+      "domain": "newsroom.tiktok.com",
+      "aliases": [
+        "TikTok",
+        "ByteDance"
+      ]
+    },
+    {
+      "name": "Vantage Data Centers NA",
+      "sections": [
+        "megatron"
+      ],
+      "domain": "vantage-dc.com",
+      "aliases": [
+        "Vantage Data Center",
+        "Vantage data center"
+      ]
+    },
+    {
+      "name": "Blackstone",
+      "sections": [
+        "sponsors"
+      ],
+      "ticker": "BX",
+      "currency": "USD",
+      "domain": "blackstone.com",
+      "aliases": [
+        "Blackstone"
+      ],
+      "busy": true
+    },
+    {
+      "name": "Golden Gate Ventures",
+      "sections": [
+        "sponsors"
+      ],
+      "domain": "goldengate.vc",
+      "aliases": [
+        "Golden Gate Ventures"
+      ]
+    },
+    {
+      "name": "Goldman Sachs",
+      "sections": [
+        "sponsors"
+      ],
+      "ticker": "GS",
+      "currency": "USD",
+      "domain": "goldmansachs.com",
+      "aliases": [
+        "Goldman Sachs",
+        "Goldman"
+      ],
+      "busy": true
+    },
+    {
+      "name": "Blue Owl",
+      "sections": [
+        "sponsors"
+      ],
+      "ticker": "OWL",
+      "currency": "USD",
+      "domain": "blueowl.com",
+      "aliases": [
+        "Blue Owl"
+      ],
+      "busy": true
+    },
+    {
+      "name": "HGGC",
+      "sections": [
+        "sponsors"
+      ],
+      "domain": "hggc.com",
+      "aliases": [
+        "HGGC"
+      ]
+    },
+    {
+      "name": "Lexington Partners",
+      "sections": [
+        "sponsors"
+      ],
+      "domain": "lexingtonpartners.com",
+      "aliases": [
+        "Lexington Partners"
+      ]
+    },
+    {
+      "name": "Vista Equity Partners",
+      "sections": [
+        "sponsors"
+      ],
+      "domain": "vistaequitypartners.com",
+      "aliases": [
+        "Vista Equity"
+      ]
+    },
+    {
+      "name": "Coller Capital",
+      "sections": [
+        "sponsors"
+      ],
+      "domain": "collercapital.com",
+      "aliases": [
+        "Coller Capital",
+        "Coller"
+      ]
+    },
+    {
+      "name": "Citadel",
+      "sections": [
+        "sponsors"
+      ],
+      "domain": "citadel.com",
+      "aliases": [
+        "Citadel"
+      ],
+      "must": [
+        "hedge fund",
+        "Griffin",
+        "Citadel LLC",
+        "fund"
+      ],
+      "busy": true
+    },
+    {
+      "name": "Golub Capital",
+      "sections": [
+        "sponsors"
+      ],
+      "domain": "golubcapital.com",
+      "aliases": [
+        "Golub Capital",
+        "Golub"
+      ]
+    },
+    {
+      "name": "Neuberger Berman",
+      "sections": [
+        "sponsors"
+      ],
+      "domain": "nb.com",
+      "aliases": [
+        "Neuberger Berman",
+        "Neuberger"
+      ]
+    },
+    {
+      "name": "BlackRock",
+      "sections": [
+        "sponsors"
+      ],
+      "ticker": "BLK",
+      "currency": "USD",
+      "domain": "blackrock.com",
+      "aliases": [
+        "BlackRock"
+      ],
+      "busy": true
+    },
+    {
+      "name": "Ares",
+      "sections": [
+        "sponsors"
+      ],
+      "ticker": "ARES",
+      "currency": "USD",
+      "domain": "aresmgmt.com",
+      "aliases": [
+        "Ares Management",
+        "Ares Capital"
+      ]
+    },
+    {
+      "name": "Monroe Capital",
+      "sections": [
+        "sponsors"
+      ],
+      "domain": "monroecap.com",
+      "aliases": [
+        "Monroe Capital"
+      ]
+    },
+    {
+      "name": "Morgan Stanley",
+      "sections": [
+        "sponsors"
+      ],
+      "ticker": "MS",
+      "currency": "USD",
+      "domain": "morganstanley.com",
+      "aliases": [
+        "Morgan Stanley"
+      ],
+      "busy": true
+    },
+    {
+      "name": "Ardian",
+      "sections": [
+        "sponsors"
+      ],
+      "domain": "ardian.com",
+      "aliases": [
+        "Ardian"
+      ]
+    },
+    {
+      "name": "Hamilton Lane",
+      "sections": [
+        "sponsors"
+      ],
+      "ticker": "HLNE",
+      "currency": "USD",
+      "domain": "hamiltonlane.com",
+      "aliases": [
+        "Hamilton Lane"
+      ]
+    },
+    {
+      "name": "RedBird",
+      "sections": [
+        "sponsors"
+      ],
+      "domain": "redbirdcap.com",
+      "aliases": [
+        "RedBird Capital",
+        "RedBird"
+      ]
+    },
+    {
+      "name": "Qatar Insurance Company",
+      "sections": [
+        "sponsors"
+      ],
+      "ticker": "QATI.QA",
+      "currency": "QAR",
+      "domain": "",
+      "aliases": [
+        "Qatar Insurance"
+      ]
+    },
+    {
+      "name": "Commercial Bank of Qatar",
+      "sections": [
+        "sponsors"
+      ],
+      "ticker": "CBQK.QA",
+      "currency": "QAR",
+      "domain": "cbq.qa",
+      "aliases": [
+        "Commercial Bank of Qatar",
+        "Commercial Bank Qatar",
+        "CBQ"
+      ]
+    }
   ],
-  "busy_focus": ["private credit", "credit", "fund", "raises", "closes", "close of", "acquire", "acquisition", "deal", "stake", "Qatar", "Gulf", "GCC", "Middle East", "Saudi", "UAE", "Abu Dhabi", "IPO", "results", "earnings", "data center", "AI"],
+  "busy_focus": [
+    "private credit",
+    "credit",
+    "fund",
+    "raises",
+    "closes",
+    "close of",
+    "acquire",
+    "acquisition",
+    "deal",
+    "stake",
+    "Qatar",
+    "Gulf",
+    "GCC",
+    "Middle East",
+    "Saudi",
+    "UAE",
+    "Abu Dhabi",
+    "IPO",
+    "results",
+    "earnings",
+    "data center",
+    "AI"
+  ],
   "industry": [
-    { "name": "Private Credit / BDC", "queries": ["private credit", "business development company BDC", "direct lending"] },
-    { "name": "Tech / AI", "queries": ["AI funding round", "AI data center investment", "AI chip export controls"] }
+    {
+      "name": "Private Credit / BDC",
+      "queries": [
+        "private credit",
+        "business development company BDC",
+        "direct lending"
+      ]
+    },
+    {
+      "name": "Tech / AI",
+      "queries": [
+        "AI funding round",
+        "AI data center investment",
+        "AI chip export controls"
+      ]
+    }
   ],
   "macro": [
     "Federal Reserve interest rate",
