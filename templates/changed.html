@@ -28,7 +28,7 @@
     {% for v in ch.valuations %}
     <div style="padding:10px 0;border-bottom:1px solid var(--line-2)">
       <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:baseline">
-        <span class="disp" style="font-size:20px;font-weight:700">{{ v.company }}</span>
+        <span class="disp" style="font-size:22px;font-weight:700">{{ v.company }}</span>
         <span class="mono">{% if v['from'] %}<span class="muted" style="text-decoration:line-through">{{ v['from'] }}</span> → {% endif %}<b>{{ v.to }}</b></span></div>
       <div class="src">{% if v.type == 'reported' %}<span class="pill-warn">REPORTED · VERIFY</span>{% else %}<span class="pill-ok">CLOSED</span>{% endif %}
         <a href="{{ v.source_url }}" target="_blank" rel="noopener" style="color:var(--muted)">{{ v.source_title | truncate(80) }}</a> · {{ v.date | shortdate }}</div>
@@ -69,7 +69,7 @@
 
 <section class="band">
   <div><b>No new items:</b> {{ ch.quiet | join(', ') if ch.quiet else 'none' }}</div>
-  {% if ch.filtered_count %}<div class="mono" style="font-size:12px"><b style="font-family:var(--sans)">Filtered as noise ({{ ch.filtered_count }}):</b>
+  {% if ch.filtered_count %}<div class="mono" style="font-size:13px"><b style="font-family:var(--sans)">Filtered as noise ({{ ch.filtered_count }}):</b>
     {% for f in ch.filtered %}{{ f.company }}: "{{ f.title | truncate(60) }}" ({{ f.reason }}){% if not loop.last %} · {% endif %}{% endfor %}</div>{% endif %}
 </section>
 {% endblock %}

@@ -243,26 +243,30 @@ def top_entry(report, it, why):
             "date": it.get("date", ""), "why": house_style(why or "")}
 
 
+def split_ranked(ranked):
+    """Top 3 for the site and PDF; up to 5 news items (market moves excluded, they are in the holdings table) for the email."""
+    return {"top3": ranked[:3], "key": [t for t in ranked if t["label"] != "Markets"][:5]}
+
+
 def from_ai(res, report):
     idx = all_items_by_id(report)
-    top = []
-    for t in res.get("top3", []):
+    ranked = []
+    for t in res.get("top") or res.get("top3") or []:
         it = idx.get(t.get("item_id"))
-        if it and all(x["title"] != it["title"] for x in top):
-            top.append(top_entry(report, it, t.get("why")))
+        if it and all(x["title"] != house_style(it["title"]) for x in ranked):
+            ranked.append(top_entry(report, it, t.get("why")))
     paras = [house_style(p) for p in res.get("paragraphs", []) if p][:2]
     if not res.get("headline") or not paras:
         return None
-    if len(top) < 3:
-        for e in fallback_top(report, [], []):
-            if len(top) >= 3:
-                break
-            if all(x["title"] != e["title"] for x in top):
-                top.append(e)
-    return {"headline": house_style(res["headline"]), "paragraphs": paras, "top3": top[:3]}
+    for e in fallback_top(report, [], [], n=8):
+        if len(ranked) >= 8:
+            break
+        if all(x["title"] != e["title"] for x in ranked):
+            ranked.append(e)
+    return dict({"headline": house_style(res["headline"]), "paragraphs": paras}, **split_ranked(ranked))
 
 
-def fallback_top(report, val_changes, signals):
+def fallback_top(report, val_changes, signals, n=3):
     idx = all_items_by_id(report)
     scored = []
     for h in report["holdings"]:
@@ -287,17 +291,19 @@ def fallback_top(report, val_changes, signals):
                 scored.append((1.5 + 0.4 * len(i["sources"]) + (0.5 if i["kind"] == "pr" else 0), dict(i, company=n), ""))
     out, used = [], set()
     for _, it, why in sorted(scored, key=lambda x: -x[0]):
-        if it.get("company") in used:
+        k = (it.get("company"), it.get("kind") == "market")  # a company can have one price move and one news item
+        if k in used:
             continue
-        used.add(it.get("company"))
+        used.add(k)
         out.append(top_entry(report, it, why))
-        if len(out) == 3:
+        if len(out) == n:
             break
     return out
 
 
 def fallback_briefing(report, val_changes, signals):
-    top = fallback_top(report, val_changes, signals)
+    ranked = fallback_top(report, val_changes, signals, n=8)
+    top = ranked[:3]
     parts = []
     for h in report["holdings"]:
         q = h["q"]
@@ -309,7 +315,7 @@ def fallback_briefing(report, val_changes, signals):
     if val_changes:
         p2 += " Valuation updates: " + "; ".join(f"{v['company']} {v['to']}" for v in val_changes) + "."
     headline = "; ".join(t["title"] for t in top[:2]) or f"Daily Update for {report['today']}"
-    return {"headline": headline[:140], "paragraphs": [p for p in (p1, p2) if p], "top3": top}
+    return dict({"headline": headline[:140], "paragraphs": [p for p in (p1, p2) if p]}, **split_ranked(ranked))
 
 
 # ---------------------------------------------------------------- main

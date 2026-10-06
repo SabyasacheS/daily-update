@@ -1,8 +1,0 @@
-{% extends "base.html" %}
-{% block main %}
-<div class="page-head"><div><span class="kicker">{{ dates|length }} reports</span><h1>Archive</h1></div></div>
-<section>
-{% for d in dates %}<div class="list-row"><span class="d" style="width:110px">{{ d | longdate }}</span><a href="archive/{{ d }}/index.html">Briefing</a> <span class="src"><a href="archive/{{ d }}/changed.html">What changed</a> · <a href="archive/{{ d }}/markets.html">Markets</a></span></div>
-{% else %}<p class="muted">No archived reports yet.</p>{% endfor %}
-</section>
-{% endblock %}

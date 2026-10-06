@@ -8,13 +8,12 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <!--[if mso]><style>table,td,div,p,a,span,b{font-family:'Segoe UI',Arial,sans-serif !important}</style><![endif]-->
 </head>
-{# Same typeface and size scale as the website: 22 headings, 17 lead, 15 body, 13 secondary, 11 labels.
+{# Compact executive scale, one typeface: 18 headline, 14 text and headlines, 12 secondary, 11 labels.
    Outlook desktop ignores web fonts and shows Segoe UI instead. #}
 {% set F = "font-family:'IBM Plex Sans','Segoe UI',Helvetica,Arial,sans-serif;" %}
-{% set XL = F ~ "font-size:22px;line-height:1.25;" %}
-{% set LEAD = F ~ "font-size:17px;line-height:1.35;" %}
-{% set BODY = F ~ "font-size:15px;line-height:1.5;" %}
-{% set SM = F ~ "font-size:13px;line-height:1.5;" %}
+{% set XL = F ~ "font-size:18px;line-height:1.3;" %}
+{% set BODY = F ~ "font-size:14px;line-height:1.5;" %}
+{% set SM = F ~ "font-size:12px;line-height:1.45;" %}
 {% set LBL = F ~ "font-size:11px;line-height:1.4;letter-spacing:1px;text-transform:uppercase;" %}
 {% set site = s.site_url.rstrip('/') ~ '/' %}
 <body style="margin:0;padding:0;background:#E4E7E1;">
@@ -23,42 +22,55 @@
 <tr><td align="center" style="padding:20px 10px;">
 <table role="presentation" width="640" cellpadding="0" cellspacing="0" border="0" style="width:640px;max-width:640px;background:#FFFFFF;">
 
-<tr><td style="background:#101814;padding:24px 32px 20px 32px;">
+<tr><td style="background:#101814;padding:20px 32px 16px 32px;">
   <div style="{{ XL }}font-weight:700;letter-spacing:1px;color:#FFFFFF;">{{ s.site_title | upper }}</div>
   <div style="{{ LBL }}color:#A7B2AB;padding-top:6px;">{{ r.today | longdate }}</div>
 </td></tr>
 <tr><td style="height:4px;line-height:4px;font-size:0;background:#D9480F;">&nbsp;</td></tr>
 
-<tr><td style="padding:28px 32px 6px 32px;color:#101814;">
+<tr><td style="padding:24px 32px 4px 32px;color:#101814;">
   <div style="{{ XL }}font-weight:700;">{{ r.briefing.headline }}</div>
-  {% for p in r.briefing.paragraphs %}<p style="margin:14px 0 0 0;{{ BODY }}color:#26302B;">{{ p }}</p>{% endfor %}
+  {% for p in r.briefing.paragraphs %}<p style="margin:10px 0 0 0;{{ BODY }}color:#26302B;">{{ p }}</p>{% endfor %}
   <p style="margin:10px 0 0 0;{{ SM }}color:#59645E;">{% if r.briefing.ai %}AI summary · verify before acting{% else %}Automatic summary{% endif %}</p>
 </td></tr>
 
+{# Dividers are drawn as 1px table rows, not CSS borders: Outlook renders cell borders unevenly. #}
+{% macro rule(cols, color='#ECEEE9', h=1) %}<tr><td colspan="{{ cols }}" height="{{ h }}" style="height:{{ h }}px;line-height:{{ h }}px;font-size:0;mso-line-height-rule:exactly;background:{{ color }};">&nbsp;</td></tr>{% endmacro %}
+
 {% if r.holdings %}
 <tr><td style="padding:24px 32px 4px 32px;">
-  <div style="{{ LBL }}font-weight:700;padding-bottom:8px;border-bottom:2px solid #101814;color:#101814;">Holdings · last close</div>
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr><td colspan="3" style="{{ LBL }}font-weight:700;color:#101814;padding-bottom:8px;">Holdings · last close</td></tr>
+  {{ rule(3, '#101814', 2) }}
   {% for h in r.holdings %}{% set q = h.q %}
-  <tr><td style="padding:10px 0;border-bottom:1px solid #ECEEE9;{{ BODY }}font-weight:600;color:#101814;">{{ h.name }}</td>
-    <td align="right" style="padding:10px 0;border-bottom:1px solid #ECEEE9;{{ BODY }}color:#101814;">{% if q %}{{ h.currency }} {{ q.price | price }}{% else %}n/a{% endif %}</td>
-    <td align="right" width="110" style="padding:10px 0;border-bottom:1px solid #ECEEE9;{{ BODY }}font-weight:700;color:{% if q and q.change_pct and q.change_pct > 0 %}#0D7A4A{% elif q and q.change_pct and q.change_pct < 0 %}#B42318{% else %}#59645E{% endif %};">{% if q %}{% if q.change_pct > 0 %}▲{% elif q.change_pct < 0 %}▼{% endif %} {{ q.change_pct | pct }}{% endif %}</td></tr>
+  <tr><td style="padding:8px 0;{{ BODY }}font-weight:600;color:#101814;">{{ h.name }}</td>
+    {% if q %}
+    <td align="right" style="padding:8px 0;{{ BODY }}color:#101814;">{{ h.currency }} {{ q.price | price }}</td>
+    <td align="right" width="110" style="padding:8px 0;{{ BODY }}font-weight:700;color:{% if q.change_pct and q.change_pct > 0 %}#0D7A4A{% elif q.change_pct and q.change_pct < 0 %}#B42318{% else %}#59645E{% endif %};">{% if q.change_pct > 0 %}▲{% elif q.change_pct < 0 %}▼{% endif %} {{ q.change_pct | pct }}</td>
+    {% else %}
+    <td colspan="2" align="right" style="padding:8px 0;{{ SM }}color:#59645E;">No price data today</td>
+    {% endif %}</tr>
+  {% if not loop.last %}{{ rule(3) }}{% endif %}
   {% endfor %}
   </table>
 </td></tr>
 {% endif %}
 
-{% if r.briefing.top3 %}
-<tr><td style="padding:24px 32px 4px 32px;">
-  <div style="{{ LBL }}font-weight:700;padding-bottom:8px;border-bottom:2px solid #101814;color:#101814;">Top 3 today</div>
+{% set key = r.briefing.key if r.briefing.key is defined and r.briefing.key else r.briefing.top3 %}
+{% if key %}
+<tr><td style="padding:22px 32px 4px 32px;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-  {% for t in r.briefing.top3 %}
-  <tr><td width="34" valign="top" style="padding:14px 0;{{ XL }}font-weight:700;color:#D9480F;{% if not loop.last %}border-bottom:1px solid #ECEEE9;{% endif %}">{{ loop.index }}</td>
-    <td style="padding:14px 0;{% if not loop.last %}border-bottom:1px solid #ECEEE9;{% endif %}">
+  <tr><td colspan="2" style="{{ LBL }}font-weight:700;color:#101814;padding-bottom:8px;">Key news</td></tr>
+  {{ rule(2, '#101814', 2) }}
+  {% for t in key[:5] %}
+  <tr><td width="28" valign="top" style="padding:11px 0;{{ BODY }}font-weight:700;color:#D9480F;">{{ loop.index }}</td>
+    <td style="padding:11px 0;">
       <div style="{{ LBL }}color:#59645E;">{{ t.label }}{% if t.company and t.company != t.label %} · {{ t.company }}{% endif %}</div>
-      <a href="{{ t.url if t.url.startswith('http') else site ~ t.url }}" style="{{ LEAD }}font-weight:600;text-decoration:none;color:#101814;">{{ t.title }}</a>
+      <a href="{{ t.url if t.url.startswith('http') else site ~ t.url }}" style="{{ BODY }}font-weight:600;text-decoration:none;color:#101814;">{{ t.title }}</a>
+      <div style="{{ SM }}color:#59645E;">{{ t.source }}{% if t.date %} · {{ t.date | shortdate }}{% endif %}</div>
       {% if t.why %}<div style="{{ SM }}color:#3A4540;padding-top:2px;">{{ t.why }}</div>{% endif %}
     </td></tr>
+  {% if not loop.last %}{{ rule(2) }}{% endif %}
   {% endfor %}
   </table>
 </td></tr>
@@ -74,8 +86,8 @@
 </td></tr>
 
 <tr><td align="center" style="padding:28px 32px 30px 32px;">
-  <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href="{{ site }}" style="height:46px;v-text-anchor:middle;width:260px;" arcsize="9%" stroke="f" fillcolor="#101814"><w:anchorlock/><center style="color:#FFFFFF;font-family:'Segoe UI',Arial,sans-serif;font-size:15px;font-weight:bold;">Open the full report</center></v:roundrect><![endif]-->
-  <!--[if !mso]><!--><a href="{{ site }}" style="display:inline-block;background:#101814;color:#FFFFFF;{{ BODY }}font-weight:700;text-decoration:none;padding:13px 30px;border-radius:4px;">Open the full report</a><!--<![endif]-->
+  <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href="{{ site }}" style="height:46px;v-text-anchor:middle;width:260px;" arcsize="9%" stroke="f" fillcolor="#101814"><w:anchorlock/><center style="color:#FFFFFF;font-family:'Segoe UI',Arial,sans-serif;font-size:14px;font-weight:bold;">Open the full report</center></v:roundrect><![endif]-->
+  <!--[if !mso]><!--><a href="{{ site }}" style="display:inline-block;background:#101814;color:#FFFFFF;{{ BODY }}font-weight:700;text-decoration:none;padding:12px 26px;border-radius:4px;">Open the full report</a><!--<![endif]-->
   {% if s.attach_pdf %}<div style="{{ SM }}color:#59645E;padding-top:12px;">Or open the attached PDF, which works offline.</div>{% endif %}
 </td></tr>
 

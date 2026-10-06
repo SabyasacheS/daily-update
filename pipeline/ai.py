@@ -91,8 +91,9 @@ def write_briefing(digest, model):
         "headline: one line, max 110 characters, naming the 2-3 most important developments.\n"
         "paragraphs: list of 2 paragraphs, each max 85 words. First: the most important company and market "
         "developments. Second: other notable items and macro context.\n"
-        "top3: list of exactly 3 objects {item_id, why} choosing the most decision-relevant items from the data "
-        "(use only item_id values present in the data; a market move has an item_id too). why: max 22 words.\n"
+        "top: list of 5 to 8 objects {item_id, why}, ranked from most to least decision-relevant, about different "
+        "companies where possible (use only item_id values present in the data; a market move has an item_id too). "
+        "why: max 22 words.\n"
         "notes: object mapping company name -> 'why it matters' line (max 22 words) for every company that has items.\n"
         "themes: object mapping industry theme name -> one-line takeaway (max 22 words).\n\nDATA:\n"
         + json.dumps(digest, ensure_ascii=False)
