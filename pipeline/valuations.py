@@ -165,7 +165,7 @@ def seed_all(state, companies, verified):
             r = src["reported"]
             reported[name] = {"amount": r.get("amount"), "currency": r.get("currency", "USD"), "text": r["text"],
                               "date": r.get("date", ""), "source_title": r.get("source_title", ""),
-                              "source_url": r.get("source_url", ""), "status": "reported"}
+                              "source_url": r.get("source_url", ""), "status": "reported", "kind": r.get("kind", "round")}
 
 
 def apply(state, name, ext, item, today):
@@ -206,7 +206,8 @@ def apply(state, name, ext, item, today):
     else:
         old = reported.get(name)
         if not old or old.get("amount") != v or date > old.get("date", ""):
-            reported[name] = dict(src, amount=v, currency=ext["currency"], text=text, status="reported")
+            kind = "ipo" if re.search(r"\b(IPO|listing|public offering|go(ing)? public|debut)\b", item["title"], re.I) else "round"
+            reported[name] = dict(src, amount=v, currency=ext["currency"], text=text, status="reported", kind=kind)
             change = {"type": "reported", "company": name, "to": text, **src}
     return change
 
@@ -238,7 +239,9 @@ def card_view(state, name, today=""):
         view["valuation"] = {"text": "NA", "provenance": "no public valuation found", "url": "", "note": "",
                              "previous": None, "na": True}
     if r:
-        view["reported"] = {"text": r["text"], "date": r["date"], "url": r["source_url"]}
+        label = ("IPO valuation · expected, not set" if r.get("kind") == "ipo"
+                 else "new round in talks, not confirmed")
+        view["reported"] = {"text": r["text"], "date": r["date"], "url": r["source_url"], "label": label}
     if rd:
         view["last_round"] = {"text": rd["text"], "status": rd["status"], "date": rd["date"], "url": rd["source_url"]}
     return view
