@@ -12,7 +12,8 @@
 @page :first{@top-left{content:none}@top-right{content:none}}
 *{box-sizing:border-box;font-family:'IBM Plex Sans','Segoe UI',Arial,sans-serif}
 body{margin:0;font-size:9.5pt;line-height:1.45;color:#1B2420;font-variant-numeric:tabular-nums}
-a{color:inherit;text-decoration:none}
+a{color:inherit;text-decoration:underline;text-decoration-color:#C3C9C2;text-underline-offset:1.5pt}
+.mast a,.src a{text-decoration:none}
 p{margin:0 0 5pt}
 .lbl{font-size:7.5pt;font-weight:600;letter-spacing:.6pt;text-transform:uppercase;color:#59645E}
 .src{font-size:7.5pt;color:#6B756F}
@@ -64,8 +65,9 @@ table.cal tr:last-child td{border-bottom:0}
 .newpage{page-break-before:always}
 </style></head><body>
 
+{% set site = s.site_url.rstrip('/') ~ '/' %}
 <div class="mast"><div class="l"><span class="name">{{ s.site_title | upper }}</span></div>
-  <div class="r"><span class="lbl">{{ r.today | longdate }}</span></div></div>
+  <div class="r"><span class="lbl">{{ r.today | longdate }} · <a href="{{ site }}">Open the full report online</a></span></div></div>
 
 <span class="lbl">Executive summary{% if r.briefing.ai %} · AI-written, verify before acting{% endif %}</span>
 <h1>{{ r.briefing.headline }}</h1>
@@ -77,7 +79,7 @@ table.cal tr:last-child td{border-bottom:0}
 {% for t in r.briefing.top3 %}
 <tr><td class="n">{{ loop.index }}</td>
   <td><span class="lbl">{{ t.label }}{% if t.company and t.company != t.label %} · {{ t.company }}{% endif %}</span><br>
-    <span class="t">{{ t.title }}</span>{% if t.why %}<br><span class="w">{{ t.why }}</span>{% endif %}</td></tr>
+    <a class="t" href="{{ t.url if t.url.startswith('http') else site ~ t.url }}">{{ t.title }}</a>{% if t.why %}<br><span class="w">{{ t.why }}</span>{% endif %}</td></tr>
 {% endfor %}
 </table>
 {% endif %}
@@ -115,7 +117,7 @@ table.cal tr:last-child td{border-bottom:0}
 
 {% if r.macro %}
 <h2>Macro and policy</h2>
-<div class="list">{% for it in r.macro[:6] %}<div>{{ it.title }} <span class="src">{{ it.source }}, {{ it.date | shortdate }}</span></div>{% endfor %}</div>
+<div class="list">{% for it in r.macro[:6] %}<div><a href="{{ it.url }}">{{ it.title }}</a> <span class="src">{{ it.source }}, {{ it.date | shortdate }}</span></div>{% endfor %}</div>
 {% endif %}
 
 {% for sec in r.sections if sec.id != 'public' %}
@@ -131,12 +133,12 @@ table.cal tr:last-child td{border-bottom:0}
       <div class="r">
         {% if c.listed and c.q %}<span>{{ c.currency }} {{ c.q.price | price }}</span> <span class="{{ 'up' if c.q.change_pct and c.q.change_pct > 0 else 'down' }}">{{ c.q.change_pct | pct }}</span>
         {% elif v.valuation and v.valuation.text and not (v.valuation.na and c.sections == ['sponsors']) %}<span style="font-weight:600">{{ v.valuation.text }}</span>{% if v.valuation.previous %} <span class="src">was {{ v.valuation.previous }}</span>{% endif %}
-          {% if v.valuation.provenance %}<br><span class="src">{{ v.valuation.provenance }}</span>{% endif %}{% endif %}
-        {% if v.reported and not c.listed %}<br><span class="src">Reported: {{ v.reported.text }}, {{ v.reported.label }}</span>{% endif %}
+          {% if v.valuation.provenance %}<br><span class="src">{% if v.valuation.url %}<a href="{{ v.valuation.url }}">{{ v.valuation.provenance }} · source</a>{% else %}{{ v.valuation.provenance }}{% endif %}</span>{% endif %}{% endif %}
+        {% if v.reported and not c.listed %}<br><span class="src"><a href="{{ v.reported.url }}">Reported: {{ v.reported.text }}, {{ v.reported.label }}</a></span>{% endif %}
       </div>
     </div>
     {% for it in c['items'][:3] %}
-    <p class="hl"><span class="tag{{ ' pr' if it.kind == 'pr' }}">{{ 'PR' if it.kind == 'pr' else 'NEWS' }}</span>{{ it.title }} <span class="src">{{ it.sources[:2] | join(', ') }}, {{ it.date | shortdate }}</span></p>
+    <p class="hl"><span class="tag{{ ' pr' if it.kind == 'pr' }}">{{ 'PR' if it.kind == 'pr' else 'NEWS' }}</span><a href="{{ it.url }}">{{ it.title }}</a> <span class="src">{{ it.sources[:2] | join(', ') }}, {{ it.date | shortdate }}</span></p>
     {% endfor %}
     {% if c.why %}<p class="why"><b>Why it matters:</b> {{ c.why }}</p>{% endif %}
   </div>
@@ -151,7 +153,7 @@ table.cal tr:last-child td{border-bottom:0}
 <div class="co">
   <div class="co-head"><div class="l"><span class="co-name">{{ t.name }}</span></div></div>
   {% if t.takeaway %}<p class="why">{{ t.takeaway }}</p>{% endif %}
-  {% for it in t['items'][:3] %}<p class="hl">{{ it.title }} <span class="src">{{ it.source }}, {{ it.date | shortdate }}</span></p>
+  {% for it in t['items'][:3] %}<p class="hl"><a href="{{ it.url }}">{{ it.title }}</a> <span class="src">{{ it.source }}, {{ it.date | shortdate }}</span></p>
   {% else %}<p class="src">No items in the last 72 hours.</p>{% endfor %}
 </div>
 {% endfor %}
@@ -160,7 +162,7 @@ table.cal tr:last-child td{border-bottom:0}
 <h2>Calendar · next {{ s.calendar_days }} days</h2>
 {% if r.calendar %}
 <table class="cal">
-{% for e in r.calendar %}<tr><td style="width:24mm">{{ e.day }}, {{ e.weekday }}</td><td style="width:62mm;font-weight:600">{{ e.title }}</td><td class="src">{{ e.detail }}</td></tr>{% endfor %}
+{% for e in r.calendar %}<tr><td style="width:24mm">{{ e.day }}, {{ e.weekday }}</td><td style="width:62mm;font-weight:600">{% if e.source %}<a href="{{ e.source }}">{{ e.title }}</a>{% else %}{{ e.title }}{% endif %}</td><td class="src">{{ e.detail }}</td></tr>{% endfor %}
 </table>
 {% else %}<p class="src">Nothing scheduled.</p>{% endif %}
 
