@@ -9,7 +9,9 @@
       "Mon",
       "Tue",
       "Wed",
-      "Thu"
+      "Thu",
+      "Fri",
+      "Sat"
     ],
     "news_window_hours": 72,
     "calendar_days": 21,
