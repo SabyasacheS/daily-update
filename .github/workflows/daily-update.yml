@@ -2,7 +2,7 @@ name: Daily Update
 
 on:
   schedule:
-    - cron: "0 3 * * *"        # 03:00 UTC = 06:00 Doha. The email only goes out on send_days (watchlist.json).
+    - cron: "17 2 * * *"        # 02:17 UTC = 05:17 Doha
   repository_dispatch:
     types: [watchlist-updated]  # sent by the Watchlist page: refresh the site, no email
   workflow_dispatch:
