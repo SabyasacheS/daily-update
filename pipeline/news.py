@@ -13,6 +13,8 @@ from email.utils import parsedate_to_datetime
 
 import requests
 
+from . import relevance
+
 UA = {"User-Agent": "Mozilla/5.0 (compatible; DailyUpdate/2.0)"}
 RSS = "https://news.google.com/rss/search?q={q}&hl=en-US&gl=US&ceid=US:en"
 
@@ -174,11 +176,7 @@ def company_news(company, window_hours, busy_focus, fetch=fetch_rss, limit=6):
         if not _window_ok(raw, cutoff):
             continue
         is_pr = bool(domain) and domain.split("/")[0] in (raw.get("source_url") or "").lower()
-        if not _mentions(raw["title"], aliases):
-            continue  # story is not about this company (or only mentions it in passing)
-        reason = junk_reason(raw)
-        if not reason and company.get("must") and not is_pr and not _mentions(raw["title"], company["must"]):
-            reason = "name match without context words"
+        reason = relevance.judge(raw["title"], raw["source"], company, is_pr)
         if not reason and company.get("busy") and not is_pr and not _mentions(raw["title"], busy_focus):
             reason = "routine coverage of a large firm"
         if reason:
@@ -190,7 +188,7 @@ def company_news(company, window_hours, busy_focus, fetch=fetch_rss, limit=6):
         for raw in parse_rss(fetch(f"site:{domain} when:7d")):
             if not _window_ok(raw, cutoff):
                 continue
-            reason = junk_reason(raw)
+            reason = relevance.judge(raw["title"], raw["source"], company, True)
             if reason:
                 filtered.append({"company": company["name"], "title": raw["title"], "reason": reason})
                 continue
@@ -204,7 +202,7 @@ def topic_news(query, window_hours, fetch=fetch_rss, limit=3):
     days = max(1, round(window_hours / 24))
     out = []
     for raw in parse_rss(fetch(f"{query} when:{days}d")):
-        if _window_ok(raw, cutoff) and not junk_reason(raw):
+        if _window_ok(raw, cutoff) and not junk_reason(raw) and not relevance.topic_junk(raw["title"], raw["source"]):
             out.append(finalize(raw, "news"))
     return cluster(out, limit)
 

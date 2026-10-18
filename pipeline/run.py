@@ -87,6 +87,21 @@ def build(wl, raw, state, today, use_ai=True):
     if movers:
         max(movers, key=lambda h: abs(h["q"]["change_pct"]))["largest"] = True
 
+    # --- AI second check on company news (only when a Gemini key is set)
+    if use_ai:
+        batch = [{"id": f"{n}|{i['id']}", "company": n, "title": i["title"], "source": i["source"]}
+                 for n, its in raw["news"].items() for i in its]
+        drops = ai.screen_news(batch, model) if batch else {}
+        for n in list(raw["news"]):
+            keep = []
+            for i in raw["news"][n]:
+                why = drops.get(f"{n}|{i['id']}")
+                if why:
+                    raw["filtered"].append({"company": n, "title": i["title"], "reason": "AI: " + why})
+                else:
+                    keep.append(i)
+            raw["news"][n] = keep
+
     # --- companies + news
     companies = {}
     for c in wl["companies"]:

@@ -107,7 +107,15 @@
         "Beema",
         "Damaan Islamic Insurance"
       ],
-      "must": []
+      "must": [
+        "insurance",
+        "Qatar",
+        "QSE",
+        "takaful",
+        "Damaan",
+        "results",
+        "profit"
+      ]
     },
     {
       "name": "Blaize",
@@ -121,6 +129,19 @@
       "domain": "blaize.com",
       "aliases": [
         "Blaize"
+      ],
+      "must": [
+        "Holdings",
+        "BZAI",
+        "AI",
+        "chip",
+        "Nasdaq",
+        "stock",
+        "shares",
+        "split",
+        "contract",
+        "revenue",
+        "edge"
       ]
     },
     {
@@ -137,6 +158,25 @@
       "aliases": [
         "CVC Capital",
         "CVC"
+      ],
+      "must": [
+        "Capital",
+        "private equity",
+        "stake",
+        "buyout",
+        "fund",
+        "deal",
+        "acquire",
+        "acquisition",
+        "investor",
+        "Euronext",
+        "Advent",
+        "bid",
+        "sale",
+        "sells",
+        "sell",
+        "buy",
+        "shares"
       ]
     },
     {
@@ -170,6 +210,16 @@
         "Figure AI",
         "Figure 03",
         "Figure robot"
+      ],
+      "must": [
+        "robot",
+        "humanoid",
+        "Figure 0",
+        "Adcock",
+        "BMW",
+        "Helix",
+        "Figure AI raises",
+        "valuation"
       ]
     },
     {
@@ -272,7 +322,8 @@
       "valuation": {
         "text": "No public equity",
         "status": "manual"
-      }
+      },
+      "pr_needs_name": true
     },
     {
       "name": "Campus AI",
@@ -379,6 +430,36 @@
       "aliases": [
         "TikTok",
         "ByteDance"
+      ],
+      "must": [
+        "ByteDance",
+        "USDS",
+        "joint venture",
+        "Oracle",
+        "Silver Lake",
+        "MGX",
+        "ban",
+        "divest",
+        "settle",
+        "lawsuit",
+        "FTC",
+        "DOJ",
+        "Justice",
+        "COPPA",
+        "advertis",
+        "revenue",
+        "shop",
+        "deal",
+        "users",
+        "algorithm",
+        "CEO",
+        "layoff",
+        "regulat",
+        "court",
+        "fine",
+        "Congress",
+        "investment",
+        "data center"
       ]
     },
     {
@@ -579,6 +660,23 @@
       "domain": "ardian.com",
       "aliases": [
         "Ardian"
+      ],
+      "must": [
+        "private equity",
+        "fund",
+        "stake",
+        "buyout",
+        "acquire",
+        "acquisition",
+        "deal",
+        "bid",
+        "infrastructure",
+        "sale",
+        "sells",
+        "invest",
+        "Inwit",
+        "take-private",
+        "secondar"
       ]
     },
     {
@@ -628,6 +726,16 @@
         "Commercial Bank of Qatar",
         "Commercial Bank Qatar",
         "CBQ"
+      ],
+      "must": [
+        "bank",
+        "Qatar",
+        "QSE",
+        "profit",
+        "results",
+        "bond",
+        "loan",
+        "Commercial Bank"
       ]
     }
   ],

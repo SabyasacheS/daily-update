@@ -100,3 +100,20 @@ def write_briefing(digest, model):
         + json.dumps(digest, ensure_ascii=False)
     )
     return _call(prompt, model)
+
+
+def screen_news(items, model):
+    """items: [{'id','company','title','source'}] -> set of ids to DROP, with reasons {id: reason}."""
+    if not items:
+        return {}
+    prompt = (
+        "You screen headlines for an investment team's daily monitoring report. For each item decide if it is "
+        "specific, material news ABOUT the named company: its deals, funding, results, products, leadership, "
+        "strategy, legal or regulatory matters. Drop: consumer or lifestyle stories, individual user or creator "
+        "content, spectacle, tutorials, stock-tip or price-target pieces, analyst commentary where the company is "
+        "only the commentator, listings, spam, and stories about a different organisation with a similar name or "
+        "where the company is incidental. Return JSON {\"items\": [{\"id\": ..., \"keep\": true|false, "
+        "\"reason\": short reason if dropped}]}.\n\nITEMS:\n" + json.dumps(items, ensure_ascii=False))
+    res = _call(prompt, model) or {}
+    return {x["id"]: (x.get("reason") or "not material") for x in res.get("items", [])
+            if x.get("id") and x.get("keep") is False}
