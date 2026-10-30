@@ -1,0 +1,282 @@
+{
+  "date": "2026-10-30",
+  "quotes": {
+    "SpaceX": {
+      "price": 143.88999938964844,
+      "change_pct": -0.9226718841227163
+    },
+    "Beema": {
+      "price": 4.697999954223633,
+      "change_pct": 0.0
+    },
+    "Blaize": {
+      "price": 0.2029999941587448,
+      "change_pct": -7.305937377971225
+    },
+    "CVC Capital Partners": {
+      "price": 13.300000190734863,
+      "change_pct": 0.7575786584446453
+    }
+  },
+  "valuations": {
+    "SpaceX": "NA",
+    "Beema": "NA",
+    "Blaize": "NA",
+    "CVC Capital Partners": "NA",
+    "Arini Capital Management": "NA",
+    "Deutsche ReGas": "NA",
+    "Figure AI": "USD 39bn",
+    "Firefly": "NA",
+    "AIP": "NA",
+    "Aligned Data Centers": "c. USD 40bn",
+    "Altera": "USD 8.75bn",
+    "Anthropic": "USD 965bn",
+    "Binance": "NA",
+    "Campus AI": "NA",
+    "Databricks": "USD 190bn",
+    "Isomorphic Labs": "NA",
+    "Khazna": "c. USD 5.5bn",
+    "OpenAI": "USD 852bn",
+    "SSI": "USD 32bn",
+    "TikTok US": "c. USD 14bn",
+    "Vantage Data Centers NA": "NA",
+    "Blackstone": "NA",
+    "Golden Gate Ventures": "NA",
+    "Goldman Sachs": "NA",
+    "Blue Owl": "NA",
+    "HGGC": "NA",
+    "Lexington Partners": "NA",
+    "Vista Equity Partners": "NA",
+    "Coller Capital": "NA",
+    "Citadel": "NA",
+    "Golub Capital": "NA",
+    "Neuberger Berman": "NA",
+    "BlackRock": "NA",
+    "Ares": "NA",
+    "Monroe Capital": "NA",
+    "Morgan Stanley": "NA",
+    "Ardian": "NA",
+    "Hamilton Lane": "NA",
+    "RedBird": "NA",
+    "Qatar Insurance Company": "NA",
+    "Commercial Bank of Qatar": "NA"
+  },
+  "items": {
+    "SpaceX": [
+      "b0a71c25c401",
+      "02221fc24b23",
+      "d35915a1c146",
+      "972212df66fc",
+      "a9567dcac22f",
+      "0b2be30cafbb"
+    ],
+    "Beema": [],
+    "Blaize": [
+      "3a42cb6ba98b",
+      "6e5a0d94c41a",
+      "a0ebd76ef570"
+    ],
+    "CVC Capital Partners": [
+      "e0fe8a19b10f",
+      "1490a70f761f",
+      "6d9358598139",
+      "f3c186e9a5d4",
+      "92202ed0a242",
+      "95de6e2d7e2d"
+    ],
+    "Arini Capital Management": [
+      "8b86d0ba496d",
+      "3ea564b873ec"
+    ],
+    "Deutsche ReGas": [
+      "fd0c1dcf2daa",
+      "0fa495b8b50f",
+      "84901fd1912e",
+      "15cf19c56021",
+      "9edfd48bcf83",
+      "721f38f69218"
+    ],
+    "Figure AI": [
+      "1bea7b5dc413",
+      "623106177573"
+    ],
+    "Firefly": [],
+    "AIP": [
+      "c550d7836f19",
+      "71d477865a71",
+      "3dad89246292"
+    ],
+    "Aligned Data Centers": [
+      "ba9c8718f5fd",
+      "77d49a5bf176",
+      "3a0903ed689b"
+    ],
+    "Altera": [
+      "b9e869b0db12",
+      "f276cc2cf7a4",
+      "166b8e32dc2c",
+      "ae0a0f59ae56",
+      "6f6d444590bb",
+      "1eedd7f227b3"
+    ],
+    "Anthropic": [
+      "10a46e6d60aa",
+      "50492a9ef75e",
+      "d99d2df4992b",
+      "c4f251b9acd3",
+      "ae08cf7ada09",
+      "b0a71c25c401"
+    ],
+    "Binance": [
+      "2a9fa99dc762",
+      "af94bd7a6a40",
+      "f9caea49e589",
+      "f471796944eb",
+      "98761be110a4",
+      "de5708f82e0f"
+    ],
+    "Campus AI": [],
+    "Databricks": [
+      "854667e6348e",
+      "5a1453300b22",
+      "2dac8273ffcc",
+      "85d313df5480",
+      "30ba8411d479",
+      "0edab5bf0cf6"
+    ],
+    "Isomorphic Labs": [],
+    "Khazna": [
+      "2a4b42870b37"
+    ],
+    "OpenAI": [
+      "85e44b5ab9c5",
+      "b5b75e05f826",
+      "8a1633b0ce72",
+      "ec00b6e743cc",
+      "602b405121b6",
+      "6621e7d240aa"
+    ],
+    "SSI": [],
+    "TikTok US": [
+      "f0df37763f84",
+      "dd43e8e4d18b",
+      "944307cb975a",
+      "688b016311dd",
+      "579468be92f8",
+      "e21c971bc9af"
+    ],
+    "Vantage Data Centers NA": [
+      "31ae1bfe282f",
+      "b18076de5dd6",
+      "766717b9e841",
+      "3f49993b11d4",
+      "8a98c79fe0d8",
+      "113a33e7f758"
+    ],
+    "Blackstone": [
+      "d01fa951e759",
+      "710285fc1458",
+      "7c05a398fb7c",
+      "833a6558fcf4",
+      "ee25eda9d34d",
+      "ae04c7b2e685"
+    ],
+    "Golden Gate Ventures": [],
+    "Goldman Sachs": [
+      "db9739d90410",
+      "eaca4fbb85b6",
+      "c98c4092722f",
+      "4195f31f7a22",
+      "52057ffc5aef",
+      "e976ceeeae88"
+    ],
+    "Blue Owl": [
+      "3e499ff92e42",
+      "9071e8c8d452",
+      "c1e1d7bdb106",
+      "69be57fd7eae",
+      "e90c1448439a",
+      "2e4e5fe2bec1"
+    ],
+    "HGGC": [],
+    "Lexington Partners": [],
+    "Vista Equity Partners": [
+      "83ca71a95ed5"
+    ],
+    "Coller Capital": [],
+    "Citadel": [
+      "88781153f9d3",
+      "8d8f1a0a2cd2"
+    ],
+    "Golub Capital": [
+      "8134c235fdde",
+      "557f4a7ac2d6",
+      "14afe092e7e5"
+    ],
+    "Neuberger Berman": [
+      "c7190f6ebd85",
+      "40d8a8ad2c6c",
+      "468352b079d8",
+      "5596761eb468",
+      "eb5ed730e89a",
+      "c69ae9c7c45a"
+    ],
+    "BlackRock": [
+      "55bc2c20b467",
+      "f568458df0c0",
+      "73484e00d279",
+      "a3959c749b6d",
+      "90e792fbca5e",
+      "29e90e973f50"
+    ],
+    "Ares": [
+      "a987667e9e22",
+      "2468ac078847",
+      "cef49552b293",
+      "5fe523cb47cb",
+      "7b84e0f1aef0",
+      "0190155ceb06"
+    ],
+    "Monroe Capital": [
+      "d725e2589c48"
+    ],
+    "Morgan Stanley": [
+      "b3c23adb6e13",
+      "b58575c33c87",
+      "6d81b549eaa6",
+      "b04bb2418185",
+      "b281859d4ee7",
+      "a88a2fd75d67"
+    ],
+    "Ardian": [
+      "1d19d0322e6e",
+      "15ad64d13b7b",
+      "fa15f174e489",
+      "b3b35272f7d3",
+      "87835c6f7b1a",
+      "204ea43e4d50"
+    ],
+    "Hamilton Lane": [
+      "5838596cce5a",
+      "1a3fb59d3c7d",
+      "fa1295bc1961",
+      "6670113a6ce2",
+      "0215405f7d04",
+      "39d5837c3996"
+    ],
+    "RedBird": [
+      "e5df8765103d",
+      "d9cfa2a88a2f",
+      "219caf092201",
+      "7fe19ffb5c96",
+      "7cd44c1ea536",
+      "2b22a00dd2d8"
+    ],
+    "Qatar Insurance Company": [
+      "1a116728faff",
+      "2f9b39718f13",
+      "ab095919f5bd"
+    ],
+    "Commercial Bank of Qatar": []
+  }
+}
