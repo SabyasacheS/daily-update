@@ -32,9 +32,12 @@ news = {
  "Binance": [it("Binance launches retail AI assistant, repackages existing trading tools", "Finance Magnates", "2026-10-05")],
  "Vantage Data Centers NA": [it("Vantage data center opponents push misleading claims on jobs", "Milwaukee Journal Sentinel", "2026-10-05")],
 }
+BENCH = {"^GSPC": (7615.70, 7580.07), "^IXIC": (25622.52, 25437.0), "^STOXX50E": (6146.27, 6131.5),
+         "^TNX": (4.90, 4.92), "BZ=F": (106.50, 117.6), "GC=F": (3957.80, 3899.0), "BTC-USD": (77802.36, 78250.0)}
 raw = {
  "quotes": {"SPCX": hist(171.09, 158.96, 132.73, 76.11, 92.79), "BEEMA.QA": hist(4.45, 4.65, 0.28, 0.04, 0.87),
-            "BZAI": hist(0.43, 0.48, 2.81, 1.95, 4.51), "CVC.AS": hist(12.15, 12.24, 0.87, 0.92, 1.02)},
+            "BZAI": hist(0.43, 0.48, 2.81, 1.95, 4.51), "CVC.AS": hist(12.15, 12.24, 0.87, 0.92, 1.02),
+            "BEMA.QA": hist(4.45, 4.65, 0.28, 0.04, 0.87)},
  "news": news,
  "filtered": [{"company": "Binance", "title": "Word of the Day: Test Your Knowledge", "reason": "not a news item"},
               {"company": "TikTok US", "title": "ByteDance", "reason": "title too short to be news"}],
@@ -43,5 +46,10 @@ raw = {
  "industry": {"Private Credit / BDC": [], "Tech / AI": [it("AI Infrastructure's Next Phase: Capital, Power and the Right to Build", "Data Center Frontier", "2026-10-05")]},
  "valuation_search": {}, "earnings": {"BX": ["2026-10-22"]}, "fred": [],
 }
+raw["quotes"].pop("BEEMA.QA", None)
+for sym, (last, prev) in BENCH.items():
+    raw["quotes"][sym] = hist(last, prev, 1, 1, 1)
+raw["earlier"] = {"Khazna": [it("Masdar and Khazna plan clean energy for Greek data centres", "Reuters", "2026-10-02")]}
+raw["earnings"] = {"BX": ["2026-10-09"]}
 json.dump({"today": "2026-10-06", "raw": raw}, open("tests/fixture.json", "w"), indent=1)
 print("fixture written")

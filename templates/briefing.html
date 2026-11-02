@@ -85,7 +85,7 @@
     <h2>Markets</h2>
     <div class="bench-grid">
     {% for bm in r.benchmarks %}
-      <div><span>{{ bm.name }}</span><b>{% if bm.unit == 'yield' %}{{ bm.q.price | price }}%{% else %}{{ bm.q.price | price }}{% endif %}</b><i class="{{ m.dir(bm.q.change_pct) }}">{% if bm.unit == 'yield' %}{{ bm.q.change | bps }}{% else %}{{ bm.q.change_pct | pct }}{% endif %}</i></div>
+      <div><span>{{ bm.name }}</span><b>{% if bm.unit == 'yield' %}{{ bm.q.price | price }}%{% else %}{{ bm.q.price | price }}{% endif %}</b><i class="{{ m.dir(bm.q.change_pct) }}">{% if bm.unit == 'yield' %}{{ bm.q.change | bps }}{% else %}{{ m.arrow(bm.q.change_pct) }} {{ bm.q.change_pct | pct }}{% endif %}</i></div>
     {% endfor %}
     </div>
   </div>

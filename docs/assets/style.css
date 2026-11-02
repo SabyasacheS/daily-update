@@ -2,7 +2,7 @@
    One typeface (Inter). Sizes: 28 page title · 18 card titles and key figures · 16 lead and headlines · 15 body · 13 secondary · 12 small.
    Navy for structure, blue for links, green/red only for moves. Sentence case throughout. */
 :root{
-  --navy:#0B2545; --navy-2:#13315C; --bg:#F7F8FA; --surface:#FFFFFF; --ink:#111827; --body:#374151; --muted:#6B7280;
+  --navy:#0B2545; --navy-2:#13315C; --bg:#F7F8FA; --surface:#FFFFFF; --ink:#111827; --body:#374151; --muted:#5B6472;
   --line:#E5E7EB; --line-2:#EEF0F3; --tile:#F3F5F8; --blue:#1D4ED8; --chip:#EEF2F7;
   --up:#047857; --down:#B91C1C; --ok-bg:#ECFDF5; --ok-ink:#065F46; --warn-bg:#FFF7ED; --warn-ink:#9A3412; --warn-line:#FED7AA;
   --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
@@ -38,6 +38,12 @@ ul.filtered li{margin:4px 0}
 .brand:hover{color:#fff}
 .stamp{font-size:13px;color:#C7D2E3;text-align:right;line-height:1.5}
 .stamp b{color:#fff;font-weight:500}
+.top-right{display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:flex-end}
+.theme{display:inline-flex;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:2px}
+.theme button{display:inline-flex;align-items:center;gap:5px;background:transparent;border:0;color:#C7D2E3;font:inherit;font-size:12.5px;padding:4px 10px;border-radius:999px;cursor:pointer;min-height:28px}
+.theme button:hover{color:#fff}
+.theme button[aria-pressed="true"]{background:rgba(255,255,255,.16);color:#fff}
+.theme svg{width:14px;height:14px}
 .navbar{background:var(--surface);border-bottom:1px solid var(--line)}
 .nav{display:flex;flex-wrap:wrap;gap:0 28px;font-size:14px}
 .nav a{color:var(--muted);padding:14px 0}
@@ -63,7 +69,7 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em;line-height:1.25;margin:
 .sum-list b{color:var(--ink);font-weight:600}
 .sum-list a{color:var(--ink);font-weight:500}
 .sum-list .so{color:var(--muted)}
-.sum-list .so::before{content:"— "}
+.sum-list .so::before{content:"\00a0— "}
 .sum-mkt{margin:16px 0 0;padding-top:12px;border-top:1px solid var(--line);font-size:14px;color:var(--body)}
 .sum-mkt b{color:var(--ink)}
 .sec{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px 24px}
@@ -112,7 +118,8 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em;line-height:1.25;margin:
 .bench-grid div{background:var(--tile);border-radius:8px;padding:9px 12px;font-size:13px}
 .bench-grid span{display:block;color:var(--muted)}
 .bench-grid b{font-size:15px;font-weight:650}
-.bench-grid i{font-style:normal;margin-left:6px;font-size:12.5px}
+.bench-grid i{display:block;font-style:normal;font-size:13px;margin-top:1px}
+.bench-grid.wide{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
 .bench{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:13px;padding:14px 18px;background:var(--surface);border:1px solid var(--line);border-radius:10px}
 .bench span b{font-weight:600}
 
@@ -230,27 +237,47 @@ footer.foot b{color:var(--ink)}
 }
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
 
-/* Dark mode: follows the device setting */
-@media (prefers-color-scheme: dark){
-  :root{
-    --bg:#0B1220; --surface:#111A2B; --ink:#E5E9F0; --body:#C3CAD5; --muted:#94A0B2;
+/* Dark theme. The switch in the header stores "light", "dark" or nothing (follow the device). */
+:root[data-theme="dark"]{color-scheme:dark;
+  --bg:#0B1220; --surface:#111A2B; --ink:#E5E9F0; --body:#C3CAD5; --muted:#94A0B2;
     --line:#1F2A3D; --line-2:#1A2436; --tile:#16213A; --chip:#1C2A45; --blue:#8AB4FF;
-    --up:#34D399; --down:#F87171; --ok-bg:#0F2E25; --ok-ink:#6EE7B7; --warn-bg:#33200F; --warn-ink:#FDBA74; --warn-line:#5B3A18;
-  }
-  .top{background:#071528}
-  .navbar{background:var(--surface)}
-  .nav a.on{color:#fff;box-shadow:inset 0 -2px 0 #8AB4FF}
-  .top3 .n,.big-tag{color:#C7D7F5}
-  .sum-h{color:#C7D7F5}
-  .badge-new{background:#1C2A45;color:#8AB4FF}
-  .k-pr{background:#2C4A7A}
-  .btn-dark{background:#2C4A7A}
-  .btn-line{color:#C7D7F5;border-color:#3B5B8E}
-  .pills button[aria-pressed=true]{background:#2C4A7A;border-color:#2C4A7A}
-  .hcard.big{box-shadow:inset 0 3px 0 #8AB4FF}
-  .vbars i.avg10{background:#5B6B84 !important}
-  .vbars i.avg3m{background:#36435A !important}
-  .legend i.avg10{background:#5B6B84 !important}
-  .legend i.avg3m{background:#36435A !important}
-  .field input{border-color:#2A3A55}
+    --up:#34D399; --down:#F87171; --ok-bg:#0F2E25; --ok-ink:#6EE7B7; --warn-bg:#33200F; --warn-ink:#FDBA74; --warn-line:#5B3A18;}
+  html[data-theme="dark"] .top{background:#071528}
+  html[data-theme="dark"] .navbar{background:var(--surface)}
+  html[data-theme="dark"] .nav a.on{color:#fff;box-shadow:inset 0 -2px 0 #8AB4FF}
+  html[data-theme="dark"] .top3 .n, html[data-theme="dark"] .big-tag{color:#C7D7F5}
+  html[data-theme="dark"] .sum-h{color:#C7D7F5}
+  html[data-theme="dark"] .badge-new{background:#1C2A45;color:#8AB4FF}
+  html[data-theme="dark"] .k-pr{background:#2C4A7A}
+  html[data-theme="dark"] .btn-dark{background:#2C4A7A}
+  html[data-theme="dark"] .btn-line{color:#C7D7F5;border-color:#3B5B8E}
+  html[data-theme="dark"] .pills button[aria-pressed=true]{background:#2C4A7A;border-color:#2C4A7A}
+  html[data-theme="dark"] .hcard.big{box-shadow:inset 0 3px 0 #8AB4FF}
+  html[data-theme="dark"] .vbars i.avg10{background:#5B6B84 !important}
+  html[data-theme="dark"] .vbars i.avg3m{background:#36435A !important}
+  html[data-theme="dark"] .legend i.avg10{background:#5B6B84 !important}
+  html[data-theme="dark"] .legend i.avg3m{background:#36435A !important}
+  html[data-theme="dark"] .field input{border-color:#2A3A55}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){color-scheme:dark;
+  --bg:#0B1220; --surface:#111A2B; --ink:#E5E9F0; --body:#C3CAD5; --muted:#94A0B2;
+    --line:#1F2A3D; --line-2:#1A2436; --tile:#16213A; --chip:#1C2A45; --blue:#8AB4FF;
+    --up:#34D399; --down:#F87171; --ok-bg:#0F2E25; --ok-ink:#6EE7B7; --warn-bg:#33200F; --warn-ink:#FDBA74; --warn-line:#5B3A18;}
+  html:not([data-theme="light"]) .top{background:#071528}
+  html:not([data-theme="light"]) .navbar{background:var(--surface)}
+  html:not([data-theme="light"]) .nav a.on{color:#fff;box-shadow:inset 0 -2px 0 #8AB4FF}
+  html:not([data-theme="light"]) .top3 .n, html:not([data-theme="light"]) .big-tag{color:#C7D7F5}
+  html:not([data-theme="light"]) .sum-h{color:#C7D7F5}
+  html:not([data-theme="light"]) .badge-new{background:#1C2A45;color:#8AB4FF}
+  html:not([data-theme="light"]) .k-pr{background:#2C4A7A}
+  html:not([data-theme="light"]) .btn-dark{background:#2C4A7A}
+  html:not([data-theme="light"]) .btn-line{color:#C7D7F5;border-color:#3B5B8E}
+  html:not([data-theme="light"]) .pills button[aria-pressed=true]{background:#2C4A7A;border-color:#2C4A7A}
+  html:not([data-theme="light"]) .hcard.big{box-shadow:inset 0 3px 0 #8AB4FF}
+  html:not([data-theme="light"]) .vbars i.avg10{background:#5B6B84 !important}
+  html:not([data-theme="light"]) .vbars i.avg3m{background:#36435A !important}
+  html:not([data-theme="light"]) .legend i.avg10{background:#5B6B84 !important}
+  html:not([data-theme="light"]) .legend i.avg3m{background:#36435A !important}
+  html:not([data-theme="light"]) .field input{border-color:#2A3A55}
 }
+:root[data-theme="light"]{color-scheme:light}

@@ -34,14 +34,14 @@
       <td class="{{ m.dir(q.change_pct) }}" style="font-weight:600">{{ m.arrow(q.change_pct) }} {{ q.change_pct | pct }}</td>
       <td>{{ q.volume | volm }}</td><td>{{ q.avg10 | volm }}</td><td>{{ q.avg3m | volm }}</td>
       <td class="l"><div class="vbars">
-        <i style="width:{{ (100 * (q.volume or 0) / mx) | round | int if mx else 0 }}%;background:var(--accent)"></i>
+        <i style="width:{{ (100 * (q.volume or 0) / mx) | round | int if mx else 0 }}%;background:var(--blue)"></i>
         <i style="width:{{ (100 * (q.avg10 or 0) / mx) | round | int if mx else 0 }}%;background:#8A958F" class="avg10"></i>
         <i style="width:{{ (100 * (q.avg3m or 0) / mx) | round | int if mx else 0 }}%;background:#C9D1CB" class="avg3m"></i></div></td>
       {% else %}<td colspan="7" class="muted">no data</td>{% endif %}
     </tr>
     {% endfor %}
     </tbody></table></div>
-  <div class="legend" style="margin-top:10px"><span><i style="background:var(--accent)"></i>today</span><span><i style="background:#8A958F" class="avg10"></i>10-day avg</span><span><i style="background:#C9D1CB" class="avg3m"></i>3-month avg</span></div>
+  <div class="legend" style="margin-top:10px"><span><i style="background:var(--blue)"></i>today</span><span><i style="background:#8A958F" class="avg10"></i>10-day avg</span><span><i style="background:#C9D1CB" class="avg3m"></i>3-month avg</span></div>
 </section>
 
 {% set notes = [] %}
@@ -59,10 +59,13 @@
 {% endif %}
 
 {% if r.benchmarks %}
-<section>
-  <div class="rule-head"><h2>Benchmarks</h2><span class="ln"></span></div>
-  <div class="bench">{% for bm in r.benchmarks %}<span>{{ bm.name }} <b>{% if bm.unit == 'yield' %}{{ bm.q.price | price }}%{% else %}{{ bm.q.price | price }}{% endif %}</b>
-    <span class="{{ m.dir(bm.q.change_pct) }}">{% if bm.unit == 'yield' %}{{ bm.q.change | bps }}{% else %}{{ bm.q.change_pct | pct }}{% endif %}</span></span>{% endfor %}</div>
+<section class="sec">
+  <div class="rule-head"><h2>Markets</h2><span class="aside">Last close</span></div>
+  <div class="bench-grid wide" style="margin-top:8px">
+  {% for bm in r.benchmarks %}
+    <div><span>{{ bm.name }}</span><b>{% if bm.unit == 'yield' %}{{ bm.q.price | price }}%{% else %}{{ bm.q.price | price }}{% endif %}</b><i class="{{ m.dir(bm.q.change_pct) }}">{% if bm.unit == 'yield' %}{{ bm.q.change | bps }}{% else %}{{ m.arrow(bm.q.change_pct) }} {{ bm.q.change_pct | pct }}{% endif %}</i></div>
+  {% endfor %}
+  </div>
 </section>
 {% endif %}
 {% endblock %}
