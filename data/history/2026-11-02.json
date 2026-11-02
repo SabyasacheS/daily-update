@@ -2,20 +2,20 @@
   "date": "2026-11-02",
   "quotes": {
     "SpaceX": {
-      "price": 139.58999633789062,
-      "change_pct": 3.6149013309533005
+      "price": 141.0845947265625,
+      "change_pct": 4.724312238858038
     },
     "Beema": {
       "price": 4.7220001220703125,
       "change_pct": -1.2133909036033823
     },
     "Blaize": {
-      "price": 0.2004999965429306,
-      "change_pct": 2.295919278887175
+      "price": 0.20340000092983246,
+      "change_pct": 3.775513392533013
     },
     "CVC Capital Partners": {
-      "price": 13.920000076293945,
-      "change_pct": 3.725782393125586
+      "price": 13.90999984741211,
+      "change_pct": 3.651265039735245
     }
   },
   "valuations": {
@@ -92,19 +92,20 @@
     "Aligned Data Centers": [],
     "Altera": [],
     "Anthropic": [
-      "ae08cf7ada09",
-      "2b872520bd40",
-      "6da26963563c",
-      "522cd7940a6e",
-      "3d22b07926e2"
+      "e868526db012",
+      "cc4921ab2173",
+      "2c3cfe7ace1c",
+      "03aebdcb8d5f",
+      "f2b86ba5a13f",
+      "3b8e963de565"
     ],
     "Binance": [
-      "25718b8e0434",
-      "0e2c7f9ad07f",
-      "6435cb86aa0e",
-      "9f23e6d2572b",
-      "db40e1d111ed",
-      "d94f2911bb1c"
+      "7b77d4075daf",
+      "57d48809eb75",
+      "1e339f67bc58",
+      "7a63910359f6",
+      "deebb7482fef",
+      "f4038c0fdc4c"
     ],
     "Campus AI": [],
     "Databricks": [
@@ -116,12 +117,12 @@
     ],
     "Khazna": [],
     "OpenAI": [
+      "7a9c09e9e518",
       "7bda9b71f843",
       "4dfe93aa9004",
       "663ddc026dc5",
       "9ac358383fa5",
-      "df71bb9d9c6d",
-      "36b9d3c23ab9"
+      "df71bb9d9c6d"
     ],
     "SSI": [
       "430f520b1403"
@@ -142,10 +143,7 @@
     "Goldman Sachs": [
       "012683bd58f3",
       "d550256ecdfa",
-      "f6dad4e153c8",
-      "49ac7eacf191",
-      "ea9b956b1d9f",
-      "c3cd3e27a7f1"
+      "49ac7eacf191"
     ],
     "Blue Owl": [
       "d88982000726",
@@ -164,7 +162,9 @@
     ],
     "Neuberger Berman": [],
     "BlackRock": [
-      "7150bcd54f95"
+      "83d82ad804a1",
+      "d86d04e9264a",
+      "60bf25b38c89"
     ],
     "Ares": [
       "53232aef1ce3",
@@ -183,7 +183,6 @@
       "6b5d8afebb4b"
     ],
     "RedBird": [
-      "e4ed64ba0337",
       "fa6ac36a33ae"
     ],
     "Qatar Insurance Company": [],
