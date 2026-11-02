@@ -25,6 +25,10 @@ NOT_NEWS = re.compile(
     r"live stream|livestream|tickets|preview\b|tournament|football|basketball|field hockey|cross country|"
     r"soccer|volleyball|wrestling|theater|theatre|broadway|recipe|explained in|beginner'?s guide|^how to|bull case|bear case|learn why|here'?s why|should you|monthly distribution|net asset value|(raises|cuts|lowers|lifts|adjusts|boosts|trims) (its )?(price )?target|^\d+ .{0,40}\bstocks\b|retirees|collects usd|analysts? (target|see|rate|offer)|passive income|"
     r"lights up the sky|night sky|glowing|jellyfish|stargaz\w*|visible from|spotted over|stunning|"
+    r"seasonal returns?|returns? chart|help or hurt|huge winners|winners from|\bis .{1,40} a buy\b|form 4\b|"
+    r"what to know|what'?s in store|on the deck|earnings call (presentation|transcript|highlights)|"
+    r"\bhold\b\s*$|- hold\b|justify its price|could be worth|invested today|key questions|^opinion\b|"
+    r"notice to shareholders|sources of distribution|holds steady at|award winner|press releases and corporate news|"
     r"applications? (open|now open)|apply now|residency|fellowship|internship|webinar|register now|"
     r"strategy, team|team & portfolio|our team|our people|meet the team|about us|overview$|"
     r"strangest|weirdest|fun facts?|you won'?t believe|marital|wife|husband|horoscope)\b",
@@ -110,6 +114,8 @@ def judge(title, source, company, is_pr):
     if is_pr:
         if re.search(r"\b(community|forum|support|help ?cent(er|re)|knowledge base|developer|docs)\b", source or "", re.I):
             return "support or forum post, not a release"
+        if t.rstrip().endswith("?") or t[:1].islower() or re.match(r"(my|i|i'm|i've|help|error|issue|unable|cannot|can't)\b", t, re.I):
+            return "forum question or documentation, not a release"
         if PR_BAD.match(t) or re.search(r"\s-\s[A-Z][\w &.]+$", t):  # people bios, "Product - Company" pages
             return "website page, not a release"
         if not ANNOUNCE.search(t):
