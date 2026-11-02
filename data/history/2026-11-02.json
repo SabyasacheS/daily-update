@@ -14,8 +14,8 @@
       "change_pct": -3.448275608949183
     },
     "CVC Capital Partners": {
-      "price": 13.819999694824219,
-      "change_pct": 2.980623071954087
+      "price": 13.800000190734863,
+      "change_pct": 2.8315954715393596
     }
   },
   "valuations": {
@@ -73,6 +73,7 @@
     "Beema": [],
     "Blaize": [],
     "CVC Capital Partners": [
+      "0ea8fe400aa0",
       "250f8493b07a"
     ],
     "Arini Capital Management": [
@@ -96,12 +97,12 @@
       "050918fd0284"
     ],
     "Anthropic": [
+      "fc7e8b8061f7",
       "d4d057d3d3cd",
       "2c3cfe7ace1c",
       "03aebdcb8d5f",
       "6eea79d82561",
-      "db0e073b56ca",
-      "f2b86ba5a13f"
+      "db0e073b56ca"
     ],
     "Binance": [
       "9b95fd6988ef",
@@ -109,11 +110,12 @@
       "7a63910359f6",
       "25718b8e0434",
       "c9b19b3df8ed",
-      "08ba496a64c0"
+      "e39ba5778ca7"
     ],
     "Campus AI": [],
     "Databricks": [
       "a96911632c7d",
+      "86f7009854cd",
       "0c13f60de4af"
     ],
     "Isomorphic Labs": [
@@ -145,6 +147,7 @@
     ],
     "Golden Gate Ventures": [],
     "Goldman Sachs": [
+      "d550256ecdfa",
       "f6dad4e153c8",
       "5333fadd2fcb",
       "49ac7eacf191",
@@ -159,19 +162,18 @@
     "HGGC": [],
     "Lexington Partners": [],
     "Vista Equity Partners": [],
-    "Coller Capital": [
-      "a1d04c2f16cb"
-    ],
+    "Coller Capital": [],
     "Citadel": [],
     "Golub Capital": [
       "94992856d68d",
       "c4b5522127a9"
     ],
     "Neuberger Berman": [
+      "b1276cec7ab4",
+      "7c7f5247664f",
       "e48a2914825d",
       "8d8ffc45128d",
-      "3ae87d232004",
-      "d1ca8f73ee84"
+      "3ae87d232004"
     ],
     "BlackRock": [
       "83d82ad804a1",
@@ -193,6 +195,8 @@
     "Morgan Stanley": [
       "21917bd41fa1",
       "bb5bbcd6eef5",
+      "a67c82541c74",
+      "595a7851f51d",
       "dbea3d5a0ddf",
       "c5e84505b31e"
     ],

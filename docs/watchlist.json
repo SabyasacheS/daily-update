@@ -16,7 +16,7 @@
     "news_window_hours": 72,
     "calendar_days": 21,
     "attach_pdf": true,
-    "gemini_model": "gemini-2.5-flash",
+    "gemini_model": "gemini-3.8-flash",
     "thresholds": {
       "price_move_pct": 3,
       "volume_vs_10d": 1.5,
