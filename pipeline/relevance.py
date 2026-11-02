@@ -41,7 +41,7 @@ BUSINESS = re.compile(
     r"acquir\w*|acquisitions?|mergers?|merge|buyouts?|take-private|deals?|agreements?|partner\w*|joint venture|"
     r"team(s)? up|contracts?|orders?|award\w*|wins?|bids?|sales?|sells?|sold|divest\w*|spin-?off|carve[- ]out|"
     r"run-rate|legal|allegations?|espionage|security|breach|hack\w*|robots?|humanoid|demo|ads?|advertis\w*|"
-    r"talent|poach\w*|lawyers?|shut\w*( down)?|closing|exit\w*|wind(s|ing)? down|"
+    r"talent|poach\w*|lawyers?|complet\w*|review|audit|shut\w*( down)?|closing|exit\w*|wind(s|ing)? down|"
     r"revenue|sales|earnings|results|profit|loss|guidance|outlook|quarter|q[1-4]|dividend|buyback|"
     r"debt|bond|loan|credit|facility|refinanc\w*|notes?|fund(raise|raising)?|closes?|closed|aum|assets|"
     r"launch\w*|unveil\w*|introduc\w*|releases?|rolls? out|expand\w*|opens?|plans?|build\w*|capacity|"
@@ -119,7 +119,7 @@ def judge(title, source, company, is_pr):
     pos = name_position(t, aliases)
     if pos is None:
         return "company not named"
-    if pos > 10:
+    if pos > company.get("max_pos", 10):
         return "company only mentioned in passing"
     if company.get("must") and not any(re.search(r"(?<![A-Za-z])" + re.escape(m) + r"(?![A-Za-z])", t, re.I)
                                        for m in company["must"]):
