@@ -10,7 +10,7 @@ import os
 import time
 from datetime import date, timedelta
 
-from . import ai, calendar, history, markets, news, render, valuations
+from . import ai, calendar, history, markets, news, relevance, render, valuations
 from .config import (EVENTS, STATE, VALUATIONS, fmt_pct, fmt_price, fmt_ratio, house_style, load_json, load_watchlist,
                      local_now, now_utc, save_json)
 
@@ -156,7 +156,11 @@ def build(wl, raw, state, today, use_ai=True):
         if comp["items"]:
             top = comp["items"][0]
             last[name] = {"title": top["title"], "date": top["date"], "url": top["url"]}
-        comp["last"] = last.get(name)
+        prev = last.get(name)
+        if prev and relevance.topic_junk(prev.get("title", ""), ""):
+            last.pop(name, None)  # stored before the stricter filter existed
+            prev = None
+        comp["last"] = prev
 
     # --- calendar
     cal = calendar.build(load_json(EVENTS, []), raw.get("fred", []), raw.get("earnings", {}),

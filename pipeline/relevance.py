@@ -11,7 +11,7 @@ import re
 
 SPAM = re.compile(
     r"([\U0001F300-\U0001FAFF☀-➿])|(\+\+|!!|\*NEW|XXX|18\+|\bMMS\b|viral video|original link|hot models|"
-    r"full video|leaked|onlyfans|\bclips?\b\+)", re.I)
+    r"full video|leaked|watch ?live|live stream(ing)? free|\bvs\.? .{0,30}\blive\b|\[|\$\+|onlyfans|\bclips?\b\+)", re.I)
 
 NOT_NEWS = re.compile(
     r"\b(careers?|jobs? at|job openings?|we'?re hiring|internship|candidate|cookie|privacy policy|terms of (use|service)|"
