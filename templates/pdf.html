@@ -25,6 +25,11 @@ p{margin:0 0 5pt}
 h1{font-size:16pt;font-weight:600;line-height:1.25;margin:3pt 0 7pt;color:#111827}
 h2{font-size:11.5pt;font-weight:700;margin:16pt 0 6pt;padding-bottom:3pt;border-bottom:.75pt solid #0B2545;color:#0B2545;page-break-after:avoid}
 .lead p{max-width:150mm}
+.sh{font-size:9.5pt;font-weight:700;color:#0B2545;margin:9pt 0 3pt}
+.sl{margin:0;padding-left:12pt}
+.sl li{margin:2.5pt 0}
+.sl .so{color:#6B7280}
+.mk{margin:8pt 0 0;padding-top:5pt;border-top:.5pt solid #E5E7EB}
 .top{width:100%;border-collapse:collapse;margin-top:2pt}
 .top td{vertical-align:top;padding:6pt 0;border-bottom:.5pt solid #E5E7EB}
 .top tr:last-child td{border-bottom:0}
@@ -71,11 +76,17 @@ table.cal tr:last-child td{border-bottom:0}
 
 <span class="lbl">Executive summary{% if r.briefing.ai %} · AI-written, verify before acting{% endif %}</span>
 <h1>{{ r.briefing.headline }}</h1>
-<div class="lead">{% for p in r.briefing.paragraphs %}<p>{{ p }}</p>{% endfor %}</div>
+{% set b = r.briefing %}
+{% if b.happened %}<h3 class="sh">What happened</h3>
+<ul class="sl">{% for h in b.happened %}<li>{% if h.show_co %}<b>{{ h.company }}:</b> {% endif %}<a href="{{ h.url if h.url.startswith('http') else site ~ h.url }}">{{ h.text }}</a>{% if h.so_what %}<span class="so"> — {{ h.so_what }}</span>{% endif %}</li>{% endfor %}</ul>{% endif %}
+{% if b.watch %}<h3 class="sh">What to watch</h3>
+<ul class="sl">{% for w in b.watch %}<li>{{ w }}</li>{% endfor %}</ul>{% endif %}
+{% if b.markets %}<p class="mk"><b>Markets:</b> {{ b.markets }}</p>{% endif %}
+{% if b.paragraphs and not b.happened %}<div class="lead">{% for p in b.paragraphs %}<p>{{ p }}</p>{% endfor %}</div>{% endif %}
 
 {% set key = r.briefing.key if r.briefing.key else r.briefing.top3 %}
 {% if key %}
-<h2>Key news</h2>
+<h2>{% if r.briefing.happened %}More key news{% else %}Key news{% endif %}</h2>
 <table class="top">
 {% for t in key[:5] %}
 <tr><td class="n">{{ loop.index }}</td>

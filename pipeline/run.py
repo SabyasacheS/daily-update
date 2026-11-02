@@ -6,6 +6,7 @@
     python -m pipeline.run --fixture tests/fixture.json --email no   # offline test render
 """
 import argparse
+import re
 import os
 import time
 from datetime import date, timedelta
@@ -183,10 +184,12 @@ def build(wl, raw, state, today, use_ai=True):
     briefing, res = None, None
     if use_ai:
         res = ai.write_briefing(digest(report, val_changes, signals), model)
-        briefing = from_ai(res, report) if res else None
+        briefing = from_ai(res, report, val_changes, signals) if res else None
         print("  AI briefing:", "used" if briefing else ("unusable answer: " + str(res)[:200] if res else "no answer"))
     report["briefing"] = briefing or fallback_briefing(report, val_changes, signals)
     report["briefing"]["ai"] = bool(briefing)
+    used = {h["orig"] for h in report["briefing"].get("happened", [])}
+    report["briefing"]["key"] = [t for t in report["briefing"].get("key", []) if t["title"] not in used][:5]
     report["briefing"]["also"] = also_today(report)
     notes = (res or {}).get("notes", {}) if briefing else {}
     themes = (res or {}).get("themes", {}) if briefing else {}
@@ -209,7 +212,9 @@ def build(wl, raw, state, today, use_ai=True):
 def also_today(report, n=5):
     """Other new stories worth a glance: one per company, not already in Key news, most widely covered first."""
     shown = {t["title"] for t in report["briefing"].get("key") or report["briefing"].get("top3") or []}
-    shown_co = {t.get("company") for t in report["briefing"].get("key") or []}
+    shown |= {h["orig"] for h in report["briefing"].get("happened", [])}
+    shown_co = {t.get("company") for t in report["briefing"].get("key") or []} | \
+        {h["company"] for h in report["briefing"].get("happened", [])}
     pool = []
     for name, c in report["companies"].items():
         for it in c["items"]:
@@ -271,6 +276,12 @@ def digest(report, val_changes, signals):
                   for i in report["macro"]]
     d["themes"] = {t["name"]: [{"item_id": i["id"], "title": i["title"]} for i in t["items"]]
                    for t in report["industry"]}
+    d["upcoming_7_days"] = [{"date": e["date"], "event": e["title"], "detail": e.get("detail", "")}
+                            for e in report["calendar"] if e["days_away"] <= 7]
+    d["reported_valuations"] = [{"company": n, "reported": c["view"]["reported"]["text"],
+                                 "kind": c["view"]["reported"]["label"]}
+                                for n, c in report["companies"].items() if c["view"].get("reported")]
+    d["market_line_hint"] = markets_line(report)
     return d
 
 
@@ -297,26 +308,98 @@ def top_entry(report, it, why):
 
 
 def split_ranked(ranked):
-    """Top 3 for the site and PDF; up to 5 news items (market moves excluded, they are in the holdings table) for the email."""
-    return {"top3": ranked[:3], "key": [t for t in ranked if t["label"] != "Markets"][:5]}
+    """Top 3 for the site and PDF; ranked news items (market moves excluded, they are in the holdings table)."""
+    return {"top3": ranked[:3], "key": [t for t in ranked if t["label"] != "Markets"][:8]}
 
 
-def from_ai(res, report):
+def happened_entry(report, it, text=None, so_what=""):
+    label, page = _label_for(report, it)
+    t = house_style(text or it["title"])
+    co = it.get("company", "")
+    return {"label": label, "company": co, "show_co": not t.lower().startswith(co.lower().split()[0]) if co else False,
+            "text": t, "orig": house_style(it["title"]),
+            "so_what": house_style(so_what or ""), "url": it["url"] if it["url"].startswith("http") else page,
+            "source": ", ".join(it.get("sources", [it.get("source", "")])[:2]), "date": it.get("date", "")}
+
+
+def from_ai(res, report, val_changes=(), signals=()):
     idx = all_items_by_id(report)
     ranked = []
-    for t in res.get("top") or res.get("top3") or []:
+    for t in res.get("top") or []:
         it = idx.get(t.get("item_id"))
         if it and all(x["title"] != house_style(it["title"]) for x in ranked):
             ranked.append(top_entry(report, it, t.get("why")))
-    paras = [house_style(p) for p in res.get("paragraphs", []) if p][:2]
-    if not res.get("headline") or not paras:
+    happened = []
+    for h in res.get("happened") or []:
+        it = idx.get(h.get("item_id"))
+        if it and h.get("text"):
+            happened.append(happened_entry(report, it, h["text"], h.get("so_what")))
+    if not res.get("headline") or not happened:
         return None
     for e in fallback_top(report, [], [], n=8):
         if len(ranked) >= 8:
             break
         if all(x["title"] != e["title"] for x in ranked):
             ranked.append(e)
-    return dict({"headline": house_style(res["headline"]), "paragraphs": paras}, **split_ranked(ranked))
+    watch = [house_style(w) for w in (res.get("watch") or []) if w][:4] or watch_list(report, val_changes, signals)
+    return dict({"headline": house_style(res["headline"]), "happened": happened[:3], "watch": watch,
+                 "markets": house_style(res.get("markets") or markets_line(report))}, **split_ranked(ranked))
+
+
+def markets_line(report, move=3.0, index_move=1.5):
+    """One sentence, only about moves that matter."""
+    bits = []
+    for h in report["holdings"]:
+        q = h["q"]
+        if not q or q["change_pct"] is None:
+            continue
+        big = abs(q["change_pct"]) >= move
+        vol = "volume" in q["flags"]
+        if big or vol:
+            verb = "rose" if q["change_pct"] > 0 else "fell"
+            t = f"{h['name']} {verb} {abs(q['change_pct']):.1f}%"
+            if vol:
+                t += f" on {fmt_ratio(q['vs10'])} its usual volume"
+            bits.append(t)
+    for b in report["benchmarks"]:
+        q = b["q"]
+        if b.get("unit") != "yield" and q.get("change_pct") is not None and abs(q["change_pct"]) >= index_move:
+            verb = "rose" if q["change_pct"] > 0 else "fell"
+            bits.append(f"{b['name']} {verb} {abs(q['change_pct']):.1f}%")
+    if not bits:
+        return f"Markets were quiet: no holding moved more than {move:.0f}%."
+    return "; ".join(bits[:4]) + "."
+
+
+def watch_list(report, val_changes, signals, days=7):
+    out = []
+    for v in val_changes:
+        if v["type"] == "valuation":
+            out.append(f"{v['company']} valuation updated to {v['to']}" + (f" (was {v['from']})." if v.get("from") else "."))
+        else:
+            out.append(f"{v['company']}: new valuation of {v['to']} reported, not confirmed.")
+    for sg in signals:
+        amt = f" of {sg['raise_text']}" if sg.get("raise_text") else ""
+        state = "reported, not confirmed" if sg["status"] != "closed" else "announced, no valuation stated"
+        out.append(f"{sg['company']}: funding round{amt} {state}.")
+    for e in report["calendar"]:
+        if e["days_away"] <= days:
+            when = "today" if e["days_away"] == 0 else ("tomorrow" if e["days_away"] == 1 else f"{e['weekday']} {e['day']}")
+            out.append(f"{e['title']} {when}.")
+    seen, uniq = set(), []
+    for w in out:
+        if w not in seen:
+            seen.add(w)
+            uniq.append(w)
+    return uniq[:4]
+
+
+MATERIAL = re.compile(
+    r"\b(rais\w*|funding|round|valuation|valued|ipo|listing|s-1|acquir\w*|acquisition|merger|buyout|take-private|"
+    r"deal|stake|sells?|sale|divest\w*|lawsuit|sues?|sued|court|settle\w*|fine[ds]?|penalt\w*|ban\w*|probe|"
+    r"investigat\w*|regulat\w*|antitrust|sanction\w*|results|earnings|revenue|profit|loss(es)?|guidance|"
+    r"layoffs?|ceo|cfo|resign\w*|steps? down|appoint\w*|hack\w*|breach|bankrupt\w*|default|margin calls?|"
+    r"debt|bonds?|loans?|credit|fund(raise|raising)?|closes?|blacklist\w*|pentagon|government|contract)\b", re.I)
 
 
 def fallback_top(report, val_changes, signals, n=3):
@@ -341,7 +424,9 @@ def fallback_top(report, val_changes, signals, n=3):
     for n, c in report["companies"].items():
         for i in c["items"]:
             if i.get("is_new"):
-                scored.append((1.5 + 0.4 * len(i["sources"]) + (0.5 if i["kind"] == "pr" else 0), dict(i, company=n), ""))
+                material = bool(MATERIAL.search(i["title"]))
+                score = 1.0 + 0.5 * min(len(i["sources"]), 4) + (2.5 if material else 0) - (0.5 if i["kind"] == "pr" and not material else 0)
+                scored.append((score, dict(i, company=n), ""))
     out, used = [], set()
     for _, it, why in sorted(scored, key=lambda x: -x[0]):
         k = (it.get("company"), it.get("kind") == "market")  # a company can have one price move and one news item
@@ -355,20 +440,22 @@ def fallback_top(report, val_changes, signals, n=3):
 
 
 def fallback_briefing(report, val_changes, signals):
-    ranked = fallback_top(report, val_changes, signals, n=8)
-    top = ranked[:3]
-    parts = []
-    for h in report["holdings"]:
-        q = h["q"]
-        if q:
-            parts.append(f"{h['name']} {fmt_pct(q['change_pct'])} at {h['currency']} {fmt_price(q['price'])}")
-    p1 = ("Holdings: " + "; ".join(parts) + ".") if parts else ""
-    n_news = sum(1 for x in report["companies"].values() if x["items"])
-    p2 = f"{n_news} of {len(report['companies'])} tracked names had news in the last 72 hours."
-    if val_changes:
-        p2 += " Valuation updates: " + "; ".join(f"{v['company']} {v['to']}" for v in val_changes) + "."
-    headline = "; ".join(t["title"] for t in top[:2]) or f"Daily Update for {report['today']}"
-    return dict({"headline": headline[:140], "paragraphs": [p for p in (p1, p2) if p]}, **split_ranked(ranked))
+    ranked = fallback_top(report, val_changes, signals, n=10)
+    news = [t for t in ranked if t["label"] != "Markets"]
+    idx = all_items_by_id(report)
+    happened = []
+    for t in news[:3]:
+        it = next((i for i in idx.values() if i.get("title") and house_style(i["title"]) == t["title"]),
+                  {"title": t["title"], "url": t["url"], "company": t["company"], "source": t["source"], "date": t["date"]})
+        happened.append(happened_entry(report, dict(it, company=t["company"]), t["title"], t.get("why")))
+    if news:
+        headline = news[0]["title"]
+        if len(news) > 1 and len(headline) + len(news[1]["title"]) < 130:
+            headline += "; " + news[1]["title"]
+    else:
+        headline = "No major company developments today"
+    return dict({"headline": headline[:160], "happened": happened, "watch": watch_list(report, val_changes, signals),
+                 "markets": markets_line(report)}, **split_ranked(ranked))
 
 
 # ---------------------------------------------------------------- main

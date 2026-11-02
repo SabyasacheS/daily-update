@@ -99,15 +99,23 @@ BRIEF_RULES = (
 def write_briefing(digest, model):
     """digest: compact dict of today's facts with item ids. Returns dict or None."""
     prompt = (
-        "You write the morning briefing for an investment team's daily monitoring report. "
-        + BRIEF_RULES +
+        "You write the executive summary of an investment team's daily monitoring report on its portfolio companies, "
+        "the Megatron portfolio and its sponsors. Readers are senior executives. Lead with what changed for these "
+        "companies and why it matters. Share-price moves are NOT news by themselves: mention them only in the "
+        "'markets' line, never in the headline or in 'happened'. " + BRIEF_RULES +
         "\n\nReturn JSON with keys:\n"
-        "headline: one line, max 110 characters, naming the 2-3 most important developments.\n"
-        "paragraphs: list of 2 paragraphs, each max 85 words. First: the most important company and market "
-        "developments. Second: other notable items and macro context.\n"
-        "top: list of 5 to 8 objects {item_id, why}, ranked from most to least decision-relevant, about different "
-        "companies where possible (use only item_id values present in the data; a market move has an item_id too). "
-        "why: max 22 words.\n"
+        "headline: one line, max 120 characters, naming the one or two most material company developments "
+        "(deals, funding, IPOs, results, legal or regulatory action, leadership). No price moves.\n"
+        "happened: list of exactly 3 objects {item_id, text, so_what}. text: the development in max 18 words. "
+        "so_what: why it matters to an investor in or partner of this company, max 18 words, factual, no hype. "
+        "Use only item_id values from the data; pick different companies where possible; never pick a market item.\n"
+        "watch: list of 1 to 4 short lines (max 16 words each) on what to watch next: valuation changes or reported "
+        "rounds, events in upcoming_7_days that concern these companies or rates, and open situations.\n"
+        "markets: one sentence, max 30 words, only about material moves (a holding moving 3% or more, unusual "
+        "volume, or an index moving 1.5% or more). If nothing material, say markets were quiet. market_line_hint "
+        "shows the facts.\n"
+        "top: list of 5 to 8 objects {item_id, why}, ranked from most to least decision-relevant, different "
+        "companies where possible, news items only. why: max 22 words.\n"
         "notes: object mapping company name -> 'why it matters' line (max 22 words) for every company that has items.\n"
         "themes: object mapping industry theme name -> one-line takeaway (max 22 words).\n\nDATA:\n"
         + json.dumps(digest, ensure_ascii=False)

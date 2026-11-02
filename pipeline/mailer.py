@@ -13,14 +13,10 @@ from .config import fmt_pct
 def subject(report):
     s = report["settings"].get("site_title", "Daily Update")
     day = date.fromisoformat(report["today"]).strftime("%d %b")
-    bits = []
-    for h in report["holdings"]:
-        if h.get("largest") and h["q"]:
-            bits.append(f"{h['name']} {fmt_pct(h['q']['change_pct'], 1)}")
-    for t in report["briefing"]["top3"]:
-        if t["label"] != "Markets" and len(bits) < 2:
-            bits.append(t["title"][:60].rstrip())
-    return f"{s} {day} \u00b7 " + ", ".join(bits) if bits else f"{s} {day}"
+    head = report["briefing"].get("headline", "")
+    if len(head) > 95:
+        head = head[:95].rsplit(" ", 1)[0] + "…"
+    return f"{s} {day} \u00b7 {head}" if head else f"{s} {day}"
 
 
 def send(report, wl, html, pdf):

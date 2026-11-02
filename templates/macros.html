@@ -61,3 +61,19 @@
 </article>
 {% endfor %}
 {% endmacro %}
+
+{% macro summary_body(b, root) %}
+{% if b.happened %}
+<h3 class="sum-h">What happened</h3>
+<ul class="sum-list">
+{% for h in b.happened %}<li>{% if h.show_co %}<b>{{ h.company }}:</b> {% endif %}<a href="{{ h.url if h.url.startswith('http') else root ~ h.url }}"{% if h.url.startswith('http') %} target="_blank" rel="noopener"{% endif %}>{{ h.text }}</a>{% if h.so_what %}<span class="so"> {{ h.so_what }}</span>{% endif %}</li>
+{% endfor %}
+</ul>
+{% endif %}
+{% if b.watch %}
+<h3 class="sum-h">What to watch</h3>
+<ul class="sum-list">{% for w in b.watch %}<li>{{ w }}</li>{% endfor %}</ul>
+{% endif %}
+{% if b.markets %}<p class="sum-mkt"><b>Markets:</b> {{ b.markets }}</p>{% endif %}
+{% if b.paragraphs and not b.happened %}<div class="lede">{% for p in b.paragraphs %}<p>{{ p }}</p>{% endfor %}</div>{% endif %}
+{% endmacro %}

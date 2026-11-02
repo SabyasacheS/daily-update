@@ -10,13 +10,13 @@
       <span class="tag">{% if b.ai %}Written by AI · verify before acting{% else %}Automatic summary{% endif %}</span>
     </div>
     <h1>{{ b.headline }}</h1>
-    <div class="lede" style="margin-top:12px">{% for p in b.paragraphs %}<p>{{ p }}</p>{% endfor %}</div>
+    {{ m.summary_body(b, root) }}
   </div>
 
   {% set key = b.key if b.key else b.top3 %}
   {% if key %}
   <div class="sec top3">
-    <div class="rule-head"><h2>Key news</h2></div>
+    <div class="rule-head"><h2>{% if b.happened %}More key news{% else %}Key news{% endif %}</h2></div>
     {{ m.key_news(key[:5], root) }}
   </div>
   {% endif %}
