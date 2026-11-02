@@ -13,13 +13,16 @@ import requests
 URL = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 
 
+_QUOTA_GONE = False
+
+
 def available():
-    return bool(os.environ.get("GEMINI_API_KEY"))
+    return bool(os.environ.get("GEMINI_API_KEY")) and not _QUOTA_GONE
 
 
 def _call(prompt, model, tries=3, timeout=240):
     key = os.environ.get("GEMINI_API_KEY")
-    if not key:
+    if not key or _QUOTA_GONE:
         return None
     body = {
         "contents": [{"role": "user", "parts": [{"text": prompt}]}],
@@ -29,6 +32,11 @@ def _call(prompt, model, tries=3, timeout=240):
         try:
             r = requests.post(URL.format(model=model), json=body, timeout=timeout,
                               headers={"x-goog-api-key": key, "Content-Type": "application/json"})
+            if r.status_code == 429 and "quota" in r.text.lower():
+                global _QUOTA_GONE
+                _QUOTA_GONE = True
+                print("  AI daily quota used up; continuing without AI for this run")
+                return None
             if r.status_code in (429, 500, 503):
                 print(f"  AI busy or rate-limited ({r.status_code}): {r.text[:160]}")
                 time.sleep(30 * (i + 1))
@@ -107,7 +115,7 @@ def write_briefing(digest, model):
     return _call(prompt, model)
 
 
-def screen_news(items, model, chunk=80):
+def screen_news(items, model, chunk=250):
     """items: [{'id','company','title','source'}] -> {id: reason} for items to DROP. Sent in small batches."""
     drops = {}
     for k in range(0, len(items), chunk):
@@ -120,7 +128,7 @@ def screen_news(items, model, chunk=80):
             "only the commentator, listings, spam, and stories about a different organisation with a similar name or "
             "where the company is incidental. Return JSON {\"items\": [{\"id\": ..., \"keep\": true|false, "
             "\"reason\": short reason if dropped}]}.\n\nITEMS:\n" + json.dumps(part, ensure_ascii=False))
-        res = _call(prompt, model, timeout=150) or {}
+        res = _call(prompt, model, timeout=300) or {}
         for x in res.get("items", []):
             if x.get("id") and x.get("keep") is False:
                 drops[x["id"]] = x.get("reason") or "not material"
