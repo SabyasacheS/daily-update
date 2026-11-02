@@ -191,6 +191,8 @@ def company_news(company, window_hours, busy_focus, fetch=fetch_rss, limit=6, lo
             if not _window_ok(raw, cutoff):
                 continue
             reason = relevance.judge(raw["title"], raw["source"], company, True)
+            if not reason and company.get("busy") and not _mentions(raw["title"], busy_focus):
+                reason = "routine page of a large firm"
             if reason:
                 filtered.append({"company": company["name"], "title": raw["title"], "reason": reason})
                 continue
@@ -203,7 +205,7 @@ def company_news(company, window_hours, busy_focus, fetch=fetch_rss, limit=6, lo
     return recent, filtered, earlier
 
 
-def topic_news(query, window_hours, fetch=fetch_rss, limit=3, must=None):
+def topic_news(query, window_hours, fetch=fetch_rss, limit=3, must=None, reputable_only=True):
     """Industry and macro headlines. `must`: at least one of these words has to be in the headline."""
     cutoff = datetime.now(timezone.utc) - timedelta(hours=window_hours)
     days = max(1, round(window_hours / 24))
@@ -212,6 +214,8 @@ def topic_news(query, window_hours, fetch=fetch_rss, limit=3, must=None):
         if not _window_ok(raw, cutoff) or junk_reason(raw) or relevance.topic_junk(raw["title"], raw["source"]):
             continue
         if must and not _mentions(raw["title"], must):
+            continue
+        if reputable_only and not relevance.reputable(raw["source"]):
             continue
         out.append(finalize(raw, "news"))
     return cluster(out, limit)

@@ -25,6 +25,8 @@ NOT_NEWS = re.compile(
     r"live stream|livestream|tickets|preview\b|tournament|football|basketball|field hockey|cross country|"
     r"soccer|volleyball|wrestling|theater|theatre|broadway|recipe|explained in|beginner'?s guide|^how to|bull case|bear case|learn why|here'?s why|should you|monthly distribution|net asset value|(raises|cuts|lowers|lifts|adjusts|boosts|trims) (its )?(price )?target|^\d+ .{0,40}\bstocks\b|retirees|collects usd|analysts? (target|see|rate|offer)|passive income|"
     r"lights up the sky|night sky|glowing|jellyfish|stargaz\w*|visible from|spotted over|stunning|"
+    r"applications? (open|now open)|apply now|residency|fellowship|internship|webinar|register now|"
+    r"strategy, team|team & portfolio|our team|our people|meet the team|about us|overview$|"
     r"strangest|weirdest|fun facts?|you won'?t believe|marital|wife|husband|horoscope)\b",
     re.I)
 
@@ -65,7 +67,7 @@ PASSING = re.compile(r"\b(like|than|rival(s)?|vs\.?|versus|including|such as|use
 ANNOUNCE = re.compile(
     r"\b(announc\w*|introduc\w*|launch\w*|unveil\w*|releas\w*|complet\w*|clos(es|ed|ing)|acquir\w*|agrees?|"
     r"enters?|signs?|appoint\w*|names?|joins?|promot\w*|reports?|declar\w*|prices?|priced|raises?|secures?|"
-    r"expand\w*|partner\w*|opens?|invests?|commits?|selects?|awarded|wins?|files?|sells?|to (acquire|sell|buy)|"
+    r"expand\w*|partners? with|partnership|opens?|invests?|commits?|selects?|awarded|wins?|files?|sells?|to (acquire|sell|buy)|"
     r"now available|generally available|results|record)\b", re.I)
 
 PR_BAD = re.compile(r"^(?:[A-Z][a-z]+ ){1,2}[A-Z][a-z]+(?: - .+)?$")  # a person's name, e.g. "Sara Caceres Sanz"
@@ -106,6 +108,8 @@ def judge(title, source, company, is_pr):
     if len(t.split()) < 4:
         return "page title, not news"
     if is_pr:
+        if re.search(r"\b(community|forum|support|help ?cent(er|re)|knowledge base|developer|docs)\b", source or "", re.I):
+            return "support or forum post, not a release"
         if PR_BAD.match(t) or re.search(r"\s-\s[A-Z][\w &.]+$", t):  # people bios, "Product - Company" pages
             return "website page, not a release"
         if not ANNOUNCE.search(t):
@@ -145,3 +149,22 @@ def topic_junk(title, source):
     if low_quality_source(source):
         return "low-quality source"
     return None
+
+
+REPUTABLE = (
+    "reuters", "bloomberg", "financial times", "ft.com", "wall street journal", "wsj", "cnbc", "associated press",
+    "ap news", "afp", "bbc", "the economist", "barron", "marketwatch", "yahoo finance", "fortune", "axios",
+    "politico", "new york times", "washington post", "the guardian", "business insider", "semafor", "nikkei",
+    "al jazeera", "gulf times", "the peninsula", "qatar news agency", "qna", "zawya", "arab news", "the national",
+    "gulf news", "khaleej times", "al arabiya", "asharq", "argaam", "agbi", "s&p global", "moody", "fitch",
+    "federal reserve", "european central bank", "imf", "world bank", "techcrunch", "the information",
+    "the verge", "wired", "data center dynamics", "datacenterdynamics", "pitchbook", "private equity international",
+    "pei", "pe hub", "private equity wire", "institutional investor", "pensions & investments", "infrastructure investor",
+    "the block", "coindesk", "cointelegraph", "the economic times", "mint", "south china morning post", "scmp",
+    "japan times", "handelsblatt", "les echos", "bnn bloomberg", "investing.com", "morningstar", "forbes",
+)
+
+
+def reputable(source):
+    s = (source or "").lower()
+    return any(r in s for r in REPUTABLE)

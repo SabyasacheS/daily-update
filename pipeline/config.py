@@ -147,9 +147,9 @@ def house_style(text):
         num, unit = m.group(1), (m.group(2) or "").lower()
         return f"USD {num}{unit_map.get(unit, '')}" if unit else f"USD {num}"
 
-    t = re.sub(r"(?:US)?\$\s?(\d[\d,]*(?:\.\d+)?)\s?(trillion|billion|million|tn|bn|mn|[TtBbMm])?\b", money, t)
-    t = re.sub(r"€\s?(\d[\d,]*(?:\.\d+)?)\s?(trillion|billion|million|tn|bn|mn|[TtBbMm])?\b",
-               lambda m: f"EUR {m.group(1)}{unit_map.get((m.group(2) or '').lower(), '')}", t)
-    t = re.sub(r"£\s?(\d[\d,]*(?:\.\d+)?)\s?(trillion|billion|million|tn|bn|mn|[TtBbMm])?\b",
-               lambda m: f"GBP {m.group(1)}{unit_map.get((m.group(2) or '').lower(), '')}", t)
+    t = re.sub(r"(?:US)?\$\s?(\d[\d,]*(?:\.\d+)?)(?:\s?(trillion|billion|million|tn|bn|mn|[TtBbMm])\b)?", money, t, flags=re.I)
+    t = re.sub(r"€\s?(\d[\d,]*(?:\.\d+)?)(?:\s?(trillion|billion|million|tn|bn|mn|[TtBbMm])\b)?",
+               lambda m: f"EUR {m.group(1)}{unit_map.get((m.group(2) or '').lower(), '')}", t, flags=re.I)
+    t = re.sub(r"£\s?(\d[\d,]*(?:\.\d+)?)(?:\s?(trillion|billion|million|tn|bn|mn|[TtBbMm])\b)?",
+               lambda m: f"GBP {m.group(1)}{unit_map.get((m.group(2) or '').lower(), '')}", t, flags=re.I)
     return t

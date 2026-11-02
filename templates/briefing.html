@@ -26,7 +26,7 @@
     <div class="rule-head"><h2>Macro &amp; policy</h2><span class="ln"></span><span class="aside">last 72h</span></div>
     {% for it in r.macro %}
     <div class="list-row"><span class="d">{{ it.date | shortdate }}</span>
-      <div><a href="{{ it.url }}" target="_blank" rel="noopener">{{ it.title }}</a> <span class="src">{{ it.source }}</span>{% if it.is_new %} <span class="badge-new">NEW</span>{% endif %}</div></div>
+      <div><a href="{{ it.url }}" target="_blank" rel="noopener">{{ it.title }}</a> <span class="src">{{ it.source }}</span></div></div>
     {% endfor %}
   </div>
   {% endif %}
