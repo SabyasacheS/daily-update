@@ -14,8 +14,8 @@
       "change_pct": -3.448275608949183
     },
     "CVC Capital Partners": {
-      "price": 13.800000190734863,
-      "change_pct": 2.8315954715393596
+      "price": 13.789999961853027,
+      "change_pct": 2.757078118149019
     }
   },
   "valuations": {
@@ -65,10 +65,10 @@
     "SpaceX": [
       "097908ceee06",
       "6f4299f5d1ae",
+      "540ba24ab309",
       "abe54164867a",
       "de03e268084e",
-      "4b622e3495cb",
-      "e63fd65b6f16"
+      "4b622e3495cb"
     ],
     "Beema": [],
     "Blaize": [],
@@ -97,25 +97,24 @@
       "050918fd0284"
     ],
     "Anthropic": [
-      "fc7e8b8061f7",
+      "69077956672a",
       "d4d057d3d3cd",
       "2c3cfe7ace1c",
       "03aebdcb8d5f",
-      "6eea79d82561",
-      "db0e073b56ca"
+      "db0e073b56ca",
+      "f2b86ba5a13f"
     ],
     "Binance": [
+      "9f4e4b69f954",
+      "dedd4112aa36",
       "9b95fd6988ef",
+      "1e339f67bc58",
       "adf3e4a1c343",
-      "7a63910359f6",
-      "25718b8e0434",
-      "c9b19b3df8ed",
-      "e39ba5778ca7"
+      "7a63910359f6"
     ],
     "Campus AI": [],
     "Databricks": [
       "a96911632c7d",
-      "86f7009854cd",
       "0c13f60de4af"
     ],
     "Isomorphic Labs": [
@@ -123,12 +122,12 @@
     ],
     "Khazna": [],
     "OpenAI": [
+      "419fbee6fdfe",
       "7afe7fe38f76",
+      "223b69cced80",
+      "8a30ec152609",
       "e2d38a71d934",
-      "0bd3e2419c6d",
-      "b6970c014047",
-      "594c9240f712",
-      "db0e073b56ca"
+      "0bd3e2419c6d"
     ],
     "SSI": [
       "430f520b1403"
@@ -138,21 +137,21 @@
     ],
     "Vantage Data Centers NA": [],
     "Blackstone": [
-      "ed7f018aa793",
+      "152a221e073a",
       "1a592aa8555c",
-      "2c3918bb14fc",
+      "871e05bbd0b0",
       "b68644220b99",
       "d59e0a1ca490",
-      "17acfa70f00f"
+      "9b1c1db4b4d5"
     ],
     "Golden Gate Ventures": [],
     "Goldman Sachs": [
+      "012683bd58f3",
       "d550256ecdfa",
+      "d0cf84dd717f",
       "f6dad4e153c8",
-      "5333fadd2fcb",
       "49ac7eacf191",
-      "ea9b956b1d9f",
-      "c3cd3e27a7f1"
+      "ea9b956b1d9f"
     ],
     "Blue Owl": [
       "d88982000726",
@@ -176,10 +175,12 @@
       "3ae87d232004"
     ],
     "BlackRock": [
-      "83d82ad804a1",
-      "d86d04e9264a",
-      "30ae5b10e579",
-      "60bf25b38c89"
+      "3bab95823b1a",
+      "b1c9d9bded25",
+      "e9ea2b3d8ae9",
+      "5e7275488e08",
+      "5c30e69ab36d",
+      "7150bcd54f95"
     ],
     "Ares": [
       "e1f23742d10c",
@@ -197,13 +198,10 @@
       "bb5bbcd6eef5",
       "a67c82541c74",
       "595a7851f51d",
-      "dbea3d5a0ddf",
-      "c5e84505b31e"
+      "dbea3d5a0ddf"
     ],
     "Ardian": [],
-    "Hamilton Lane": [
-      "19aa1ac7969d"
-    ],
+    "Hamilton Lane": [],
     "RedBird": [
       "fa6ac36a33ae"
     ],
