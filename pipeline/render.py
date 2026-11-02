@@ -56,6 +56,18 @@ def _pages(report):
     return pages
 
 
+def asset_version():
+    """Changes whenever the stylesheet or script changes, so browsers fetch the new copy instead of a cached one."""
+    import hashlib
+    h = hashlib.sha1()
+    for f in ("style.css", "watchlist.js"):
+        try:
+            h.update(open(os.path.join(DOCS, "assets", f), "rb").read())
+        except OSError:
+            pass
+    return h.hexdigest()[:8]
+
+
 def site(report, wl):
     e = env()
     today = report["today"]
@@ -63,7 +75,7 @@ def site(report, wl):
     nav = _nav(report)
     arch = os.path.join(DOCS, "archive", today)
     os.makedirs(arch, exist_ok=True)
-    base = dict(r=report, s=s, nav=nav)
+    base = dict(r=report, s=s, nav=nav, asset_v=asset_version())
     for out, tpl, key, title, extra in _pages(report):
         t = e.get_template(tpl)
         html = t.render(root="", site_root="", page=key, title=title, **base, **extra)
