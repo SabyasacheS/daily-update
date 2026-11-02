@@ -18,7 +18,7 @@ p{margin:0 0 5pt}
 .lbl{font-size:7.5pt;font-weight:600;letter-spacing:.6pt;text-transform:uppercase;color:#59645E}
 .src{font-size:7.5pt;color:#6B756F}
 .up{color:#0D7A4A}.down{color:#B42318}
-.mast{display:table;width:100%;padding-bottom:7pt;border-bottom:2pt solid #D9480F;margin-bottom:14pt}
+.mast{display:table;width:100%;padding-bottom:7pt;border-bottom:2pt solid #C2410C;margin-bottom:14pt}
 .mast .l,.mast .r{display:table-cell;vertical-align:bottom}
 .mast .r{text-align:right}
 .mast .name{font-size:16pt;font-weight:700;letter-spacing:.4pt;color:#101814}
@@ -28,7 +28,7 @@ h2{font-size:11.5pt;font-weight:700;margin:16pt 0 6pt;padding-bottom:3pt;border-
 .top{width:100%;border-collapse:collapse;margin-top:2pt}
 .top td{vertical-align:top;padding:6pt 0;border-bottom:.5pt solid #E1E5DF}
 .top tr:last-child td{border-bottom:0}
-.top .n{width:9mm;font-size:11.5pt;font-weight:700;color:#D9480F}
+.top .n{width:9mm;font-size:11.5pt;font-weight:700;color:#C2410C}
 .top .t{font-weight:600;color:#101814}
 .top .w{color:#3A4540}
 .glance{width:100%;border-collapse:collapse}
@@ -43,7 +43,7 @@ table.hold .nm{font-weight:600;color:#101814}
 .kv{width:100%;border-collapse:collapse}
 .kv td{padding:4pt 0;border-bottom:.5pt solid #E1E5DF}
 .kv tr:last-child td{border-bottom:0}
-.kv td.v{text-align:right;font-weight:600}
+.kv td.v{text-align:right;font-weight:600;white-space:nowrap;padding-left:8pt}
 .list div{padding:3pt 0;border-bottom:.5pt solid #E1E5DF}
 .list div:last-child{border-bottom:0}
 .co{padding:7pt 0 8pt;border-bottom:.5pt solid #E1E5DF;page-break-inside:avoid}
@@ -73,10 +73,11 @@ table.cal tr:last-child td{border-bottom:0}
 <h1>{{ r.briefing.headline }}</h1>
 <div class="lead">{% for p in r.briefing.paragraphs %}<p>{{ p }}</p>{% endfor %}</div>
 
-{% if r.briefing.top3 %}
-<h2>Top 3 today</h2>
+{% set key = r.briefing.key if r.briefing.key else r.briefing.top3 %}
+{% if key %}
+<h2>Key news</h2>
 <table class="top">
-{% for t in r.briefing.top3 %}
+{% for t in key[:5] %}
 <tr><td class="n">{{ loop.index }}</td>
   <td><span class="lbl">{{ t.label }}{% if t.company and t.company != t.label %} · {{ t.company }}{% endif %}</span><br>
     <a class="t" href="{{ t.url if t.url.startswith('http') else site ~ t.url }}">{{ t.title }}</a>{% if t.why %}<br><span class="w">{{ t.why }}</span>{% endif %}</td></tr>
@@ -93,7 +94,7 @@ table.cal tr:last-child td{border-bottom:0}
     {% for h in r.holdings %}{% set q = h.q %}
     <tr><td class="l nm">{{ h.name }}</td>
       {% if q %}<td>{{ h.currency }} {{ q.price | price }}</td>
-      <td class="{{ 'up' if q.change_pct and q.change_pct > 0 else ('down' if q.change_pct and q.change_pct < 0 else '') }}">{{ q.change_pct | pct }}</td>
+      <td class="{{ 'up' if q.change_pct and q.change_pct > 0 else ('down' if q.change_pct and q.change_pct < 0 else '') }}">{% if q.change_pct and q.change_pct > 0 %}▲{% elif q.change_pct and q.change_pct < 0 %}▼{% endif %} {{ q.change_pct | pct }}</td>
       <td>{{ q.vs10 | ratio }}</td>
       {% else %}<td colspan="3" class="src">No price data today</td>{% endif %}</tr>
     {% endfor %}
@@ -120,8 +121,20 @@ table.cal tr:last-child td{border-bottom:0}
 <div class="list">{% for it in r.macro[:6] %}<div><a href="{{ it.url }}">{{ it.title }}</a> <span class="src">{{ it.source }}, {{ it.date | shortdate }}</span></div>{% endfor %}</div>
 {% endif %}
 
+{% if r.industry %}
+<h2 class="newpage">Industry</h2>
+{% for t in r.industry %}
+<div class="co">
+  <div class="co-head"><div class="l"><span class="co-name">{{ t.name }}</span></div></div>
+  {% if t.takeaway %}<p class="why">{{ t.takeaway }}</p>{% endif %}
+  {% for it in t['items'][:3] %}<p class="hl"><a href="{{ it.url }}">{{ it.title }}</a> <span class="src">{{ it.source }}, {{ it.date | shortdate }}</span></p>
+  {% else %}<p class="src">No items in the last 72 hours.</p>{% endfor %}
+</div>
+{% endfor %}
+{% endif %}
+
 {% for sec in r.sections if sec.id != 'public' %}
-<h2{% if loop.first %} class="newpage"{% endif %}>{{ sec.label }}</h2>
+<h2>{{ sec.label }}</h2>
 {% set quiet = [] %}
 {% for n in sec.names %}{% set c = r.companies[n] %}
   {% if c['items'] %}
@@ -131,8 +144,9 @@ table.cal tr:last-child td{border-bottom:0}
       <div class="l"><span class="co-name">{{ c.name }}</span>
         {% if v.reported or c.signal %} <span class="tag warn">{{ 'IPO VALUATION REPORTED' if v.reported and v.reported.label.startswith('IPO') else 'ROUND REPORTED' }}</span>{% elif v.valuation and v.valuation.previous %} <span class="tag warn">VALUATION UPDATED</span>{% endif %}</div>
       <div class="r">
-        {% if c.listed and c.q %}<span>{{ c.currency }} {{ c.q.price | price }}</span> <span class="{{ 'up' if c.q.change_pct and c.q.change_pct > 0 else 'down' }}">{{ c.q.change_pct | pct }}</span>
-        {% elif v.valuation and v.valuation.text and not (v.valuation.na and c.sections == ['sponsors']) %}<span style="font-weight:600">{{ v.valuation.text }}</span>{% if v.valuation.previous %} <span class="src">was {{ v.valuation.previous }}</span>{% endif %}
+        {% if c.listed and c.q %}<span>{{ c.currency }} {{ c.q.price | price }}</span> <span class="{{ 'up' if c.q.change_pct and c.q.change_pct > 0 else 'down' }}">{% if c.q.change_pct and c.q.change_pct > 0 %}▲{% elif c.q.change_pct and c.q.change_pct < 0 %}▼{% endif %} {{ c.q.change_pct | pct }}</span>
+        {% elif v.valuation and v.valuation.na %}{% if c.sections != ['sponsors'] %}<span class="src">No public valuation found</span>{% endif %}
+        {% elif v.valuation and v.valuation.text %}<span style="font-weight:600">{{ v.valuation.text }}</span>{% if v.valuation.previous %} <span class="src">was {{ v.valuation.previous }}</span>{% endif %}
           {% if v.valuation.provenance %}<br><span class="src">{% if v.valuation.url %}<a href="{{ v.valuation.url }}">{{ v.valuation.provenance }} · source</a>{% else %}{{ v.valuation.provenance }}{% endif %}</span>{% endif %}{% endif %}
         {% if v.reported and not c.listed %}<br><span class="src"><a href="{{ v.reported.url }}">Reported: {{ v.reported.text }}, {{ v.reported.label }}</a></span>{% endif %}
       </div>
@@ -147,17 +161,7 @@ table.cal tr:last-child td{border-bottom:0}
 {% if quiet %}<p class="quiet"><b>No news in the last 72 hours:</b> {% for c in quiet %}{{ c.name }}{% if not loop.last %}, {% endif %}{% endfor %}.</p>{% endif %}
 {% endfor %}
 
-{% if r.industry %}
-<h2>Industry</h2>
-{% for t in r.industry %}
-<div class="co">
-  <div class="co-head"><div class="l"><span class="co-name">{{ t.name }}</span></div></div>
-  {% if t.takeaway %}<p class="why">{{ t.takeaway }}</p>{% endif %}
-  {% for it in t['items'][:3] %}<p class="hl"><a href="{{ it.url }}">{{ it.title }}</a> <span class="src">{{ it.source }}, {{ it.date | shortdate }}</span></p>
-  {% else %}<p class="src">No items in the last 72 hours.</p>{% endfor %}
-</div>
-{% endfor %}
-{% endif %}
+
 
 <h2>Calendar · next {{ s.calendar_days }} days</h2>
 {% if r.calendar %}

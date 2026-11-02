@@ -22,7 +22,7 @@ PRIVATE_SECTIONS = {"portfolio", "megatron"}
 def gather(wl, state, today):
     s = wl["settings"]
     win = s.get("news_window_hours", 72)
-    raw = {"quotes": {}, "news": {}, "filtered": [], "macro": [], "industry": {}, "valuation_search": {},
+    raw = {"quotes": {}, "news": {}, "earlier": {}, "filtered": [], "macro": [], "industry": {}, "valuation_search": {},
            "earnings": {}, "fred": []}
 
     symbols = [c["ticker"] for c in wl["companies"] if c.get("ticker")] + [b["symbol"] for b in s.get("benchmarks", [])]
@@ -33,12 +33,14 @@ def gather(wl, state, today):
 
     print(f"News for {len(wl['companies'])} companies")
     for c in wl["companies"]:
-        items, filtered = news.company_news(c, win, wl.get("busy_focus", []))
+        items, filtered, earlier = news.company_news(c, win, wl.get("busy_focus", []))
         raw["news"][c["name"]] = items
+        raw["earlier"][c["name"]] = earlier
         raw["filtered"].extend(filtered)
 
-    for q in wl.get("macro", []):
-        raw["macro"].extend(news.topic_news(q, win, limit=1))
+    for m in wl.get("macro", []):
+        q, must = (m, None) if isinstance(m, str) else (m["query"], m.get("must"))
+        raw["macro"].extend(news.topic_news(q, win, limit=1, must=must))
     for t in wl.get("industry", []):
         items = []
         for q in t.get("queries", []):
@@ -108,7 +110,9 @@ def build(wl, raw, state, today, use_ai=True):
         items = [dict(i, title=house_style(i["title"])) for i in raw["news"].get(c["name"], [])]
         companies[c["name"]] = {"name": c["name"], "sections": c["sections"], "ticker": c.get("ticker", ""),
                                 "currency": c.get("currency", ""), "domain": c.get("domain", ""),
-                                "items": items, "q": quotes.get(c.get("ticker")), "listed": bool(c.get("ticker"))}
+                                "items": items, "q": quotes.get(c.get("ticker")), "listed": bool(c.get("ticker")),
+                                "earlier": [dict(i, title=house_style(i["title"]))
+                                            for i in raw.get("earlier", {}).get(c["name"], [])]}
     macro = news.cluster([dict(i, title=house_style(i["title"])) for i in raw["macro"]], 8)
     industry = [{"name": t, "items": [dict(i, title=house_style(i["title"])) for i in its]}
                 for t, its in raw["industry"].items()]
@@ -151,6 +155,9 @@ def build(wl, raw, state, today, use_ai=True):
         comp["signal"] = next((x for x in signals if x["company"] == name), None)
 
     # --- last known item for quiet companies
+    if state.get("last_item_v", 1) < 2:  # entries saved before the relevance filter existed
+        state["last_item"] = {}
+        state["last_item_v"] = 2
     last = state.setdefault("last_item", {})
     for name, comp in companies.items():
         if comp["items"]:

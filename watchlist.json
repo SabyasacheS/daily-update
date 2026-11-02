@@ -781,13 +781,94 @@
     }
   ],
   "macro": [
-    "Federal Reserve interest rate",
-    "ECB interest rate decision",
-    "US inflation CPI",
-    "tech IPO market",
-    "AI data center power energy",
-    "cryptocurrency regulation SEC",
-    "Qatar economy",
-    "oil prices OPEC"
+    {
+      "query": "Federal Reserve rate decision",
+      "must": [
+        "Fed",
+        "Federal Reserve",
+        "FOMC",
+        "Powell",
+        "rate"
+      ]
+    },
+    {
+      "query": "ECB rate decision Lagarde",
+      "must": [
+        "ECB",
+        "Lagarde",
+        "euro zone",
+        "eurozone"
+      ]
+    },
+    {
+      "query": "US CPI inflation report",
+      "must": [
+        "CPI",
+        "inflation",
+        "consumer prices"
+      ]
+    },
+    {
+      "query": "US jobs report nonfarm payrolls",
+      "must": [
+        "payrolls",
+        "jobs report",
+        "unemployment",
+        "labor market"
+      ]
+    },
+    {
+      "query": "Brent oil prices OPEC",
+      "must": [
+        "oil",
+        "Brent",
+        "OPEC",
+        "crude"
+      ]
+    },
+    {
+      "query": "Qatar Stock Exchange index QSE",
+      "must": [
+        "QSE",
+        "Qatar"
+      ]
+    },
+    {
+      "query": "Gulf stock markets Saudi UAE Qatar",
+      "must": [
+        "Gulf",
+        "GCC",
+        "Saudi",
+        "UAE",
+        "Abu Dhabi",
+        "Dubai",
+        "Qatar"
+      ]
+    },
+    {
+      "query": "AI chip export controls",
+      "must": [
+        "export",
+        "chip",
+        "semiconductor"
+      ]
+    },
+    {
+      "query": "tech IPO market",
+      "must": [
+        "IPO",
+        "listing",
+        "debut"
+      ]
+    },
+    {
+      "query": "crypto regulation SEC CFTC",
+      "must": [
+        "SEC",
+        "CFTC",
+        "crypto",
+        "stablecoin"
+      ]
+    }
   ]
 }

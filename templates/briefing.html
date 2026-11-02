@@ -13,20 +13,11 @@
     <div class="lede" style="margin-top:14px">{% for p in b.paragraphs %}<p>{{ p }}</p>{% endfor %}</div>
   </div>
 
-  {% if b.top3 %}
+  {% set key = b.key if b.key else b.top3 %}
+  {% if key %}
   <div class="top3">
-    <div class="rule-head"><h2>Top 3 today</h2><span class="ln"></span></div>
-    {% for t in b.top3 %}
-    <article>
-      <span class="n">{{ loop.index }}</span>
-      <div style="min-width:0">
-        <span class="meta">{{ t.label }}{% if t.company and t.company != t.label %} · {{ t.company }}{% endif %}</span>
-        <a class="t" href="{{ t.url if t.url.startswith('http') else root ~ t.url }}"{% if t.url.startswith('http') %} target="_blank" rel="noopener"{% endif %}>{{ t.title }}</a>
-        <span class="src">{{ t.source }}{% if t.date %} · {{ t.date | shortdate }}{% endif %}</span>
-        {% if t.why %}<p class="why"><b>Why it matters:</b> {{ t.why }}</p>{% endif %}
-      </div>
-    </article>
-    {% endfor %}
+    <div class="rule-head"><h2>Key news</h2><span class="ln"></span></div>
+    {{ m.key_news(key[:5], root) }}
   </div>
   {% endif %}
 

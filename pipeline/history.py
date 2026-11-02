@@ -57,6 +57,6 @@ def diff(report, prev, val_changes, signals, filtered):
         "new_news": sorted(new_news, key=key, reverse=True),
         "calendar_soon": soon,
         "quiet": quiet,
-        "filtered": filtered[:12],
+        "filtered": filtered[:150],
         "filtered_count": len(filtered),
     }

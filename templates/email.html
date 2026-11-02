@@ -26,7 +26,7 @@
   <div style="{{ XL }}font-weight:700;letter-spacing:1px;color:#FFFFFF;">{{ s.site_title | upper }}</div>
   <div style="{{ LBL }}color:#A7B2AB;padding-top:6px;">{{ r.today | longdate }}</div>
 </td></tr>
-<tr><td style="height:4px;line-height:4px;font-size:0;background:#D9480F;">&nbsp;</td></tr>
+<tr><td style="height:4px;line-height:4px;font-size:0;background:#C2410C;">&nbsp;</td></tr>
 
 <tr><td style="padding:24px 32px 4px 32px;color:#101814;">
   <div style="{{ XL }}font-weight:700;">{{ r.briefing.headline }}</div>
@@ -63,7 +63,7 @@
   <tr><td colspan="2" style="{{ LBL }}font-weight:700;color:#101814;padding-bottom:8px;">Key news</td></tr>
   {{ rule(2, '#101814', 2) }}
   {% for t in key[:5] %}
-  <tr><td width="28" valign="top" style="padding:11px 0;{{ BODY }}font-weight:700;color:#D9480F;">{{ loop.index }}</td>
+  <tr><td width="28" valign="top" style="padding:11px 0;{{ BODY }}font-weight:700;color:#C2410C;">{{ loop.index }}</td>
     <td style="padding:11px 0;">
       <div style="{{ LBL }}color:#59645E;">{{ t.label }}{% if t.company and t.company != t.label %} · {{ t.company }}{% endif %}</div>
       <a href="{{ t.url if t.url.startswith('http') else site ~ t.url }}" style="{{ BODY }}font-weight:600;text-decoration:none;color:#101814;">{{ t.title }}</a>

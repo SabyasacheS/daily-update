@@ -163,10 +163,12 @@ def _window_ok(raw, cutoff):
     return raw["pub"] is not None and raw["pub"] >= cutoff
 
 
-def company_news(company, window_hours, busy_focus, fetch=fetch_rss, limit=6):
-    """Returns (items, filtered). filtered = [{'company','title','reason'}]."""
-    cutoff = datetime.now(timezone.utc) - timedelta(hours=window_hours)
-    days = max(1, round(window_hours / 24))
+def company_news(company, window_hours, busy_focus, fetch=fetch_rss, limit=6, lookback_days=7):
+    """Returns (recent, filtered, earlier). recent = inside the news window; earlier = the rest of the past
+    `lookback_days`, shown collapsed on the website. filtered = [{'company','title','reason'}]."""
+    recent_cutoff = datetime.now(timezone.utc) - timedelta(hours=window_hours)
+    cutoff = datetime.now(timezone.utc) - timedelta(days=lookback_days)
+    days = lookback_days
     aliases = company["aliases"]
     domain = (company.get("domain") or "").lower()
     found, filtered = [], []
@@ -185,7 +187,7 @@ def company_news(company, window_hours, busy_focus, fetch=fetch_rss, limit=6):
         found.append(finalize(raw, "pr" if is_pr else "news"))
 
     if domain:
-        for raw in parse_rss(fetch(f"site:{domain} when:7d")):
+        for raw in parse_rss(fetch(f"site:{domain} when:{days}d")):
             if not _window_ok(raw, cutoff):
                 continue
             reason = relevance.judge(raw["title"], raw["source"], company, True)
@@ -194,16 +196,24 @@ def company_news(company, window_hours, busy_focus, fetch=fetch_rss, limit=6):
                 continue
             found.append(finalize(raw, "pr"))
 
-    return cluster(found, limit), filtered
+    rc = recent_cutoff.isoformat()
+    recent = cluster([i for i in found if i["ts"] >= rc], limit)
+    seen = {i["id"] for i in recent}
+    earlier = [i for i in cluster([i for i in found if i["ts"] < rc], 5) if i["id"] not in seen]
+    return recent, filtered, earlier
 
 
-def topic_news(query, window_hours, fetch=fetch_rss, limit=3):
+def topic_news(query, window_hours, fetch=fetch_rss, limit=3, must=None):
+    """Industry and macro headlines. `must`: at least one of these words has to be in the headline."""
     cutoff = datetime.now(timezone.utc) - timedelta(hours=window_hours)
     days = max(1, round(window_hours / 24))
     out = []
     for raw in parse_rss(fetch(f"{query} when:{days}d")):
-        if _window_ok(raw, cutoff) and not junk_reason(raw) and not relevance.topic_junk(raw["title"], raw["source"]):
-            out.append(finalize(raw, "news"))
+        if not _window_ok(raw, cutoff) or junk_reason(raw) or relevance.topic_junk(raw["title"], raw["source"]):
+            continue
+        if must and not _mentions(raw["title"], must):
+            continue
+        out.append(finalize(raw, "news"))
     return cluster(out, limit)
 
 

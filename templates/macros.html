@@ -17,14 +17,16 @@
 <div class="vbox"><span class="k">PRICE</span><span class="v">{{ c.currency }} {{ c.q.price | price }}</span>
   <span class="mono {{ dir(c.q.change_pct) }}" style="font-weight:600">{{ arrow(c.q.change_pct) }} {{ c.q.change_pct | pct }}</span>
   <span class="prov">{{ c.ticker }} · last close</span></div>
-{% elif v.valuation and not (v.valuation.na and c.sections == ['sponsors']) %}
+{% elif v.valuation and v.valuation.na %}
+{% if c.sections != ['sponsors'] %}<div class="na">No public valuation found</div>{% endif %}
+{% elif v.valuation %}
 <div class="vbox"><span class="k">VALUATION</span><span class="v">{{ v.valuation.text }}</span>
   {% if v.valuation.previous %}<span class="was">{{ v.valuation.previous }}</span>{% endif %}
-  <span class="prov">{% if v.valuation.url %}<a href="{{ v.valuation.url }}" target="_blank" rel="noopener" title="{{ v.valuation.note }}">{{ v.valuation.provenance }} · source</a>{% else %}{{ v.valuation.provenance }}{% endif %}</span></div>
+  <span class="prov">{% if v.valuation.url %}<a href="{{ v.valuation.url }}" target="_blank" rel="noopener" title="{{ v.valuation.note }}" aria-label="Source for {{ c.name }} valuation: {{ v.valuation.provenance }}">{{ v.valuation.provenance }} · source</a>{% else %}{{ v.valuation.provenance }}{% endif %}</span></div>
 {% endif %}
 {% if v.reported %}
 <div class="vbox"><span class="k">REPORTED</span><span class="v" style="font-size:15px">{{ v.reported.text }}</span>
-  <span class="prov"><a href="{{ v.reported.url }}" target="_blank" rel="noopener">{{ v.reported.label }} · {{ v.reported.date | shortdate }} · source</a></span></div>
+  <span class="prov"><a href="{{ v.reported.url }}" target="_blank" rel="noopener" aria-label="Source for {{ c.name }} reported valuation">{{ v.reported.label }} · {{ v.reported.date | shortdate }} · source</a></span></div>
 {% endif %}
 {% if v.last_round and not c.listed %}
 <div class="src">Latest round: {{ v.last_round.text }} · {{ "closed" if v.last_round.status == "closed" else "reported, in talks" }} · {{ v.last_round.date | shortdate }}</div>
@@ -36,4 +38,26 @@
 {% elif c.view.valuation and c.view.valuation.previous %}<span class="pill-ok">VALUATION UPDATED</span>
 {% elif c.listed %}<span class="tag">LISTED</span>
 {% else %}<span class="tag">PRIVATE</span>{% endif %}
+{% endmacro %}
+
+{% macro earlier(c) %}
+{% if c.earlier %}
+<details class="earlier"><summary>Earlier this week ({{ c.earlier|length }})</summary>
+  <div class="items">{% for it in c.earlier %}{{ news_item(it) }}{% endfor %}</div>
+</details>
+{% endif %}
+{% endmacro %}
+
+{% macro key_news(items, root) %}
+{% for t in items %}
+<article>
+  <span class="n">{{ loop.index }}</span>
+  <div style="min-width:0">
+    <span class="meta">{{ t.label }}{% if t.company and t.company != t.label %} · {{ t.company }}{% endif %}</span>
+    <a class="t" href="{{ t.url if t.url.startswith('http') else root ~ t.url }}"{% if t.url.startswith('http') %} target="_blank" rel="noopener"{% endif %}>{{ t.title }}</a>
+    <span class="src">{{ t.source }}{% if t.date %} · {{ t.date | shortdate }}{% endif %}</span>
+    {% if t.why %}<p class="why"><b>Why it matters:</b> {{ t.why }}</p>{% endif %}
+  </div>
+</article>
+{% endfor %}
 {% endmacro %}

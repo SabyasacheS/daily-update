@@ -10,10 +10,10 @@
 <section class="src-group">
 {% for sec in r.sections %}
   <h3>{{ sec.label }}</h3>
-  <ul>{% for n in sec.names %}{% for it in r.companies[n]['items'] %}<li><b>{{ n }}</b>: <a href="{{ it.url }}" target="_blank" rel="noopener">{{ it.title }}</a> <span class="src">{{ it.sources | join(', ') }} · {{ it.date }}</span></li>{% endfor %}{% endfor %}</ul>
+  <ul>{% for n in sec.names %}{% for it in r.companies[n]['items'] %}<li><b>{{ n }}</b>: <a href="{{ it.url }}" target="_blank" rel="noopener">{{ it.title }}</a> <span class="src">{{ it.sources | join(', ') }} · {{ it.date | shortdate }}</span></li>{% endfor %}{% endfor %}</ul>
 {% endfor %}
   <h3>Industry &amp; macro</h3>
-  <ul>{% for t in r.industry %}{% for it in t['items'] %}<li><b>{{ t.name }}</b>: <a href="{{ it.url }}" target="_blank" rel="noopener">{{ it.title }}</a> <span class="src">{{ it.source }} · {{ it.date }}</span></li>{% endfor %}{% endfor %}
-  {% for it in r.macro %}<li><b>Macro</b>: <a href="{{ it.url }}" target="_blank" rel="noopener">{{ it.title }}</a> <span class="src">{{ it.source }} · {{ it.date }}</span></li>{% endfor %}</ul>
+  <ul>{% for t in r.industry %}{% for it in t['items'] %}<li><b>{{ t.name }}</b>: <a href="{{ it.url }}" target="_blank" rel="noopener">{{ it.title }}</a> <span class="src">{{ it.source }} · {{ it.date | shortdate }}</span></li>{% endfor %}{% endfor %}
+  {% for it in r.macro %}<li><b>Macro</b>: <a href="{{ it.url }}" target="_blank" rel="noopener">{{ it.title }}</a> <span class="src">{{ it.source }} · {{ it.date | shortdate }}</span></li>{% endfor %}</ul>
 </section>
 {% endblock %}

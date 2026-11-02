@@ -69,7 +69,8 @@
 
 <section class="band">
   <div><b>No new items:</b> {{ ch.quiet | join(', ') if ch.quiet else 'none' }}</div>
-  {% if ch.filtered_count %}<div class="mono" style="font-size:13px"><b style="font-family:var(--sans)">Filtered as noise ({{ ch.filtered_count }}):</b>
-    {% for f in ch.filtered %}{{ f.company }}: "{{ f.title | truncate(60) }}" ({{ f.reason }}){% if not loop.last %} · {% endif %}{% endfor %}</div>{% endif %}
+  {% if ch.filtered_count %}<details><summary><b>Filtered as noise:</b> {{ ch.filtered_count }} headline{{ 's' if ch.filtered_count != 1 }}, show</summary>
+    <ul class="filtered">{% for f in ch.filtered %}<li><b>{{ f.company }}</b>: {{ f.title | truncate(90) }} <span class="src">{{ f.reason }}</span></li>{% endfor %}</ul>
+  </details>{% endif %}
 </section>
 {% endblock %}
