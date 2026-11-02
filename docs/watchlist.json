@@ -448,9 +448,7 @@
         "COPPA",
         "advertis",
         "revenue",
-        "shop",
         "deal",
-        "users",
         "algorithm",
         "CEO",
         "layoff",
@@ -460,7 +458,8 @@
         "Congress",
         "investment",
         "data center"
-      ]
+      ],
+      "max_pos": 2
     },
     {
       "name": "Vantage Data Centers NA",

@@ -77,11 +77,11 @@
     ],
     "Arini Capital Management": [
       "9cfd5aa13f73",
-      "5dcd797ddf3e",
       "c9f067cc88f4",
       "74da7212027b",
       "b973cba3d57e",
-      "38613171654b"
+      "38613171654b",
+      "21875f4710ee"
     ],
     "Deutsche ReGas": [
       "fd0c1dcf2daa"
@@ -99,22 +99,21 @@
       "d4d057d3d3cd",
       "2c3cfe7ace1c",
       "03aebdcb8d5f",
+      "6eea79d82561",
       "db0e073b56ca",
-      "f2b86ba5a13f",
-      "b389f714b52e"
+      "f2b86ba5a13f"
     ],
     "Binance": [
       "9b95fd6988ef",
+      "adf3e4a1c343",
       "7a63910359f6",
       "25718b8e0434",
       "c9b19b3df8ed",
-      "08ba496a64c0",
-      "e39ba5778ca7"
+      "08ba496a64c0"
     ],
     "Campus AI": [],
     "Databricks": [
       "a96911632c7d",
-      "86f7009854cd",
       "0c13f60de4af"
     ],
     "Isomorphic Labs": [
@@ -122,32 +121,27 @@
     ],
     "Khazna": [],
     "OpenAI": [
+      "7afe7fe38f76",
       "e2d38a71d934",
       "0bd3e2419c6d",
       "b6970c014047",
       "594c9240f712",
-      "db0e073b56ca",
-      "cc7b953b1935"
+      "db0e073b56ca"
     ],
     "SSI": [
       "430f520b1403"
     ],
     "TikTok US": [
-      "a57b75d3c6c3",
-      "3a4a32139b93",
-      "fc519408953d",
-      "a4d53f212225",
-      "415ff74253bf",
-      "2eaede26b527"
+      "415ff74253bf"
     ],
     "Vantage Data Centers NA": [],
     "Blackstone": [
-      "152a221e073a",
+      "ed7f018aa793",
       "1a592aa8555c",
       "2c3918bb14fc",
       "b68644220b99",
       "d59e0a1ca490",
-      "9b1c1db4b4d5"
+      "17acfa70f00f"
     ],
     "Golden Gate Ventures": [],
     "Goldman Sachs": [
@@ -158,6 +152,7 @@
       "c3cd3e27a7f1"
     ],
     "Blue Owl": [
+      "d88982000726",
       "4ec70c2bb5da",
       "52666b9a3132"
     ],
@@ -179,10 +174,10 @@
       "d1ca8f73ee84"
     ],
     "BlackRock": [
-      "b1c9d9bded25",
-      "e9ea2b3d8ae9",
-      "2c655ea8710b",
-      "5c30e69ab36d"
+      "83d82ad804a1",
+      "d86d04e9264a",
+      "30ae5b10e579",
+      "60bf25b38c89"
     ],
     "Ares": [
       "e1f23742d10c",
@@ -202,7 +197,9 @@
       "c5e84505b31e"
     ],
     "Ardian": [],
-    "Hamilton Lane": [],
+    "Hamilton Lane": [
+      "19aa1ac7969d"
+    ],
     "RedBird": [
       "fa6ac36a33ae"
     ],
