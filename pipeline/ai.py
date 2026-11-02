@@ -17,7 +17,7 @@ def available():
     return bool(os.environ.get("GEMINI_API_KEY"))
 
 
-def _call(prompt, model, tries=3):
+def _call(prompt, model, tries=2, timeout=240):
     key = os.environ.get("GEMINI_API_KEY")
     if not key:
         return None
@@ -27,7 +27,7 @@ def _call(prompt, model, tries=3):
     }
     for i in range(tries):
         try:
-            r = requests.post(URL.format(model=model), json=body, timeout=120,
+            r = requests.post(URL.format(model=model), json=body, timeout=timeout,
                               headers={"x-goog-api-key": key, "Content-Type": "application/json"})
             if r.status_code in (429, 500, 503):
                 time.sleep(15 * (i + 1))
@@ -41,6 +41,8 @@ def _call(prompt, model, tries=3):
             return json.loads(text)
         except (requests.RequestException, KeyError, IndexError, ValueError) as e:
             print("  AI call failed:", e)
+            if isinstance(e, requests.Timeout):
+                continue
             time.sleep(5)
     return None
 
@@ -102,18 +104,21 @@ def write_briefing(digest, model):
     return _call(prompt, model)
 
 
-def screen_news(items, model):
-    """items: [{'id','company','title','source'}] -> set of ids to DROP, with reasons {id: reason}."""
-    if not items:
-        return {}
-    prompt = (
-        "You screen headlines for an investment team's daily monitoring report. For each item decide if it is "
-        "specific, material news ABOUT the named company: its deals, funding, results, products, leadership, "
-        "strategy, legal or regulatory matters. Drop: consumer or lifestyle stories, individual user or creator "
-        "content, spectacle, tutorials, stock-tip or price-target pieces, analyst commentary where the company is "
-        "only the commentator, listings, spam, and stories about a different organisation with a similar name or "
-        "where the company is incidental. Return JSON {\"items\": [{\"id\": ..., \"keep\": true|false, "
-        "\"reason\": short reason if dropped}]}.\n\nITEMS:\n" + json.dumps(items, ensure_ascii=False))
-    res = _call(prompt, model) or {}
-    return {x["id"]: (x.get("reason") or "not material") for x in res.get("items", [])
-            if x.get("id") and x.get("keep") is False}
+def screen_news(items, model, chunk=30):
+    """items: [{'id','company','title','source'}] -> {id: reason} for items to DROP. Sent in small batches."""
+    drops = {}
+    for k in range(0, len(items), chunk):
+        part = items[k:k + chunk]
+        prompt = (
+            "You screen headlines for an investment team's daily monitoring report. For each item decide if it is "
+            "specific, material news ABOUT the named company: its deals, funding, results, products, leadership, "
+            "strategy, legal or regulatory matters. Drop: consumer or lifestyle stories, individual user or creator "
+            "content, spectacle, tutorials, stock-tip or price-target pieces, analyst commentary where the company is "
+            "only the commentator, listings, spam, and stories about a different organisation with a similar name or "
+            "where the company is incidental. Return JSON {\"items\": [{\"id\": ..., \"keep\": true|false, "
+            "\"reason\": short reason if dropped}]}.\n\nITEMS:\n" + json.dumps(part, ensure_ascii=False))
+        res = _call(prompt, model, timeout=150) or {}
+        for x in res.get("items", []):
+            if x.get("id") and x.get("keep") is False:
+                drops[x["id"]] = x.get("reason") or "not material"
+    return drops
