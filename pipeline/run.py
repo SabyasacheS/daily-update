@@ -184,6 +184,7 @@ def build(wl, raw, state, today, use_ai=True):
     if use_ai:
         res = ai.write_briefing(digest(report, val_changes, signals), model)
         briefing = from_ai(res, report) if res else None
+        print("  AI briefing:", "used" if briefing else ("unusable answer: " + str(res)[:200] if res else "no answer"))
     report["briefing"] = briefing or fallback_briefing(report, val_changes, signals)
     report["briefing"]["ai"] = bool(briefing)
     notes = (res or {}).get("notes", {}) if briefing else {}

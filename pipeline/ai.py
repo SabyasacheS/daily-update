@@ -17,7 +17,7 @@ def available():
     return bool(os.environ.get("GEMINI_API_KEY"))
 
 
-def _call(prompt, model, tries=2, timeout=240):
+def _call(prompt, model, tries=3, timeout=240):
     key = os.environ.get("GEMINI_API_KEY")
     if not key:
         return None
@@ -30,13 +30,15 @@ def _call(prompt, model, tries=2, timeout=240):
             r = requests.post(URL.format(model=model), json=body, timeout=timeout,
                               headers={"x-goog-api-key": key, "Content-Type": "application/json"})
             if r.status_code in (429, 500, 503):
-                time.sleep(15 * (i + 1))
+                print(f"  AI busy or rate-limited ({r.status_code}): {r.text[:160]}")
+                time.sleep(30 * (i + 1))
                 continue
             if r.status_code >= 400:
                 print("  AI error", r.status_code, r.text[:300])
                 return None
             data = r.json()
-            text = data["candidates"][0]["content"]["parts"][0]["text"]
+            parts = data["candidates"][0]["content"]["parts"]
+            text = "".join(p.get("text", "") for p in parts if not p.get("thought"))
             text = re.sub(r"^```(?:json)?|```$", "", text.strip()).strip()
             return json.loads(text)
         except (requests.RequestException, KeyError, IndexError, ValueError) as e:
@@ -44,6 +46,7 @@ def _call(prompt, model, tries=2, timeout=240):
             if isinstance(e, requests.Timeout):
                 continue
             time.sleep(5)
+    print("  AI gave no usable answer")
     return None
 
 
@@ -104,7 +107,7 @@ def write_briefing(digest, model):
     return _call(prompt, model)
 
 
-def screen_news(items, model, chunk=30):
+def screen_news(items, model, chunk=80):
     """items: [{'id','company','title','source'}] -> {id: reason} for items to DROP. Sent in small batches."""
     drops = {}
     for k in range(0, len(items), chunk):
