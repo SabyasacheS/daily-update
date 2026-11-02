@@ -21,6 +21,7 @@ def available():
 
 
 def _call(prompt, model, tries=3, timeout=240):
+    global _QUOTA_GONE
     key = os.environ.get("GEMINI_API_KEY")
     if not key or _QUOTA_GONE:
         return None
@@ -33,7 +34,6 @@ def _call(prompt, model, tries=3, timeout=240):
             r = requests.post(URL.format(model=model), json=body, timeout=timeout,
                               headers={"x-goog-api-key": key, "Content-Type": "application/json"})
             if r.status_code == 429 and "quota" in r.text.lower():
-                global _QUOTA_GONE
                 _QUOTA_GONE = True
                 print("  AI daily quota used up; continuing without AI for this run")
                 return None
