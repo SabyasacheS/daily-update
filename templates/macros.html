@@ -3,9 +3,9 @@
 
 {% macro news_item(it) %}
 <div class="item">
-  {% if it.kind == 'pr' %}<span class="k-pr">PR</span>{% else %}<span class="k-news">NEWS</span>{% endif %}
+  {% if it.kind == 'pr' %}<span class="k-pr">Release</span>{% else %}<span class="k-news">News</span>{% endif %}
   <div>
-    <a href="{{ it.url }}" target="_blank" rel="noopener">{{ it.title }}</a>{% if it.is_new %} <span class="badge-new">NEW</span>{% endif %}
+    <a href="{{ it.url }}" target="_blank" rel="noopener">{{ it.title }}</a>{% if it.is_new %} <span class="badge-new">New</span>{% endif %}
     <div class="src">{{ it.sources[:3] | join(' · ') }}{% if it.sources|length > 3 %} +{{ it.sources|length - 3 }}{% endif %} · {{ it.date | shortdate }}</div>
   </div>
 </div>
@@ -14,18 +14,18 @@
 {% macro vbox(c) %}
 {% set v = c.view %}
 {% if c.listed and c.q %}
-<div class="vbox"><span class="k">PRICE</span><span class="v">{{ c.currency }} {{ c.q.price | price }}</span>
+<div class="vbox"><span class="k">Price</span><span class="v">{{ c.currency }} {{ c.q.price | price }}</span>
   <span class="mono {{ dir(c.q.change_pct) }}" style="font-weight:600">{{ arrow(c.q.change_pct) }} {{ c.q.change_pct | pct }}</span>
   <span class="prov">{{ c.ticker }} · last close</span></div>
 {% elif v.valuation and v.valuation.na %}
 {% if c.sections != ['sponsors'] %}<div class="na">No public valuation found</div>{% endif %}
 {% elif v.valuation %}
-<div class="vbox"><span class="k">VALUATION</span><span class="v">{{ v.valuation.text }}</span>
+<div class="vbox"><span class="k">Valuation</span><span class="v">{{ v.valuation.text }}</span>
   {% if v.valuation.previous %}<span class="was">{{ v.valuation.previous }}</span>{% endif %}
   <span class="prov">{% if v.valuation.url %}<a href="{{ v.valuation.url }}" target="_blank" rel="noopener" title="{{ v.valuation.note }}" aria-label="Source for {{ c.name }} valuation: {{ v.valuation.provenance }}">{{ v.valuation.provenance }} · source</a>{% else %}{{ v.valuation.provenance }}{% endif %}</span></div>
 {% endif %}
 {% if v.reported %}
-<div class="vbox"><span class="k">REPORTED</span><span class="v" style="font-size:15px">{{ v.reported.text }}</span>
+<div class="vbox"><span class="k">Reported</span><span class="v" style="font-size:15px">{{ v.reported.text }}</span>
   <span class="prov"><a href="{{ v.reported.url }}" target="_blank" rel="noopener" aria-label="Source for {{ c.name }} reported valuation">{{ v.reported.label }} · {{ v.reported.date | shortdate }} · source</a></span></div>
 {% endif %}
 {% if v.last_round and not c.listed %}
@@ -34,10 +34,10 @@
 {% endmacro %}
 
 {% macro status_pill(c) %}
-{% if c.signal or c.view.reported %}<span class="pill-warn">{{ 'IPO VALUATION REPORTED' if c.view.reported and c.view.reported.label.startswith('IPO') else 'ROUND REPORTED' }}</span>
-{% elif c.view.valuation and c.view.valuation.previous %}<span class="pill-ok">VALUATION UPDATED</span>
-{% elif c.listed %}<span class="tag">LISTED</span>
-{% else %}<span class="tag">PRIVATE</span>{% endif %}
+{% if c.signal or c.view.reported %}<span class="pill-warn">{{ 'IPO valuation reported' if c.view.reported and c.view.reported.label.startswith('IPO') else 'Round reported' }}</span>
+{% elif c.view.valuation and c.view.valuation.previous %}<span class="pill-ok">Valuation updated</span>
+{% elif c.listed %}<span class="tag">Listed</span>
+{% else %}<span class="tag">Private</span>{% endif %}
 {% endmacro %}
 
 {% macro earlier(c) %}

@@ -1,72 +1,72 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><title>{{ s.site_title }} {{ r.today }}</title>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* Executive print layout. One typeface (IBM Plex Sans), four sizes:
+/* Executive print layout. One typeface (Inter), four sizes:
    16pt headline · 11.5pt section titles · 9.5pt text · 7.5pt labels and sources. */
 @page{size:A4;margin:20mm 17mm 18mm 17mm;
-  @top-left{content:"{{ s.site_title }}";font:600 7.5pt 'IBM Plex Sans',sans-serif;color:#59645E;letter-spacing:.6pt;text-transform:uppercase}
-  @top-right{content:"{{ r.today | longdate }}";font:7.5pt 'IBM Plex Sans',sans-serif;color:#59645E}
-  @bottom-left{content:"Not investment advice. Compiled from public sources.";font:7.5pt 'IBM Plex Sans',sans-serif;color:#8A958F}
-  @bottom-right{content:counter(page) " of " counter(pages);font:7.5pt 'IBM Plex Sans',sans-serif;color:#8A958F}}
+  @top-left{content:"{{ s.site_title }}";font:600 7.5pt Inter,sans-serif;color:#6B7280;}
+  @top-right{content:"{{ r.today | longdate }}";font:7.5pt Inter,sans-serif;color:#6B7280}
+  @bottom-left{content:"Not investment advice. Compiled from public sources.";font:7.5pt Inter,sans-serif;color:#9CA3AF}
+  @bottom-right{content:counter(page) " of " counter(pages);font:7.5pt Inter,sans-serif;color:#9CA3AF}}
 @page :first{@top-left{content:none}@top-right{content:none}}
-*{box-sizing:border-box;font-family:'IBM Plex Sans','Segoe UI',Arial,sans-serif}
-body{margin:0;font-size:9.5pt;line-height:1.45;color:#1B2420;font-variant-numeric:tabular-nums}
+*{box-sizing:border-box;font-family:Inter,'Segoe UI',Arial,sans-serif}
+body{margin:0;font-size:9.5pt;line-height:1.45;color:#1F2937;font-variant-numeric:tabular-nums}
 a{color:inherit;text-decoration:underline;text-decoration-color:#C3C9C2;text-underline-offset:1.5pt}
 .mast a,.src a{text-decoration:none}
 p{margin:0 0 5pt}
-.lbl{font-size:7.5pt;font-weight:600;letter-spacing:.6pt;text-transform:uppercase;color:#59645E}
-.src{font-size:7.5pt;color:#6B756F}
-.up{color:#0D7A4A}.down{color:#B42318}
-.mast{display:table;width:100%;padding-bottom:7pt;border-bottom:2pt solid #C2410C;margin-bottom:14pt}
+.lbl{font-size:7.5pt;font-weight:500;color:#6B7280}
+.src{font-size:7.5pt;color:#6B7280}
+.up{color:#047857}.down{color:#B91C1C}
+.mast{display:table;width:100%;padding-bottom:7pt;border-bottom:2pt solid #0B2545;margin-bottom:14pt}
 .mast .l,.mast .r{display:table-cell;vertical-align:bottom}
 .mast .r{text-align:right}
-.mast .name{font-size:16pt;font-weight:700;letter-spacing:.4pt;color:#101814}
-h1{font-size:16pt;font-weight:600;line-height:1.25;margin:3pt 0 7pt;color:#101814}
-h2{font-size:11.5pt;font-weight:700;margin:16pt 0 6pt;padding-bottom:3pt;border-bottom:.75pt solid #101814;color:#101814;page-break-after:avoid}
+.mast .name{font-size:16pt;font-weight:700;color:#0B2545}
+h1{font-size:16pt;font-weight:600;line-height:1.25;margin:3pt 0 7pt;color:#111827}
+h2{font-size:11.5pt;font-weight:700;margin:16pt 0 6pt;padding-bottom:3pt;border-bottom:.75pt solid #0B2545;color:#0B2545;page-break-after:avoid}
 .lead p{max-width:150mm}
 .top{width:100%;border-collapse:collapse;margin-top:2pt}
-.top td{vertical-align:top;padding:6pt 0;border-bottom:.5pt solid #E1E5DF}
+.top td{vertical-align:top;padding:6pt 0;border-bottom:.5pt solid #E5E7EB}
 .top tr:last-child td{border-bottom:0}
-.top .n{width:9mm;font-size:11.5pt;font-weight:700;color:#C2410C}
-.top .t{font-weight:600;color:#101814}
-.top .w{color:#3A4540}
+.top .n{width:9mm;font-size:11.5pt;font-weight:700;color:#0B2545}
+.top .t{font-weight:600;color:#111827}
+.top .w{color:#374151}
 .glance{width:100%;border-collapse:collapse}
 .glance>tbody>tr>td{vertical-align:top}
 .glance>tbody>tr>td:first-child{width:60%;padding-right:9mm}
 table.hold{width:100%;border-collapse:collapse}
-table.hold th{font-size:7.5pt;font-weight:600;letter-spacing:.4pt;color:#59645E;text-align:right;padding:0 0 3pt 8pt;white-space:nowrap;border-bottom:.75pt solid #101814}
-table.hold td{text-align:right;padding:4pt 0 4pt 8pt;white-space:nowrap;border-bottom:.5pt solid #E1E5DF}
+table.hold th{font-size:7.5pt;font-weight:600;color:#6B7280;text-align:right;padding:0 0 3pt 8pt;white-space:nowrap;border-bottom:.75pt solid #0B2545}
+table.hold td{text-align:right;padding:4pt 0 4pt 8pt;white-space:nowrap;border-bottom:.5pt solid #E5E7EB}
 table.hold tr:last-child td{border-bottom:0}
 table.hold .l{text-align:left;padding-left:0}
-table.hold .nm{font-weight:600;color:#101814}
+table.hold .nm{font-weight:600;color:#111827}
 .kv{width:100%;border-collapse:collapse}
-.kv td{padding:4pt 0;border-bottom:.5pt solid #E1E5DF}
+.kv td{padding:4pt 0;border-bottom:.5pt solid #E5E7EB}
 .kv tr:last-child td{border-bottom:0}
 .kv td.v{text-align:right;font-weight:600;white-space:nowrap;padding-left:8pt}
-.list div{padding:3pt 0;border-bottom:.5pt solid #E1E5DF}
+.list div{padding:3pt 0;border-bottom:.5pt solid #E5E7EB}
 .list div:last-child{border-bottom:0}
-.co{padding:7pt 0 8pt;border-bottom:.5pt solid #E1E5DF;page-break-inside:avoid}
+.co{padding:7pt 0 8pt;border-bottom:.5pt solid #E5E7EB;page-break-inside:avoid}
 .co-head{display:table;width:100%;margin-bottom:3pt}
 .co-head .l,.co-head .r{display:table-cell;vertical-align:baseline}
 .co-head .r{text-align:right;white-space:nowrap}
-.co-name{font-weight:700;color:#101814}
-.tag{font-size:7.5pt;font-weight:600;letter-spacing:.4pt;padding:0 3pt;border:.5pt solid #A7B2AB;color:#3A4540;margin-right:3pt}
-.tag.pr{background:#101814;border-color:#101814;color:#fff}
+.co-name{font-weight:700;color:#111827}
+.tag{font-size:7pt;font-weight:600;padding:0 4pt;border-radius:2pt;background:#EEF2F7;color:#374151;margin-right:4pt}
+.tag.pr{background:#0B2545;color:#fff}
 .tag.warn{border-color:#E9B79E;background:#FDF1EA;color:#B93D0C}
 .hl{margin:2pt 0 0 0}
-.why{margin-top:3pt;color:#3A4540}
-.why b{color:#101814;font-weight:600}
-.quiet{margin-top:6pt;color:#59645E}
-.quiet b{color:#1B2420;font-weight:600}
+.why{margin-top:3pt;color:#374151}
+.why b{color:#111827;font-weight:600}
+.quiet{margin-top:6pt;color:#6B7280}
+.quiet b{color:#1F2937;font-weight:600}
 table.cal{width:100%;border-collapse:collapse}
-table.cal td{padding:4pt 0;border-bottom:.5pt solid #E1E5DF;vertical-align:top}
+table.cal td{padding:4pt 0;border-bottom:.5pt solid #E5E7EB;vertical-align:top}
 table.cal tr:last-child td{border-bottom:0}
 .newpage{page-break-before:always}
 </style></head><body>
 
 {% set site = s.site_url.rstrip('/') ~ '/' %}
-<div class="mast"><div class="l"><span class="name">{{ s.site_title | upper }}</span></div>
+<div class="mast"><div class="l"><span class="name">{{ s.site_title }}</span></div>
   <div class="r"><span class="lbl">{{ r.today | longdate }} · <a href="{{ site }}">Open the full report online</a></span></div></div>
 
 <span class="lbl">Executive summary{% if r.briefing.ai %} · AI-written, verify before acting{% endif %}</span>
@@ -142,7 +142,7 @@ table.cal tr:last-child td{border-bottom:0}
   <div class="co">
     <div class="co-head">
       <div class="l"><span class="co-name">{{ c.name }}</span>
-        {% if v.reported or c.signal %} <span class="tag warn">{{ 'IPO VALUATION REPORTED' if v.reported and v.reported.label.startswith('IPO') else 'ROUND REPORTED' }}</span>{% elif v.valuation and v.valuation.previous %} <span class="tag warn">VALUATION UPDATED</span>{% endif %}</div>
+        {% if v.reported or c.signal %} <span class="tag warn">{{ 'IPO valuation reported' if v.reported and v.reported.label.startswith('IPO') else 'Round reported' }}</span>{% elif v.valuation and v.valuation.previous %} <span class="tag warn">Valuation updated</span>{% endif %}</div>
       <div class="r">
         {% if c.listed and c.q %}<span>{{ c.currency }} {{ c.q.price | price }}</span> <span class="{{ 'up' if c.q.change_pct and c.q.change_pct > 0 else 'down' }}">{% if c.q.change_pct and c.q.change_pct > 0 %}▲{% elif c.q.change_pct and c.q.change_pct < 0 %}▼{% endif %} {{ c.q.change_pct | pct }}</span>
         {% elif v.valuation and v.valuation.na %}{% if c.sections != ['sponsors'] %}<span class="src">No public valuation found</span>{% endif %}
@@ -152,7 +152,7 @@ table.cal tr:last-child td{border-bottom:0}
       </div>
     </div>
     {% for it in c['items'][:3] %}
-    <p class="hl"><span class="tag{{ ' pr' if it.kind == 'pr' }}">{{ 'PR' if it.kind == 'pr' else 'NEWS' }}</span><a href="{{ it.url }}">{{ it.title }}</a> <span class="src">{{ it.sources[:2] | join(', ') }}, {{ it.date | shortdate }}</span></p>
+    <p class="hl"><span class="tag{{ ' pr' if it.kind == 'pr' }}">{{ 'Release' if it.kind == 'pr' else 'News' }}</span><a href="{{ it.url }}">{{ it.title }}</a> <span class="src">{{ it.sources[:2] | join(', ') }}, {{ it.date | shortdate }}</span></p>
     {% endfor %}
     {% if c.why %}<p class="why"><b>Why it matters:</b> {{ c.why }}</p>{% endif %}
   </div>

@@ -8,7 +8,7 @@
     <span><b>{{ ch.new_pr|length }}</b> press releases</span><span><b>{{ ch.new_news|length }}</b> news stories</span></div>
 </div>
 
-<section>
+<section class="sec">
   <div class="rule-head"><h2>Price &amp; volume</h2><span class="ln"></span><span class="aside">flag: ±{{ s.thresholds.price_move_pct }}% or volume above both averages</span></div>
   {% if ch.moves %}
   <div class="move-box"><div>
@@ -30,7 +30,7 @@
       <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:baseline">
         <span class="disp" style="font-size:22px;font-weight:700">{{ v.company }}</span>
         <span class="mono">{% if v['from'] %}<span class="muted" style="text-decoration:line-through">{{ v['from'] }}</span> → {% endif %}<b>{{ v.to }}</b></span></div>
-      <div class="src">{% if v.type == 'reported' %}<span class="pill-warn">REPORTED · VERIFY</span>{% else %}<span class="pill-ok">CLOSED</span>{% endif %}
+      <div class="src">{% if v.type == 'reported' %}<span class="pill-warn">Reported · verify</span>{% else %}<span class="pill-ok">Closed</span>{% endif %}
         <a href="{{ v.source_url }}" target="_blank" rel="noopener" style="color:var(--muted)">{{ v.source_title | truncate(80) }}</a> · {{ v.date | shortdate }}</div>
     </div>
     {% else %}<p class="muted" style="margin:0">No valuation changes detected.</p>{% endfor %}
@@ -39,7 +39,7 @@
     <h2>Funding signals · verify</h2>
     {% for sg in ch.signals %}
     <div style="padding:10px 0;border-bottom:1px solid var(--line-2)">
-      <div style="display:flex;justify-content:space-between;gap:10px"><b>{{ sg.company }}</b><span class="pill-warn">{{ sg.status | upper }}</span></div>
+      <div style="display:flex;justify-content:space-between;gap:10px"><b>{{ sg.company }}</b><span class="pill-warn">{{ sg.status | capitalize }}</span></div>
       <a href="{{ sg.source_url }}" target="_blank" rel="noopener" class="plain">{{ sg.source_title }}</a>
       <div class="src">{% if sg.raise_text %}Raise: {{ sg.raise_text }} · {% endif %}valuation not stated, so the value on file is unchanged · {{ sg.date | shortdate }}</div>
     </div>
@@ -48,12 +48,12 @@
 </section>
 
 <section class="pair">
-  <div>
+  <div class="sec">
     <div class="rule-head"><h2>New press releases</h2><span class="ln"></span></div>
     {% for it in ch.new_pr %}<div class="stack-row"><span class="src">{{ it.company }} · {{ it.date | shortdate }}</span><div><a class="plain" style="font-weight:500" href="{{ it.url }}" target="_blank" rel="noopener">{{ it.title }}</a></div></div>
     {% else %}<p class="muted">None.</p>{% endfor %}
   </div>
-  <div>
+  <div class="sec">
     <div class="rule-head"><h2>New coverage</h2><span class="ln"></span></div>
     {% for it in ch.new_news %}<div class="stack-row"><span class="src">{{ it.company }} · {{ it.date | shortdate }}{% if it.sources|length > 1 %} · {{ it.sources|length }} sources{% endif %}</span><div><a class="plain" style="font-weight:500" href="{{ it.url }}" target="_blank" rel="noopener">{{ it.title }}</a></div></div>
     {% else %}<p class="muted">None.</p>{% endfor %}
@@ -61,7 +61,7 @@
 </section>
 
 {% if ch.calendar_soon %}
-<section>
+<section class="sec">
   <div class="rule-head"><h2>Coming up in 48 hours</h2><span class="ln"></span></div>
   {% for e in ch.calendar_soon %}<div class="list-row"><span class="d">{{ e.day }}</span><div><b>{{ e.title }}</b> <span class="src">{{ e.kind }}</span></div></div>{% endfor %}
 </section>

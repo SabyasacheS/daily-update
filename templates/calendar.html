@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block main %}
 <div class="page-head"><div><span class="kicker">Next {{ s.calendar_days }} days</span><h1>Calendar</h1></div></div>
-<section>
+<section class="sec">
 {% for e in r.calendar %}
   <div class="cal-row">
     <div class="when">{{ e.day }}<span>{{ e.weekday }}{% if e.days_away == 0 %} · <span class="soon">today</span>{% elif e.days_away == 1 %} · <span class="soon">tomorrow</span>{% else %} · in {{ e.days_away }} days{% endif %}</span></div>

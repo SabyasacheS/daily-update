@@ -155,9 +155,9 @@ def build(wl, raw, state, today, use_ai=True):
         comp["signal"] = next((x for x in signals if x["company"] == name), None)
 
     # --- last known item for quiet companies
-    if state.get("last_item_v", 1) < 2:  # entries saved before the relevance filter existed
+    if state.get("last_item_v", 1) < 3:  # entries saved before the current relevance filter
         state["last_item"] = {}
-        state["last_item_v"] = 2
+        state["last_item_v"] = 3
     last = state.setdefault("last_item", {})
     for name, comp in companies.items():
         if comp["items"]:
@@ -187,6 +187,7 @@ def build(wl, raw, state, today, use_ai=True):
         print("  AI briefing:", "used" if briefing else ("unusable answer: " + str(res)[:200] if res else "no answer"))
     report["briefing"] = briefing or fallback_briefing(report, val_changes, signals)
     report["briefing"]["ai"] = bool(briefing)
+    report["briefing"]["also"] = also_today(report)
     notes = (res or {}).get("notes", {}) if briefing else {}
     themes = (res or {}).get("themes", {}) if briefing else {}
     for name, comp in companies.items():
@@ -203,6 +204,27 @@ def build(wl, raw, state, today, use_ai=True):
         "new_pr": len(report["changes"]["new_pr"]), "new_news": len(report["changes"]["new_news"]),
     }
     return report
+
+
+def also_today(report, n=5):
+    """Other new stories worth a glance: one per company, not already in Key news, most widely covered first."""
+    shown = {t["title"] for t in report["briefing"].get("key") or report["briefing"].get("top3") or []}
+    shown_co = {t.get("company") for t in report["briefing"].get("key") or []}
+    pool = []
+    for name, c in report["companies"].items():
+        for it in c["items"]:
+            if it.get("is_new") and it["title"] not in shown:
+                pool.append(dict(it, company=name))
+    pool.sort(key=lambda i: (len(i["sources"]), i["kind"] == "pr", i.get("ts", "")), reverse=True)
+    out, used = [], set(shown_co)
+    for it in pool:
+        if it["company"] in used:
+            continue
+        used.add(it["company"])
+        out.append(it)
+        if len(out) == n:
+            break
+    return out
 
 
 def all_items_by_id(report):

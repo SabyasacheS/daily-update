@@ -12,7 +12,7 @@
 {% endfor %}
 </section>
 {% if r.macro %}
-<section>
+<section class="sec">
   <div class="rule-head"><h2>Macro &amp; policy</h2><span class="ln"></span></div>
   {% for it in r.macro %}<div class="list-row"><span class="d">{{ it.date | shortdate }}</span><div><a href="{{ it.url }}" target="_blank" rel="noopener">{{ it.title }}</a> <span class="src">{{ it.source }}</span></div></div>{% endfor %}
 </section>

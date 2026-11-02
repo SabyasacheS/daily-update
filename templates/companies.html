@@ -6,7 +6,7 @@
 <div class="page-head">
   <div><span class="kicker">{{ active|length }} of {{ sec.names|length }} names with news · last 72h</span><h1>{{ sec.label }}</h1></div>
   <div class="mono" style="display:flex;flex-wrap:wrap;gap:14px;font-size:11px;color:var(--muted)">
-    <span><span class="k-pr">PR</span> official release</span><span><span class="k-news">NEWS</span> press coverage</span></div>
+    <span><span class="k-pr">Release</span> from the company</span><span><span class="k-news">News</span> press coverage</span></div>
 </div>
 
 {% if active %}
@@ -27,7 +27,7 @@
 
 {% if quiet %}
 <section>
-  <div class="rule-head"><h2>No new items · 72h</h2><span class="ln"></span></div>
+  <div class="rule-head"><h2>No new items in the last 72 hours</h2><span class="ln"></span></div>
   <div class="quiet">
   {% for c in quiet %}
     <div><b>{{ c.name }}</b>

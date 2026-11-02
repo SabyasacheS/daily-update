@@ -7,7 +7,7 @@
   <div class="note"><span class="k">Method</span>
     <p>Headlines must name the company; generic names also need context words. Near-identical stories from several outlets are merged. Valuations update only when the figure appears in the source text; reported rounds are shown separately until closed. {% if r.briefing.ai %}The briefing and "why it matters" lines are written by AI from these items.{% else %}AI summaries were unavailable today; the briefing was assembled automatically.{% endif %}</p></div>
 </section>
-<section class="src-group">
+<section class="sec src-group">
 {% for sec in r.sections %}
   <h3>{{ sec.label }}</h3>
   <ul>{% for n in sec.names %}{% for it in r.companies[n]['items'] %}<li><b>{{ n }}</b>: <a href="{{ it.url }}" target="_blank" rel="noopener">{{ it.title }}</a> <span class="src">{{ it.sources | join(', ') }} · {{ it.date | shortdate }}</span></li>{% endfor %}{% endfor %}</ul>

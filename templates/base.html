@@ -7,16 +7,18 @@
 <title>{{ title }} · {{ s.site_title }} · {{ r.today }}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ root }}assets/style.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="top">
   <div class="wrap top-row">
-    <a class="brand" href="{{ root }}index.html">{{ s.site_title | upper }}</a>
-    <div class="stamp"><b>{{ r.today | longdate | upper }}</b><br>Generated {{ r.generated_local }}</div>
+    <a class="brand" href="{{ root }}index.html">{{ s.site_title }}</a>
+    <div class="stamp"><b>{{ r.today | longdate }}</b> · updated {{ r.generated_local }}</div>
   </div>
+</header>
+<div class="navbar">
   <nav class="wrap nav" aria-label="Report sections">
     {% for key, label, href in nav %}
     <a href="{{ root }}{{ href }}"{% if key == page %} class="on" aria-current="page"{% endif %}>{{ label }}</a>
@@ -24,7 +26,7 @@
     <a class="right{% if page == 'archive' %} on{% endif %}" href="{{ site_root }}archive.html">Archive</a>
     <a class="{% if page == 'watchlist' %}on{% endif %}" href="{{ site_root }}watchlist.html">Watchlist</a>
   </nav>
-</header>
+</div>
 <main class="wrap" id="main" tabindex="-1">
 {% block main %}{% endblock %}
 </main>

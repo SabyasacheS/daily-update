@@ -7,14 +7,14 @@
 {% for h in r.holdings %}
 <article class="hcard{% if h.largest %} big{% endif %}">
   <div class="head"><div><div class="nm">{{ h.name }}</div><div class="src">{{ h.exchange }}{% if h.ticker %} · {{ h.ticker }}{% endif %} · {{ h.currency }}</div></div>
-    {% if h.largest %}<span class="big-tag">LARGEST MOVE</span>{% endif %}</div>
+    {% if h.largest %}<span class="big-tag">Largest move</span>{% endif %}</div>
   {% if h.q %}
   <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:10px"><span class="px">{{ h.q.price | price }}</span>
     <span class="ch {{ m.dir(h.q.change_pct) }}">{{ m.arrow(h.q.change_pct) }} {{ h.q.change_pct | pct }}</span></div>
   {% if h.q.spark %}<svg class="spark" viewBox="0 0 120 28" preserveAspectRatio="none" role="img" aria-label="{{ h.name }} 30-day closing prices">
     <polyline points="{{ h.q.spark }}" stroke="{{ 'var(--up)' if (h.q.change_1m_pct or 0) >= 0 else 'var(--down)' }}"></polyline></svg>
   <div class="src">30 days{% if h.q.change_1m_pct is not none %} · {{ h.q.change_1m_pct | pct }}{% endif %}</div>{% endif %}
-  <div class="mini"><div><span>PREV</span>{{ h.q.prev | price }}</div><div><span>VOL (m)</span>{{ h.q.volume | volm }}</div><div><span>VS 10D</span>{{ h.q.vs10 | ratio }}</div></div>
+  <div class="mini"><div><span>Prev close</span>{{ h.q.prev | price }}</div><div><span>Volume (m)</span>{{ h.q.volume | volm }}</div><div><span>vs 10-day</span>{{ h.q.vs10 | ratio }}</div></div>
   {% else %}<p class="muted" style="margin:0">No price data today. Check the ticker on the Watchlist page.</p>{% endif %}
 </article>
 {% endfor %}
