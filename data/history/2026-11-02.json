@@ -2,20 +2,20 @@
   "date": "2026-11-02",
   "quotes": {
     "SpaceX": {
-      "price": 137.0800018310547,
-      "change_pct": 1.7517819098630538
+      "price": 139.58999633789062,
+      "change_pct": 3.6149013309533005
     },
     "Beema": {
       "price": 4.7220001220703125,
       "change_pct": -1.2133909036033823
     },
     "Blaize": {
-      "price": 0.2071000039577484,
-      "change_pct": 5.6632700887995195
+      "price": 0.2004999965429306,
+      "change_pct": 2.295919278887175
     },
     "CVC Capital Partners": {
-      "price": 13.890000343322754,
-      "change_pct": 3.502237439320518
+      "price": 13.920000076293945,
+      "change_pct": 3.725782393125586
     }
   },
   "valuations": {
@@ -63,18 +63,17 @@
   },
   "items": {
     "SpaceX": [
-      "de03e268084e",
       "4b622e3495cb",
-      "ec6098a1a6d4",
       "affadab8c432",
-      "a782acd69bed",
-      "b9f7f6d9bdf1"
+      "1a343dfe4b4f",
+      "9e561fad6f66",
+      "cc81d6ed6014",
+      "f46ced58e18b"
     ],
     "Beema": [],
     "Blaize": [],
     "CVC Capital Partners": [
-      "0ea8fe400aa0",
-      "250f8493b07a"
+      "0ea8fe400aa0"
     ],
     "Arini Capital Management": [
       "9cfd5aa13f73",
@@ -93,6 +92,7 @@
     "Aligned Data Centers": [],
     "Altera": [],
     "Anthropic": [
+      "ae08cf7ada09",
       "2b872520bd40",
       "6da26963563c",
       "522cd7940a6e",
@@ -126,7 +126,9 @@
     "SSI": [
       "430f520b1403"
     ],
-    "TikTok US": [],
+    "TikTok US": [
+      "415ff74253bf"
+    ],
     "Vantage Data Centers NA": [],
     "Blackstone": [
       "d3b51e7fea82",
@@ -162,9 +164,7 @@
     ],
     "Neuberger Berman": [],
     "BlackRock": [
-      "83d82ad804a1",
-      "d86d04e9264a",
-      "60bf25b38c89"
+      "7150bcd54f95"
     ],
     "Ares": [
       "53232aef1ce3",
@@ -183,6 +183,7 @@
       "6b5d8afebb4b"
     ],
     "RedBird": [
+      "e4ed64ba0337",
       "fa6ac36a33ae"
     ],
     "Qatar Insurance Company": [],
