@@ -1,0 +1,186 @@
+{
+  "date": "2026-11-08",
+  "quotes": {
+    "SpaceX": {
+      "price": 134.27000427246094,
+      "change_pct": 8.615111866411414
+    },
+    "Beema": {
+      "price": 4.59499979019165,
+      "change_pct": -1.7532660847153148
+    },
+    "Blaize": {
+      "price": 0.20499999821186066,
+      "change_pct": 3.0150739846393737
+    },
+    "CVC Capital Partners": {
+      "price": 14.460000038146973,
+      "change_pct": -0.48175978052757157
+    }
+  },
+  "valuations": {
+    "SpaceX": "NA",
+    "Beema": "NA",
+    "Blaize": "NA",
+    "CVC Capital Partners": "NA",
+    "Arini Capital Management": "NA",
+    "Deutsche ReGas": "NA",
+    "Figure AI": "USD 39bn",
+    "Firefly": "AUD 3bn",
+    "AIP": "NA",
+    "Aligned Data Centers": "c. USD 40bn",
+    "Altera": "USD 8.75bn",
+    "Anthropic": "USD 965bn",
+    "Binance": "NA",
+    "Campus AI": "NA",
+    "Databricks": "USD 190bn",
+    "Isomorphic Labs": "NA",
+    "Khazna": "c. USD 5.5bn",
+    "OpenAI": "USD 1.25tn",
+    "SSI": "USD 32bn",
+    "TikTok US": "c. USD 14bn",
+    "Vantage Data Centers NA": "NA",
+    "Blackstone": "NA",
+    "Golden Gate Ventures": "NA",
+    "Goldman Sachs": "NA",
+    "Blue Owl": "NA",
+    "HGGC": "NA",
+    "Lexington Partners": "NA",
+    "Vista Equity Partners": "NA",
+    "Coller Capital": "NA",
+    "Citadel": "NA",
+    "Golub Capital": "NA",
+    "Neuberger Berman": "NA",
+    "BlackRock": "NA",
+    "Ares": "NA",
+    "Monroe Capital": "NA",
+    "Morgan Stanley": "NA",
+    "Ardian": "NA",
+    "Hamilton Lane": "NA",
+    "RedBird": "NA",
+    "Qatar Insurance Company": "NA",
+    "Commercial Bank of Qatar": "NA"
+  },
+  "items": {
+    "SpaceX": [
+      "67844a3635a3",
+      "d7e5b4a43640",
+      "e9bc5166b57d",
+      "8c6484d76a3e",
+      "fabe99b41295"
+    ],
+    "Beema": [],
+    "Blaize": [],
+    "CVC Capital Partners": [
+      "aae1bab5b241",
+      "37c05f43b242",
+      "9321d61eae91",
+      "a4eb40fb2f47"
+    ],
+    "Arini Capital Management": [
+      "d9970da0d203",
+      "38f951dd63b8",
+      "cc62f664d61a",
+      "2d0527b8ef8d",
+      "7bfe7f305af1"
+    ],
+    "Deutsche ReGas": [],
+    "Figure AI": [
+      "2947e52220f4"
+    ],
+    "Firefly": [],
+    "AIP": [
+      "97e794309b6a"
+    ],
+    "Aligned Data Centers": [],
+    "Altera": [],
+    "Anthropic": [
+      "5d0a74011110",
+      "c38b968898f3",
+      "906f7eed86dc"
+    ],
+    "Binance": [
+      "df12db218cae",
+      "88b61386e780",
+      "188b6613dbb7",
+      "2fcf6f311935",
+      "a6598ab1662d"
+    ],
+    "Campus AI": [],
+    "Databricks": [
+      "e7f047a013b5",
+      "14d2cc32f522",
+      "e910c7d7f8ff",
+      "246853bff502"
+    ],
+    "Isomorphic Labs": [
+      "bde4766558b2",
+      "1229aa3c8f75",
+      "a2c62e37e2cd",
+      "e7ccf3a5bbbb"
+    ],
+    "Khazna": [],
+    "OpenAI": [
+      "beb83bc9a387",
+      "353032d84d17",
+      "e792991111d7",
+      "e78b80400907",
+      "2db45997114d",
+      "296f7b7a6214"
+    ],
+    "SSI": [],
+    "TikTok US": [
+      "1fd9090b852d"
+    ],
+    "Vantage Data Centers NA": [],
+    "Blackstone": [
+      "1e78fa0901a8"
+    ],
+    "Golden Gate Ventures": [],
+    "Goldman Sachs": [
+      "7d94cc952b29",
+      "debd7bd3dbb7"
+    ],
+    "Blue Owl": [
+      "1e00d2ea23aa",
+      "8a5979e1f29c",
+      "4de91e9d6f84"
+    ],
+    "HGGC": [],
+    "Lexington Partners": [],
+    "Vista Equity Partners": [],
+    "Coller Capital": [],
+    "Citadel": [],
+    "Golub Capital": [],
+    "Neuberger Berman": [
+      "f75700da4f8d",
+      "ae9403e2b6a2"
+    ],
+    "BlackRock": [
+      "f762ad210697",
+      "e697274be856",
+      "db676b98bd81",
+      "73fe3e99eb8c",
+      "8dd3f0933da2",
+      "d484aa4d5722"
+    ],
+    "Ares": [
+      "bccedab4ce71",
+      "f12ebd6fde7c"
+    ],
+    "Monroe Capital": [],
+    "Morgan Stanley": [
+      "1c7702dfc3af",
+      "5877bcd09bf0",
+      "9f5f7e0851e6"
+    ],
+    "Ardian": [],
+    "Hamilton Lane": [],
+    "RedBird": [
+      "ead26464624d",
+      "85b1526fc107"
+    ],
+    "Qatar Insurance Company": [],
+    "Commercial Bank of Qatar": []
+  }
+}
