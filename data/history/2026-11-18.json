@@ -1,0 +1,202 @@
+{
+  "date": "2026-11-18",
+  "quotes": {
+    "SpaceX": {
+      "price": 141.6999969482422,
+      "change_pct": 3.1595779838425244
+    },
+    "Beema": {
+      "price": 4.599999904632568,
+      "change_pct": -1.0752728969764116
+    },
+    "Blaize": {
+      "price": 0.1420000046491623,
+      "change_pct": -1.3888814153123512
+    },
+    "CVC Capital Partners": {
+      "price": 13.960000038146973,
+      "change_pct": 0.0
+    }
+  },
+  "valuations": {
+    "SpaceX": "NA",
+    "Beema": "NA",
+    "Blaize": "NA",
+    "CVC Capital Partners": "NA",
+    "Arini Capital Management": "NA",
+    "Deutsche ReGas": "NA",
+    "Figure AI": "USD 39bn",
+    "Firefly": "AUD 3bn",
+    "AIP": "NA",
+    "Aligned Data Centers": "c. USD 40bn",
+    "Altera": "USD 8.75bn",
+    "Anthropic": "USD 965bn",
+    "Binance": "NA",
+    "Campus AI": "NA",
+    "Databricks": "USD 190bn",
+    "Isomorphic Labs": "NA",
+    "Khazna": "c. USD 5.5bn",
+    "OpenAI": "USD 1.25tn",
+    "SSI": "USD 32bn",
+    "TikTok US": "c. USD 14bn",
+    "Vantage Data Centers NA": "NA",
+    "Blackstone": "NA",
+    "Golden Gate Ventures": "NA",
+    "Goldman Sachs": "NA",
+    "Blue Owl": "NA",
+    "HGGC": "NA",
+    "Lexington Partners": "NA",
+    "Vista Equity Partners": "NA",
+    "Coller Capital": "NA",
+    "Citadel": "NA",
+    "Golub Capital": "NA",
+    "Neuberger Berman": "NA",
+    "BlackRock": "NA",
+    "Ares": "NA",
+    "Monroe Capital": "NA",
+    "Morgan Stanley": "NA",
+    "Ardian": "NA",
+    "Hamilton Lane": "NA",
+    "RedBird": "NA",
+    "Qatar Insurance Company": "NA",
+    "Commercial Bank of Qatar": "NA"
+  },
+  "items": {
+    "SpaceX": [
+      "872ebd8ccc59",
+      "8a8052d6e8a0",
+      "a4b322191d40"
+    ],
+    "Beema": [],
+    "Blaize": [
+      "c77bb30f6ced",
+      "c4b6ee18a674"
+    ],
+    "CVC Capital Partners": [
+      "de234c79afec",
+      "f4b09a8c0aaf",
+      "eef7ea761c31",
+      "5d79452bdc68"
+    ],
+    "Arini Capital Management": [],
+    "Deutsche ReGas": [],
+    "Figure AI": [],
+    "Firefly": [],
+    "AIP": [],
+    "Aligned Data Centers": [],
+    "Altera": [
+      "26e8b66ca3c2",
+      "175a470ae966",
+      "036c79ee34be"
+    ],
+    "Anthropic": [
+      "fca557ebc03d"
+    ],
+    "Binance": [
+      "ce131721fb3c",
+      "88b277f0b10f",
+      "59d1e7feeea9",
+      "8d7c8768f6a6",
+      "b99330491568"
+    ],
+    "Campus AI": [],
+    "Databricks": [
+      "f2e8e181a2e6",
+      "c700ee4f1197",
+      "804c8042d62a"
+    ],
+    "Isomorphic Labs": [
+      "4ef632733ef2",
+      "d58132b036c5",
+      "1b32a3f7643d",
+      "d79e53b5dbbc",
+      "6c35abecf7e4",
+      "ba703d65c70c"
+    ],
+    "Khazna": [],
+    "OpenAI": [
+      "d3380d46f539",
+      "26182b5d743e",
+      "b16bf608032e",
+      "48b26f745bfc",
+      "2930d5097c1d",
+      "89bf728923e9"
+    ],
+    "SSI": [],
+    "TikTok US": [],
+    "Vantage Data Centers NA": [],
+    "Blackstone": [
+      "f3eba26a69bd",
+      "9b937ba9826b",
+      "a8304fceb6ab",
+      "4ecd23d10c6d",
+      "11ef3b83ebca",
+      "51318c56c881"
+    ],
+    "Golden Gate Ventures": [],
+    "Goldman Sachs": [
+      "f379eabc9860"
+    ],
+    "Blue Owl": [
+      "612c2d859f70",
+      "7d8aab37a455"
+    ],
+    "HGGC": [],
+    "Lexington Partners": [
+      "35a22d5ba7fa"
+    ],
+    "Vista Equity Partners": [
+      "133376f78b32",
+      "16deb6310df9",
+      "c5281ddadb9d",
+      "6fbde661c0d7"
+    ],
+    "Coller Capital": [],
+    "Citadel": [],
+    "Golub Capital": [
+      "c4f873178bad",
+      "0c8ac1e73dc3",
+      "4fe3d2f77d8b",
+      "56f2b53c8f8b",
+      "44651c85674b",
+      "f3e57ae1e77d"
+    ],
+    "Neuberger Berman": [
+      "f784ed55c9ba"
+    ],
+    "BlackRock": [
+      "fd115b98f8f4",
+      "3f53ccb8580f",
+      "b579c30b23e6",
+      "a6a47e10b2bc"
+    ],
+    "Ares": [
+      "5cab3e125d69"
+    ],
+    "Monroe Capital": [
+      "da089fa4b01a",
+      "a052a49e5e7d",
+      "2ad6b5b80163"
+    ],
+    "Morgan Stanley": [
+      "07684293fd4c",
+      "3f1552fa0a7b"
+    ],
+    "Ardian": [],
+    "Hamilton Lane": [
+      "32b48f9c7fc0",
+      "044b588d2273",
+      "60debcf20204",
+      "8ed30f2ea95c",
+      "20ff237c09a3",
+      "b7cc2e889b81"
+    ],
+    "RedBird": [
+      "c92c93509697",
+      "de5516084a65",
+      "e92ce00777e8"
+    ],
+    "Qatar Insurance Company": [],
+    "Commercial Bank of Qatar": []
+  }
+}
